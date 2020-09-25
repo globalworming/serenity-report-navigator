@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import ExploreData from "./ExploreData";
 import TestOutcome from "./model/TestOutcome";
@@ -6,12 +6,14 @@ import {Box, Card, CardContent} from "@material-ui/core";
 import UserStory from "./model/UserStory";
 import Tag from "./model/Tag";
 import TestStep from "./model/TestStep";
+import useLocalStorage from "react-use-localstorage";
 
 type OutcomeProps = {
   from: TestOutcome
 }
 
 const Outcome = ({from}: OutcomeProps) => {
+  // missing in model still
   let x = {
    "examples": {
       "headers": [
@@ -68,6 +70,19 @@ const Outcome = ({from}: OutcomeProps) => {
       }
     }
   }
+
+  const [detail] = useLocalStorage('detail', "1");
+  const [localDetail, setLocalDetail] = useState(parseInt(detail));
+  useEffect(() => setLocalDetail(parseInt(detail)), [detail, setLocalDetail])
+
+  if (localDetail > 0) {
+    return <Card variant="outlined" style={{margin: "0.5rem"}}>
+      <CardContent>
+        <span><UserStorySection from={from["user-story"]}/> {from.result}</span>
+      </CardContent>
+    </Card>
+  }
+
   return <Card variant="outlined" style={{margin: "0.5rem"}}>
     <CardContent>
       <strong>Outcome: {from.title} - {from.name}</strong>
@@ -84,7 +99,7 @@ const Outcome = ({from}: OutcomeProps) => {
         <UserStorySection from={from["user-story"]}/>
         <IssuesSection from={from.issues}/>
         <TagsSection from={from.tags}/>
-        {from["test-steps"].map((it, i) => <TestStepSection key={i} from={it} />)}
+        {from.testSteps.map((it, i) => <TestStepSection key={i} from={it} />)}
       </dl>
     </CardContent>
   </Card>
@@ -95,6 +110,16 @@ type UserStoryProps = {
 }
 
 const UserStorySection = ({from}: UserStoryProps) => {
+
+  const [detail] = useLocalStorage('detail', "1");
+  const [localDetail, setLocalDetail] = useState(parseInt(detail));
+  useEffect(() => setLocalDetail(parseInt(detail)), [detail, setLocalDetail])
+
+
+  if (localDetail > 0) {
+    return <strong>{from.storyName}</strong>
+  }
+
   return <Box style={{padding: "0.5rem"}}>
     <strong>User Story</strong>
     <dt>qualifiedStoryClassName</dt><dd>{from.qualifiedStoryClassName}</dd>

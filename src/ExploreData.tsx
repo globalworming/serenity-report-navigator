@@ -16,29 +16,17 @@ declare global {
 
 const ExploreData = () => {
 
-  const [outcomes, setOutcomes] = useState<Array<TestOutcome>>(window.outcomes);
+  const outcomes = window.outcomes;
 
-  const location = useLocation();
-  const query = qs.parse(location.search)
-  const [detail, setDetail] = useLocalStorage('detail', "1");
+  const [detail] = useLocalStorage('detail', "1");
+  const [localDetail, setLocalDetail] = useState(parseInt(detail));
+  useEffect(() => setLocalDetail(parseInt(detail)), [detail, setLocalDetail])
 
 
   return <>
-    <Paper style={{padding: "1rem", margin: "1rem"}}>
-      <p><Button variant="contained" color="primary" disableElevation href="#anchor">test anchorlink</Button><br/>
-        <Button variant="contained" color="primary" disableElevation href="?id=4&id=5&detail=high">test param link</Button><br/>
-        <Link to="#anchor">router anchor test</Link> (does not jump to anchor)<br/>
-        <Link to="?id=4&id=5&detail=high">router query test</Link> (does update location and causes rerender 👍)<br/>
-      </p>
-      <p>to test local storage: <Button variant="contained" color="primary" disableElevation onClick={() => setDetail((parseInt(detail) + 1).toString())}>increase detail level {detail}</Button></p>
-    </Paper>
-
-    <pre>{[{location}, {query}].map(it => JSON.stringify(it)).join("\n")}</pre>
-    <Box display="flex" flexWrap={"wrap"}>
     {
       outcomes.map((it, i) => <Box key={i}><Outcome from={it} /></Box>)
     }
-    </Box>
     <h2>JSON</h2>
     <pre>
       {JSON.stringify(outcomes, null, 2)}

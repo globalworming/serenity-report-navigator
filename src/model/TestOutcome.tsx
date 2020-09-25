@@ -17,7 +17,7 @@ interface TestOutcome {
   "user-story": UserStory
   issues: Array<string>
   tags: Array<Tag>
-  "test-steps": Array<TestStep>
+  testSteps: Array<TestStep>
 }
 
 export default TestOutcome

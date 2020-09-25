@@ -17,6 +17,7 @@
     "query-string": "^6.13.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hooks-global-state": "^1.0.1",
     "react-scripts": "3.4.3",
     "react-router": "^5.1.5",
     "react-router-dom": "^5.1.5",
