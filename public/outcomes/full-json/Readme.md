@@ -1,1 +1,0 @@
-testoutcomes copied from  serenity-reports/src/test/resources/test-outcomes/full-json
