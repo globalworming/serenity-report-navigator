@@ -9,6 +9,7 @@ import MyPaper from "./MyPaper";
 const InitHandleQueriesAndSyncLocalStorage = () => {
 
   const [detail, setDetail] = useGlobalState('detail');
+  const [filter, setFilter] = useGlobalState('filter');
   const [storedDetail, setStoredDetail] = useLocalStorage('detail', detail.toString());
   const location = useLocation();
   const query = qs.parse(location.search);
@@ -61,7 +62,7 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
     <MyPaper>
       <p><strong>Init, handle queries and sync local storage</strong> FIXME: that's a lot for a single component to be responsible for, split?</p>
       {detail < 0 && <div><strong>loading...</strong> <CircularProgress/></div>}
-      <pre style={{overflow: "auto"}}>{[ { state: {detail}}].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>
+      <pre style={{overflow: "auto"}}>{[ { state: {detail, filter}}].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>
     </MyPaper>
 
   </Box>

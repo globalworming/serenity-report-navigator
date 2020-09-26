@@ -17,9 +17,12 @@ const ExploreData = () => {
 
   const outcomes = window.outcomes;
 
+  const [filter] = useGlobalState('filter');
+  const filteredOutcomes = outcomes.filter(it => !filter.exclude.includes(it.result));
+
   const [detail] = useGlobalState('detail');
 
-  const stories = _.groupBy(outcomes, function (o) {
+  const stories = _.groupBy(filteredOutcomes, function (o) {
     return o["user-story"].storyName
   });
 
