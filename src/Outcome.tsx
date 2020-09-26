@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import ExploreData from "./ExploreData";
 import TestOutcome from "./model/TestOutcome";
 import {Box, Card, CardContent} from "@material-ui/core";
 import UserStory from "./model/UserStory";
@@ -13,8 +12,8 @@ type OutcomeProps = {
 }
 
 const Outcome = ({from}: OutcomeProps) => {
-  // missing in model still
-  let x = {
+  // TODO missing in model still
+  /*{
    "examples": {
       "headers": [
         "number_of_photos",
@@ -69,11 +68,11 @@ const Outcome = ({from}: OutcomeProps) => {
         "value": 5
       }
     }
-  }
+  }*/
 
   const [detail] = useLocalStorage('detail', "1");
   const [localDetail, setLocalDetail] = useState(parseInt(detail));
-  useEffect(() => setLocalDetail(parseInt(detail)), [detail, setLocalDetail])
+  useEffect(() => setLocalDetail(parseInt(detail)), [detail, setLocalDetail]);
 
   if (localDetail > 0) {
     return <Card variant="outlined" style={{margin: "0.5rem"}}>
@@ -113,7 +112,7 @@ const UserStorySection = ({from}: UserStoryProps) => {
 
   const [detail] = useLocalStorage('detail', "1");
   const [localDetail, setLocalDetail] = useState(parseInt(detail));
-  useEffect(() => setLocalDetail(parseInt(detail)), [detail, setLocalDetail])
+  useEffect(() => setLocalDetail(parseInt(detail)), [detail, setLocalDetail]);
 
 
   if (localDetail > 0) {
@@ -126,7 +125,7 @@ const UserStorySection = ({from}: UserStoryProps) => {
     <dt>storyName</dt><dd>{from.storyName}</dd>
     <dt>path</dt><dd>{from.path}</dd>
   </Box>
-}
+};
 
 type IssuesProps = {
   from: TestOutcome["issues"]
@@ -137,7 +136,7 @@ const IssuesSection = ({from}: IssuesProps) => {
     <strong>issues</strong>
     <p>{from.join(" ")}</p>
   </Box>
-}
+};
 
 interface TagsProps {
   from: Array<Tag>
@@ -148,7 +147,7 @@ const TagsSection = ({from}: TagsProps) => {
     <strong>tags</strong>
     <p>{from.map((it) => it.type + ":" + it.name).join(", ")}</p>
   </Box>
-}
+};
 
 interface TestStepProps {
   from: TestStep
@@ -163,6 +162,6 @@ const TestStepSection = ({from}: TestStepProps) => {
     <dt>screenshots</dt><dd>{from.screenshots.join(", ")}</dd>
     {from.children.map((it, i) => <TestStepSection key={i} from={it} />)}
   </Box>
-}
+};
 
 export default Outcome;

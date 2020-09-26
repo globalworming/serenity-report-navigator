@@ -6,8 +6,8 @@ const Overview = () => {
 
   const outcomes = window.outcomes;
 
-  var groupBy = function(xs: Array<any>, key: string) {
-    return xs.reduce(function(rv, x) {
+  const groupBy = function (xs: Array<any>, key: string) {
+    return xs.reduce(function (rv, x) {
       (rv[x[key]] = rv[x[key]] || []).push(x);
       return rv;
     }, {});

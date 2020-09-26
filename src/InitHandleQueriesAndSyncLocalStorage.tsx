@@ -11,19 +11,19 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
   const [detail, setDetail] = useGlobalState('detail');
   const [storedDetail, setStoredDetail] = useLocalStorage('detail', detail.toString());
   const location = useLocation();
-  const query = qs.parse(location.search)
-  const [init, setInit] = useState(false)
+  const query = qs.parse(location.search);
+  const [init, setInit] = useState(false);
 
   useEffect(() => {
     // query overrides everything
-    if (query.detail && query.detail[0]) {
-      setDetail(parseInt(query.detail[0]))
+    if (!init && query.detail && query.detail[0]) {
+      setDetail(parseInt(query.detail[0]));
       setStoredDetail(query.detail[0])
     }
-  }, [])
+  }, [init, query.detail, setDetail, setStoredDetail]);
 
   useEffect(() => {
-    // not initilized? try to get from local storage
+    // not initialized? try to get from local storage
     if (detail < 0) {
       if (parseInt(storedDetail) >= 0) {
         setDetail(parseInt(storedDetail))
@@ -33,21 +33,21 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
       }
     }
 
-  }, [detail])
+  }, [detail, setDetail, setStoredDetail, storedDetail]);
 
   useEffect(() => {
     // set init when done
-    if (detail >= 0 && detail === parseInt(storedDetail)) {
+    if (!init && detail >= 0 && detail === parseInt(storedDetail)) {
       setInit(true)
     }
-  })
+  }, [detail, init, storedDetail]);
 
 
   useEffect(() => {
     if (init && detail !== parseInt(storedDetail)) {
       setStoredDetail(detail.toString())
     }
-  }, [init, detail, storedDetail])
+  }, [init, detail, storedDetail, setStoredDetail]);
 
   return <Box style={{maxWidth: "401px"}}>
     <MyPaper>
@@ -58,6 +58,6 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
 
   </Box>
 
-}
+};
 
 export default InitHandleQueriesAndSyncLocalStorage
