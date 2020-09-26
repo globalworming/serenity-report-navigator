@@ -1,18 +1,11 @@
 import React from 'react';
 import './App.css';
 import MyPaper from "./MyPaper";
+import groupBy from "./groupBy";
 
 const Overview = () => {
 
   const outcomes = window.outcomes;
-
-  const groupBy = function (xs: Array<any>, key: string) {
-    return xs.reduce(function (rv, x) {
-      (rv[x[key]] = rv[x[key]] || []).push(x);
-      return rv;
-    }, {});
-  };
-
   let dates = outcomes.map(it => new Date(it.timestamp).getTime());
 
 
