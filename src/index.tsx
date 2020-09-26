@@ -7,6 +7,9 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <p>concise reporting to stakeholders</p>
+    <p>in-depth steps and traces</p>
+    <p>wallboard mode</p>
   </React.StrictMode>,
   document.getElementById('root')
 );
