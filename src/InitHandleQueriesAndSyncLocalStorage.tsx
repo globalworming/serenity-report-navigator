@@ -1,6 +1,6 @@
 import useGlobalState from "./state";
 import useLocalStorage from "react-use-localstorage";
-import {useLocation} from "react-router";
+import {Redirect, useLocation} from "react-router";
 import qs from "query-string";
 import React, {useEffect, useState} from "react";
 import {Box, CircularProgress} from "@material-ui/core";
@@ -13,6 +13,8 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
   const location = useLocation();
   const query = qs.parse(location.search);
   const [init, setInit] = useState(false);
+
+  //browserHistory.push("");
 
   useEffect(() => {
     // query overrides everything
@@ -44,16 +46,22 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
 
 
   useEffect(() => {
+    // sync global and local storage details
     if (init && detail !== parseInt(storedDetail)) {
       setStoredDetail(detail.toString())
     }
   }, [init, detail, storedDetail, setStoredDetail]);
 
+  // not sure if i should update location or provide share link... damn, syncing url would be best -.- maybe later, for now just remove the query to avoid confusion
+  if (init && location.search) {
+    return <Redirect to={"./"}/>
+  }
+
   return <Box style={{maxWidth: "401px"}}>
     <MyPaper>
       <p><strong>Init, handle queries and sync local storage</strong> FIXME: that's a lot for a single component to be responsible for, split?</p>
       {detail < 0 && <div><strong>loading...</strong> <CircularProgress/></div>}
-      <pre style={{overflow: "auto"}}>{[{window: {location}}, {query}, { state: {detail, location}}].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>
+      <pre style={{overflow: "auto"}}>{[ { state: {detail}}].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>
     </MyPaper>
 
   </Box>

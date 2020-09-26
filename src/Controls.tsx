@@ -16,8 +16,8 @@ const Controls = () => {
           link</Button><br/>
         <Link to="?id=4&id=5&detail=0">router query test</Link><br/>(does update location and causes rerender 👍)
       </p>
-      <p>to test local storage and rerender, current value {detail}:</p>
       <p>
+        <strong>amount of info</strong><br/>
         <Button variant="contained" color="secondary" disableElevation
                 onClick={() => setDetail((detail - 1))}>-detail</Button>
         <Button variant="contained" disableElevation
@@ -25,6 +25,13 @@ const Controls = () => {
         <Button
           variant="contained" color="primary" disableElevation
           onClick={() => setDetail((detail + 1))}>+detail</Button>
+      </p>
+      <p>
+        <strong>filter</strong><br/>
+        <Button variant="contained" color="secondary" disableElevation
+                onClick={() => setDetail((detail - 1))}>TODO show failing</Button>
+        <Button variant="contained" disableElevation
+                onClick={() => setDetail(1)}>Show Pending</Button>
       </p>
     </Paper></>
   }
