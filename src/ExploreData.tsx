@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import TestOutcome from "./model/TestOutcome";
 import Outcome from "./Outcome";
 import {Box} from "@material-ui/core";
-import useLocalStorage from "react-use-localstorage";
+import _ from 'lodash';
+import useGlobalState from './state';
+import MyPaper from "./MyPaper";
 
 declare global {
   // noinspection JSUnusedGlobalSymbols
@@ -15,10 +17,17 @@ const ExploreData = () => {
 
   const outcomes = window.outcomes;
 
-  const [detail] = useLocalStorage('detail', "1");
-  const [, setLocalDetail] = useState(parseInt(detail));
-  useEffect(() => setLocalDetail(parseInt(detail)), [detail, setLocalDetail]);
+  const [detail] = useGlobalState('detail');
 
+  const stories = _.groupBy(outcomes, function (o) {
+    return o["user-story"].storyName
+  });
+
+  if (detail >= 0) {
+    return <>
+      {_.toPairs(stories).map(([storyName, outcomes]) => <MyPaper key={storyName}>{storyName}{outcomes.map(it => <Outcome key={it.name + it.timestamp} from={it} />)}</MyPaper>)}
+    </>
+  }
 
   return <>
     {

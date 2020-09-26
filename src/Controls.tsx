@@ -12,7 +12,7 @@ const Controls = () => {
     return <><Paper style={{padding: "1rem", margin: "1rem"}}>
       <p><strong>controls</strong></p>
       <p>
-        <Button variant="contained" color="primary" disableElevation href="?id=4&id=5&detail=high">test param
+        <Button variant="contained" color="primary" disableElevation href="?id=4&id=5&detail=0">test param
           link</Button><br/>
         <Link to="?id=4&id=5&detail=0">router query test</Link><br/>(does update location and causes rerender 👍)
       </p>

@@ -1,14 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import TestOutcome from "./model/TestOutcome";
-import {Box, Card, CardContent} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 import UserStory from "./model/UserStory";
 import Tag from "./model/Tag";
 import TestStep from "./model/TestStep";
 import useLocalStorage from "react-use-localstorage";
+import MyPaper from "./MyPaper";
+import useGlobalState from "./state";
 
 type OutcomeProps = {
   from: TestOutcome
+}
+
+type StepsRecursiveProps = {
+  from: TestStep
 }
 
 const Outcome = ({from}: OutcomeProps) => {
@@ -70,20 +76,51 @@ const Outcome = ({from}: OutcomeProps) => {
     }
   }*/
 
-  const [detail] = useLocalStorage('detail', "1");
-  const [localDetail, setLocalDetail] = useState(parseInt(detail));
-  useEffect(() => setLocalDetail(parseInt(detail)), [detail, setLocalDetail]);
+  const [detail] = useGlobalState('detail');
+  const {testSteps} = from;
+  const {successful, ignored, failures, pending, skipped} = from;
+  const {duration, timestamp} = from;
 
-  if (localDetail > 0) {
-    return <Card variant="outlined" style={{margin: "0.5rem"}}>
-      <CardContent>
-        <span><UserStorySection from={from["user-story"]}/> {from.result}</span>
-      </CardContent>
-    </Card>
+
+  if (detail === 0) {
+    return <MyPaper>
+      {from.result} {from.title}
+    </MyPaper>
   }
 
-  return <Card variant="outlined" style={{margin: "0.5rem"}}>
-    <CardContent>
+  if (detail <= 1) {
+    return <MyPaper>
+      {from.result} {from.title}
+      {testSteps.map((it, i) => <MyPaper key={i}>{it.description}</MyPaper>)}
+
+    </MyPaper>
+  }
+
+  if (detail <= 2) {
+    return <MyPaper>
+      {from.result} {from.title}
+      <pre>{JSON.stringify({steps: {successful, ignored, failures, pending, skipped}}, undefined, 2)}</pre>
+      took {duration} seconds, {timestamp}
+      {testSteps.map((it, i) => <MyPaper key={i}>{it.description}</MyPaper>)}
+    </MyPaper>
+  }
+
+  if (detail <= 3) {
+    const StepsRecursive = ({from}: StepsRecursiveProps) => {
+      return <MyPaper>
+        {from.description}
+        {from.children.length > 0 && from.children.map((it, i) => <StepsRecursive key={i} from={it}/>)}
+      </MyPaper>
+    };
+    return <MyPaper>
+      {from.result} {from.title}
+      <pre>{JSON.stringify({steps: {successful, ignored, failures, pending, skipped}}, undefined, 2)}</pre>
+      took {duration} seconds, {timestamp}
+      {testSteps.map((it, i) => <StepsRecursive key={i} from={it}/>)}
+    </MyPaper>
+  }
+
+  return <>
       <strong>Outcome: {from.title} - {from.name}</strong>
       <dl>
         <dt>result</dt><dd>{from.result}</dd>
@@ -100,8 +137,7 @@ const Outcome = ({from}: OutcomeProps) => {
         <TagsSection from={from.tags}/>
         {from.testSteps.map((it, i) => <TestStepSection key={i} from={it} />)}
       </dl>
-    </CardContent>
-  </Card>
+  </>
 };
 
 type UserStoryProps = {
