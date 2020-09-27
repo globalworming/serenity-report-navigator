@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Button, Paper} from "@material-ui/core";
 import {Link} from "react-router-dom";
@@ -11,8 +11,13 @@ const Controls = () => {
 
     const [detail, setDetail] = useGlobalState('detail');
     const [filter, setFilter] = useGlobalState('filter');
+    const [, setFilteredOutcomes] = useGlobalState("filteredOutcomes")
 
-    const outcomes = window.outcomes;
+    useEffect(() => {
+      setFilteredOutcomes(outcomes.filter(it => !filter.exclude.includes(it.result)));
+    }, [filter]);
+
+  const outcomes = window.outcomes;
     let results: Array<string> = _.uniq(outcomes.map((it) => it.result));
 
   function toggle(it: string) {
