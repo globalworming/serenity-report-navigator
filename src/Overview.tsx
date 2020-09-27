@@ -2,22 +2,27 @@ import React from 'react';
 import './App.css';
 import MyPaper from "./MyPaper";
 import groupBy from "./groupBy";
+import useGlobalState from './state';
+import _ from 'lodash';
 
 const Overview = () => {
 
-  const outcomes = window.outcomes;
-  let dates = outcomes.map(it => new Date(it.timestamp).getTime());
+  const [outcomes] = useGlobalState("filteredOutcomes");
+  if (outcomes.length === 0) {
+    return null
+  }
 
+  const latestDate = new Date(outcomes.map(it => it.timestamp).sort().reverse()[0]);
 
-  const {PENDING, SUCCESS, ERROR} = groupBy(outcomes, "result");
+  const byResult = groupBy(outcomes, "result");
 
   return <><MyPaper>
     <strong>overview</strong>
     <dl>
-      <dt>pending</dt><dd>{PENDING.length}</dd>
-      <dt>passing</dt><dd>{SUCCESS.length}</dd>
-      <dt>failing</dt><dd>{ERROR.length}</dd>
-      <dt>most recent test</dt><dd>{new Date(Math.max(...dates)).toISOString()}</dd>
+      {_.keys(byResult).map((it, i) => <React.Fragment key={i}>
+        <dt>{it.toLowerCase()}</dt><dd>{byResult[it].length}</dd>
+      </React.Fragment>)}
+      <dt>most recent test</dt><dd>{latestDate.toISOString()}</dd>
     </dl>
   </MyPaper></>
   }
