@@ -2,7 +2,7 @@ import {createGlobalState} from "react-hooks-global-state";
 import Filter from "./model/Filter";
 
 const initialState = {
-  detail: -1,
+  detail: 0,
   filter: new Filter(),
   filteredOutcomes: window.outcomes
 };
