@@ -9,7 +9,7 @@ import MyPaper from "./MyPaper";
 const InitHandleQueriesAndSyncLocalStorage = () => {
 
   const [detail, setDetail] = useGlobalState('detail');
-  const [filter, setFilter] = useGlobalState('filter');
+  const [filter] = useGlobalState('filter');
   const [storedDetail, setStoredDetail] = useLocalStorage('detail', detail.toString());
   const location = useLocation();
   const query = qs.parse(location.search);
@@ -19,7 +19,7 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
 
   useEffect(() => {
     // query overrides everything
-    if (!init && query.detail && query.detail[0]) {
+    if (query.detail && query.detail[0]) {
       setDetail(parseInt(query.detail[0]));
       setStoredDetail(query.detail[0])
     }
