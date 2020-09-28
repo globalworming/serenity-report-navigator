@@ -30,7 +30,7 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
     }
     setDetail(queriedDetail);
     // FIXME set filter from query
-    setTimeout(() => setInit(true), 1000)
+    setTimeout(() => setInit(true), 300)
 
   }, [init, query.detail, setDetail, setInit]);
 
@@ -67,7 +67,7 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
   useEffect(() => {
     // set init when done
     if (!init && parseInt(storedDetail) >= 0 && storedFilter) {
-      setTimeout(() => setInit(true), 1000)
+      setTimeout(() => setInit(true), 300)
     }
   }, [init, setInit, storedDetail, storedFilter]);
 
