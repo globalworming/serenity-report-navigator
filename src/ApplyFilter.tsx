@@ -12,7 +12,7 @@ const ApplyFilter = () => {
       const checkTestResult = () => !filter.testResult.exclude.includes(it.result);
       const checkTestName = () =>
         (filter.keyword.include === includeAll) ||
-        [it.name, it["user-story"].storyName, it.title].join("\n").toLowerCase().includes(filter.keyword.include.toLowerCase());
+        [it.name, it.userStory.storyName, it.title].join("\n").toLowerCase().includes(filter.keyword.include.toLowerCase());
 
       return checkTestResult() && checkTestName();
     }));

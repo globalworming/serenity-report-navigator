@@ -13,9 +13,8 @@ interface TestOutcome {
   ignored: string
   pending: string
   duration: string
-  // start time
-  timestamp: Date
-  "user-story": UserStory
+  startTime: Date
+  userStory: UserStory
   issues: Array<string>
   tags: Array<Tag>
   testSteps: Array<TestStep>

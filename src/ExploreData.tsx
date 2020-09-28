@@ -19,12 +19,12 @@ const ExploreData = () => {
   const [detail] = useGlobalState('detail');
 
   const stories = _.groupBy(outcomes, function (o) {
-    return o["user-story"].storyName
+    return o.userStory.storyName
   });
 
   if (detail >= 0) {
     return <>
-      {_.toPairs(stories).map(([storyName, outcomes]) => <MyPaper key={storyName}>{storyName}{outcomes.map(it => <Outcome key={it.name + it.timestamp} from={it} />)}</MyPaper>)}
+      {_.toPairs(stories).map(([storyName, outcomes]) => <MyPaper key={storyName}>{storyName}{outcomes.map(it => <Outcome key={it.name + it.startTime} from={it} />)}</MyPaper>)}
     </>
   }
 

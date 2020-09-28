@@ -1,4 +1,5 @@
 interface TestStep {
+  result: string
   description: string
   duration: number
   startTime: Date

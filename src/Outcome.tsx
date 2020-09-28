@@ -79,7 +79,7 @@ const Outcome = ({from}: OutcomeProps) => {
   const [detail] = useGlobalState('detail');
   const {testSteps} = from;
   const {successful, ignored, failures, pending, skipped} = from;
-  const {duration, timestamp} = from;
+  const {duration, startTime} = from;
 
 
   if (detail === 0) {
@@ -91,7 +91,7 @@ const Outcome = ({from}: OutcomeProps) => {
   if (detail <= 1) {
     return <MyPaper>
       {from.result} {from.title}
-      {testSteps.map((it, i) => <MyPaper key={i}>{it.description}</MyPaper>)}
+      {testSteps && testSteps.map((it, i) => <MyPaper key={i}>{it.description}</MyPaper>)}
 
     </MyPaper>
   }
@@ -100,8 +100,8 @@ const Outcome = ({from}: OutcomeProps) => {
     return <MyPaper>
       {from.result} {from.title}
       <pre>{JSON.stringify({steps: {successful, ignored, failures, pending, skipped}}, undefined, 2)}</pre>
-      took {duration} seconds, {timestamp}
-      {testSteps.map((it, i) => <MyPaper key={i}>{it.description}</MyPaper>)}
+      took {duration} seconds, {startTime}
+      {testSteps && testSteps.map((it, i) => <MyPaper key={i}>{it.description}</MyPaper>)}
     </MyPaper>
   }
 
@@ -109,14 +109,14 @@ const Outcome = ({from}: OutcomeProps) => {
     const StepsRecursive = ({from}: StepsRecursiveProps) => {
       return <MyPaper>
         {from.description}
-        {from.children.length > 0 && from.children.map((it, i) => <StepsRecursive key={i} from={it}/>)}
+        {from.children && from.children.map((it, i) => <StepsRecursive key={i} from={it}/>)}
       </MyPaper>
     };
     return <MyPaper>
       {from.result} {from.title}
       <pre>{JSON.stringify({steps: {successful, ignored, failures, pending, skipped}}, undefined, 2)}</pre>
-      took {duration} seconds, {timestamp}
-      {testSteps.map((it, i) => <StepsRecursive key={i} from={it}/>)}
+      took {duration} seconds, {startTime}
+      {testSteps && testSteps.map((it, i) => <StepsRecursive key={i} from={it}/>)}
     </MyPaper>
   }
 
@@ -141,11 +141,11 @@ const Outcome = ({from}: OutcomeProps) => {
       <dt>duration</dt>
       <dd>{from.duration}</dd>
       <dt>timestamp</dt>
-      <dd>{from.timestamp}</dd>
-      <UserStorySection from={from["user-story"]}/>
+      <dd>{from.startTime}</dd>
+      <UserStorySection from={from.userStory}/>
       <IssuesSection from={from.issues}/>
       <TagsSection from={from.tags}/>
-      {from.testSteps.map((it, i) => <TestStepSection key={i} from={it}/>)}
+      {from.testSteps && from.testSteps.map((it, i) => <TestStepSection key={i} from={it}/>)}
     </dl>
   </>
 };
@@ -181,6 +181,7 @@ type IssuesProps = {
 }
 
 const IssuesSection = ({from}: IssuesProps) => {
+  if (!from) return null;
   return <Box style={{padding: "0.5rem"}}>
     <strong>issues</strong>
     <p>{from.join(" ")}</p>
@@ -205,6 +206,8 @@ interface TestStepProps {
 const TestStepSection = ({from}: TestStepProps) => {
   return <Box style={{padding: "0.5rem"}}>
     <strong>step</strong>
+    <dt>result</dt>
+    <dd>{from.result}</dd>
     <dt>description</dt>
     <dd>{from.description}</dd>
     <dt>duration</dt>
@@ -212,8 +215,8 @@ const TestStepSection = ({from}: TestStepProps) => {
     <dt>startTime</dt>
     <dd>{from.startTime}</dd>
     <dt>screenshots</dt>
-    <dd>{from.screenshots.join(", ")}</dd>
-    {from.children.map((it, i) => <TestStepSection key={i} from={it}/>)}
+    <dd>{from.screenshots && from.screenshots.join(", ")}</dd>
+    {from.children && from.children.map((it, i) => <TestStepSection key={i} from={it}/>)}
   </Box>
 };
 

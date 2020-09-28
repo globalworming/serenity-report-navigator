@@ -11,19 +11,19 @@ const TestTimeline = () => {
   const [outcomes] = useGlobalState("filteredOutcomes");
   if (outcomes.length === 0) return null;
 
-  const earliestDate = outcomes.map(it => moment(it.timestamp).unix()).sort()[0];
-  const latestDate = outcomes.map(it => moment(it.timestamp).add(it.duration, 'milliseconds').unix()).sort().reverse()[0]
+  const earliestDate = outcomes.map(it => moment(it.startTime).unix()).sort()[0];
+  const latestDate = outcomes.map(it => moment(it.startTime).add(it.duration, 'milliseconds').unix()).sort().reverse()[0]
   ;
 
-  //const groups = _.uniq(outcomes.map(it => it["user-story"].storyName)).map((it, i) => ({id: i, title: it}))
+  //const groups = _.uniq(outcomes.map(it => it["userStory"].storyName)).map((it, i) => ({id: i, title: it}))
   const groups = [{id:0, title: "tests"}];
   const items = outcomes.map((it, i) => ({
-    //group: groups.map(it => it.title).indexOf(it["user-story"].storyName),
+    //group: groups.map(it => it.title).indexOf(it["userStory"].storyName),
     group: groups[0].id,
     id: i,
     title: it.name,
-    start_time: moment(it.timestamp),
-    end_time: moment(it.timestamp).add(it.duration, 'milliseconds'),
+    start_time: moment(it.startTime),
+    end_time: moment(it.startTime).add(it.duration, 'milliseconds'),
     canMove: false,
     canChangeGroup: false,
     canResize: false,

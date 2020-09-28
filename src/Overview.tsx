@@ -4,6 +4,7 @@ import MyPaper from "./MyPaper";
 import groupBy from "./groupBy";
 import useGlobalState from './state';
 import _ from 'lodash';
+import moment from 'moment';
 
 const Overview = () => {
 
@@ -12,7 +13,8 @@ const Overview = () => {
     return null
   }
 
-  const latestDate = new Date(outcomes.map(it => it.timestamp).sort().reverse()[0]);
+  const earliestDate = outcomes.map(it => moment(it.startTime).valueOf()).sort()[0];
+  const latestDate = outcomes.map(it => moment(it.startTime).add(it.duration, 'milliseconds').valueOf()).sort().reverse()[0]
 
   const byResult = groupBy(outcomes, "result");
 
@@ -22,7 +24,7 @@ const Overview = () => {
       {_.keys(byResult).map((it, i) => <React.Fragment key={i}>
         <dt>{it.toLowerCase()}</dt><dd>{byResult[it].length}</dd>
       </React.Fragment>)}
-      <dt>most recent test</dt><dd>{latestDate.toISOString()}</dd>
+      <dt>duration</dt><dd>{moment(earliestDate).toISOString()} - {moment(latestDate).toISOString()}</dd>
     </dl>
   </MyPaper></>
   }
