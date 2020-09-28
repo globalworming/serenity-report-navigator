@@ -74,7 +74,11 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
 
   // not sure if i should update location or provide share link... damn, syncing url would be best -.- maybe later, for now just remove the query to avoid confusion
   if (init && location.search) {
-    return <Redirect to={"./"}/>
+    if (window.self.origin === "null") {
+      window.location.search = "";
+    } else {
+      return <Redirect to={"./"}/>
+    }
   }
 
   return <Box style={{maxWidth: "400px"}}>
