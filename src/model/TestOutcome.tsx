@@ -13,6 +13,7 @@ interface TestOutcome {
   ignored: string
   pending: string
   duration: string
+  // start time
   timestamp: Date
   "user-story": UserStory
   issues: Array<string>

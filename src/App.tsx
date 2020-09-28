@@ -10,7 +10,7 @@ import InitHandleQueriesAndSyncLocalStorage from "./InitHandleQueriesAndSyncLoca
 import ApplyFilter from "./ApplyFilter";
 
 const App = () => {
-
+    const outcomes = window.outcomes;
     const [init] = useGlobalState('init');
     if (!init) {
       return <Router>
@@ -31,6 +31,10 @@ const App = () => {
           </Box>
         </Route>
       </Router>
+      <h2>JSON</h2>
+      <pre>
+        {JSON.stringify(outcomes, null, 2)}
+      </pre>
     </div>
   }
 ;

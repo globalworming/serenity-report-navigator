@@ -32,11 +32,6 @@ const ExploreData = () => {
     {
       outcomes.map((it, i) => <Box key={i}><Outcome from={it} /></Box>)
     }
-    <h2>JSON</h2>
-    <pre>
-      {JSON.stringify(outcomes, null, 2)}
-    </pre>
-    <h1 id="anchor">anchor test</h1>
   </>
 };
 
