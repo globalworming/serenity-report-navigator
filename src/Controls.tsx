@@ -1,23 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './App.css';
 import {Button, Paper} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import useGlobalState from "./state";
 import _ from 'lodash';
-import Filter from "./model/Filter";
+import Filter, {includeAll} from "./model/Filter";
 
 
 const Controls = () => {
-
-    const [filter] = useGlobalState('filter');
-    const [, setFilteredOutcomes] = useGlobalState("filteredOutcomes");
-  const outcomes = window.outcomes;
-
-    useEffect(() => {
-      setFilteredOutcomes(outcomes.filter(it => !filter.exclude.includes(it.result)));
-    }, [filter, outcomes, setFilteredOutcomes]);
-
-
   return <><Paper style={{padding: "1rem", margin: "1rem"}}>
       <p><strong>controls</strong></p>
       <p>
@@ -29,6 +19,9 @@ const Controls = () => {
       <p>
         <FilterResult/>
       </p>
+      <p>
+        <Search/>
+      </p>
     </Paper></>
   }
 ;
@@ -38,7 +31,7 @@ const TestLinksAndRoutes = () => {
     <strong>test direkt links and routing</strong><br/>
     <Button variant="contained" color="primary" disableElevation href="?id=4&id=5&detail=2">test param
       link</Button><br/>
-    <Link to="?id=4&id=5&detail=3">router query test</Link><br/>(does update location and causes rerender 👍)
+    <Link to="?id=4&id=5&detail=3">router query test</Link><br/>(does update location and causes rerender 👍)<br/>
     <Button variant="contained" disableElevation
             onClick={() => localStorage.clear()}>clear local storage</Button><br/>
 
@@ -66,11 +59,11 @@ const FilterResult = () => {
 
   function toggle(result: string) {
     const newFilter = Object.assign(new Filter(), filter);
-    let index = newFilter.exclude.indexOf(result);
+    let index = newFilter.testResult.exclude.indexOf(result);
     if (index < 0) {
-      newFilter.exclude.push(result)
+      newFilter.testResult.exclude.push(result)
     } else {
-      newFilter.exclude.splice(index, 1)
+      newFilter.testResult.exclude.splice(index, 1)
     }
     setFilter(newFilter)
   }
@@ -80,9 +73,41 @@ const FilterResult = () => {
     <strong>filter test result</strong><br/>
     {results.map(it => {
       return <Button key={it} variant="contained"
-                     onClick={() => toggle(it)}>{filter.exclude.includes(it) ? "" : "-->"} {it}</Button>
+                     onClick={() => toggle(it)}>{filter.testResult.exclude.includes(it) ? "" : "-->"} {it}</Button>
 
     })}
+  </>
+};
+
+const Search = () => {
+  const [filter, setFilter] = useGlobalState('filter');
+  const [localValue, setLocalValue] = useState(filter.keyword.include)
+
+  const syncFilter = (newValue: string) => {
+    const newFilter = Object.assign(new Filter(), filter);
+    if (newValue.length === 0) {
+      newFilter.keyword.include = includeAll;
+      setFilter(newFilter)
+      return
+    }
+
+    newFilter.keyword.include = newValue;
+    setFilter(newFilter)
+  }
+
+  const debouncedSync = useRef(_.debounce(syncFilter, 300)).current;
+
+  useEffect(() => {
+    if (filter.keyword.include !== localValue) {
+      debouncedSync(localValue)
+    }
+    return () => debouncedSync.cancel()
+  }, [debouncedSync, filter.keyword.include, localValue]);
+
+  return <>
+    <strong>search</strong><br/>
+    <input type={"text"} placeholder={"search in story, name, ..."} value={localValue === includeAll ? "" : localValue} onChange={(e) => setLocalValue(e.target.value)}/>
+
   </>
 };
 

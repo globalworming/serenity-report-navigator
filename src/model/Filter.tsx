@@ -1,10 +1,18 @@
 const  excludeNone: Array<string> = [];
+export const  includeAll = "*";
 
 class Filter {
-  exclude: Array<string>;
+  testResult: {
+    exclude: Array<string>;
+  }
+
+  keyword: {
+    include: string;
+  }
 
   constructor() {
-    this.exclude = excludeNone;
+    this.testResult = {exclude: excludeNone};
+    this.keyword = {include: includeAll};
   }
 }
 

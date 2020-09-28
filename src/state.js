@@ -4,7 +4,8 @@ import Filter from "./model/Filter";
 const initialState = {
   detail: 0,
   filter: new Filter(),
-  filteredOutcomes: window.outcomes
+  filteredOutcomes: window.outcomes,
+  init: false
 };
 const {useGlobalState} = createGlobalState(initialState);
 

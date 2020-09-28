@@ -121,22 +121,32 @@ const Outcome = ({from}: OutcomeProps) => {
   }
 
   return <>
-      <strong>Outcome: {from.title} - {from.name}</strong>
-      <dl>
-        <dt>result</dt><dd>{from.result}</dd>
-        <dt>steps</dt><dd>{from.steps}</dd>
-        <dt>successful</dt><dd>{from.successful}</dd>
-        <dt>failures</dt><dd>{from.failures}</dd>
-        <dt>skipped</dt><dd>{from.skipped}</dd>
-        <dt>ignored</dt><dd>{from.ignored}</dd>
-        <dt>pending</dt><dd>{from.pending}</dd>
-        <dt>duration</dt><dd>{from.duration}</dd>
-        <dt>timestamp</dt><dd>{from.timestamp}</dd>
-        <UserStorySection from={from["user-story"]}/>
-        <IssuesSection from={from.issues}/>
-        <TagsSection from={from.tags}/>
-        {from.testSteps.map((it, i) => <TestStepSection key={i} from={it} />)}
-      </dl>
+    <br/>
+    <strong>Outcome: {from.title} - {from.name}</strong>
+    <dl>
+      <dt>result</dt>
+      <dd>{from.result}</dd>
+      <dt>steps</dt>
+      <dd>{from.steps}</dd>
+      <dt>successful</dt>
+      <dd>{from.successful}</dd>
+      <dt>failures</dt>
+      <dd>{from.failures}</dd>
+      <dt>skipped</dt>
+      <dd>{from.skipped}</dd>
+      <dt>ignored</dt>
+      <dd>{from.ignored}</dd>
+      <dt>pending</dt>
+      <dd>{from.pending}</dd>
+      <dt>duration</dt>
+      <dd>{from.duration}</dd>
+      <dt>timestamp</dt>
+      <dd>{from.timestamp}</dd>
+      <UserStorySection from={from["user-story"]}/>
+      <IssuesSection from={from.issues}/>
+      <TagsSection from={from.tags}/>
+      {from.testSteps.map((it, i) => <TestStepSection key={i} from={it}/>)}
+    </dl>
   </>
 };
 
@@ -157,9 +167,12 @@ const UserStorySection = ({from}: UserStoryProps) => {
 
   return <Box style={{padding: "0.5rem"}}>
     <strong>User Story</strong>
-    <dt>qualifiedStoryClassName</dt><dd>{from.qualifiedStoryClassName}</dd>
-    <dt>storyName</dt><dd>{from.storyName}</dd>
-    <dt>path</dt><dd>{from.path}</dd>
+    <dt>qualifiedStoryClassName</dt>
+    <dd>{from.qualifiedStoryClassName}</dd>
+    <dt>storyName</dt>
+    <dd>{from.storyName}</dd>
+    <dt>path</dt>
+    <dd>{from.path}</dd>
   </Box>
 };
 
@@ -192,11 +205,15 @@ interface TestStepProps {
 const TestStepSection = ({from}: TestStepProps) => {
   return <Box style={{padding: "0.5rem"}}>
     <strong>step</strong>
-    <dt>description</dt><dd>{from.description}</dd>
-    <dt>duration</dt><dd>{from.duration}</dd>
-    <dt>startTime</dt><dd>{from.startTime}</dd>
-    <dt>screenshots</dt><dd>{from.screenshots.join(", ")}</dd>
-    {from.children.map((it, i) => <TestStepSection key={i} from={it} />)}
+    <dt>description</dt>
+    <dd>{from.description}</dd>
+    <dt>duration</dt>
+    <dd>{from.duration}</dd>
+    <dt>startTime</dt>
+    <dd>{from.startTime}</dd>
+    <dt>screenshots</dt>
+    <dd>{from.screenshots.join(", ")}</dd>
+    {from.children.map((it, i) => <TestStepSection key={i} from={it}/>)}
   </Box>
 };
 

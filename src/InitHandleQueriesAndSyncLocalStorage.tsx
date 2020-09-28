@@ -2,19 +2,21 @@ import useGlobalState from "./state";
 import useLocalStorage from "react-use-localstorage";
 import {Redirect, useLocation} from "react-router";
 import qs from "query-string";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {Box, CircularProgress} from "@material-ui/core";
 import MyPaper from "./MyPaper";
+import _ from 'lodash';
+import Filter from "./model/Filter";
 
 const InitHandleQueriesAndSyncLocalStorage = () => {
 
+  const [init, setInit] = useGlobalState("init");
   const [detail, setDetail] = useGlobalState('detail');
   const [filter, setFilter] = useGlobalState('filter');
   const [storedDetail, setStoredDetail] = useLocalStorage('detail', detail.toString());
   const [storedFilter, setStoredFilter] = useLocalStorage('filter', JSON.stringify(filter));
   const location = useLocation();
   const query = qs.parse(location.search);
-  const [init, setInit] = useState(false);
 
   useEffect(() => {
     // query overrides everything
@@ -28,47 +30,48 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
     }
     setDetail(queriedDetail);
     // FIXME set filter from query
-    setInit(true)
-  }, [init, query.detail, setDetail]);
+    setTimeout(() => setInit(true), 1000)
 
+  }, [init, query.detail, setDetail, setInit]);
+
+
+  function filterInSync() {
+    return _.isEqual(filter, Object.assign(new Filter(), JSON.parse(storedFilter)));
+  }
 
   useEffect(() => {
     // not initialized? try to get from local storage
     if (!init) {
-      if (parseInt(storedDetail) >= 0) {
+      if (parseInt(storedDetail) >= 0 && parseInt(storedDetail) !== detail) {
         setDetail(parseInt(storedDetail))
       }
-      if (storedFilter) {
-        console.log(storedFilter);
-        setFilter(JSON.parse(storedFilter))
+      if (!filterInSync()) {
+        setFilter(Object.assign(new Filter(), JSON.parse(storedFilter)))
       }
     }
   }, [detail, init, setDetail, setFilter, setStoredDetail, storedDetail, storedFilter]);
 
   useEffect(() => {
-    // still not initialized? init with defaults
-    if (!init) {
-      setDetail(0)
-    }
-  }, [detail, init, setDetail, setStoredDetail, storedDetail]);
 
-  useEffect(() => {
-    // sync global and local storage details
+    // sync global and local storage detlails
     if (init) {
-      //if (detail !== parseInt(storedDetail)) {
-      console.log("count trigger of sync");
-      setStoredDetail(detail.toString());
-      setStoredFilter(JSON.stringify(filter))
-      //}
+      if (detail !== parseInt(storedDetail)) {
+        setStoredDetail(detail.toString());
+      }
+
+      if (!filterInSync()) {
+        setStoredFilter(JSON.stringify(filter));
+      }
+
     }
-  }, [detail, filter, init, setStoredDetail, setStoredFilter]);
+  }, [detail, filter, init, setStoredDetail, setStoredFilter, storedDetail, storedFilter]);
 
   useEffect(() => {
     // set init when done
     if (!init && parseInt(storedDetail) >= 0 && storedFilter) {
-      setInit(true)
+      setTimeout(() => setInit(true), 1000)
     }
-  }, [init, storedDetail, storedFilter]);
+  }, [init, setInit, storedDetail, storedFilter]);
 
 
   // not sure if i should update location or provide share link... damn, syncing url would be best -.- maybe later, for now just remove the query to avoid confusion
