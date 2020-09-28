@@ -4,7 +4,6 @@ import Outcome from "./Outcome";
 import {Box} from "@material-ui/core";
 import _ from 'lodash';
 import useGlobalState from './state';
-import MyPaper from "./MyPaper";
 
 declare global {
   // noinspection JSUnusedGlobalSymbols
@@ -16,22 +15,16 @@ declare global {
 const ExploreData = () => {
 
   const [outcomes] = useGlobalState('filteredOutcomes');
-  const [detail] = useGlobalState('detail');
 
   const stories = _.groupBy(outcomes, function (o) {
     return o.userStory.storyName
   });
 
-  if (detail >= 0) {
-    return <>
-      {_.toPairs(stories).map(([storyName, outcomes]) => <MyPaper key={storyName}>{storyName}{outcomes.map(it => <Outcome key={it.name + it.startTime} from={it} />)}</MyPaper>)}
-    </>
-  }
-
   return <>
-    {
-      outcomes.map((it, i) => <Box key={i}><Outcome from={it} /></Box>)
-    }
+    {_.toPairs(stories).map(([storyName, outcomes]) => <Box flex={"0 0 100%"} key={storyName}>
+      <h4 style={{color: "white", width: "100%"}} key={storyName}>{storyName}</h4>
+      {outcomes.map(it => <Outcome key={it.name + it.startTime} from={it} />)}
+      </Box>)}
   </>
 };
 

@@ -18,64 +18,6 @@ type StepsRecursiveProps = {
 }
 
 const Outcome = ({from}: OutcomeProps) => {
-  // TODO missing in model still
-  /*{
-   "examples": {
-      "headers": [
-        "number_of_photos",
-        "expected_price"
-      ],
-      "rows": [
-        {
-          "cellValues": [
-            "0",
-            "15.0"
-          ],
-          "result": "SUCCESS"
-        },
-        {
-          "cellValues": [
-            "1",
-            "15.0"
-          ],
-          "result": "SUCCESS"
-        },
-        {
-          "cellValues": [
-            "2",
-            "17.5"
-          ],
-          "result": "SUCCESS"
-        },
-        {
-          "cellValues": [
-            "3",
-            "20.0"
-          ],
-          "result": "SUCCESS"
-        },
-        {
-          "cellValues": [
-            "4",
-            "22.0"
-          ],
-          "result": "SUCCESS"
-        },
-        {
-          "cellValues": [
-            "5",
-            "24.0"
-          ],
-          "result": "SUCCESS"
-        }
-      ],
-      "predefinedRows": true,
-      "currentRow": {
-        "value": 5
-      }
-    }
-  }*/
-
   const [detail] = useGlobalState('detail');
   const {testSteps} = from;
   const {successful, ignored, failures, pending, skipped} = from;
@@ -120,7 +62,7 @@ const Outcome = ({from}: OutcomeProps) => {
     </MyPaper>
   }
 
-  return <>
+  return <MyPaper>
     <br/>
     <strong>Outcome: {from.title} - {from.name}</strong>
     <dl>
@@ -147,7 +89,7 @@ const Outcome = ({from}: OutcomeProps) => {
       <TagsSection from={from.tags}/>
       {from.testSteps && from.testSteps.map((it, i) => <TestStepSection key={i} from={it}/>)}
     </dl>
-  </>
+  </MyPaper>
 };
 
 type UserStoryProps = {
