@@ -8,6 +8,7 @@ import TestStep from "./model/TestStep";
 import useLocalStorage from "react-use-localstorage";
 import MyPaper from "./MyPaper";
 import useGlobalState from "./state";
+import ResultImage from "./ResultImage";
 
 type OutcomeProps = {
   from: TestOutcome
@@ -26,7 +27,7 @@ const Outcome = ({from}: OutcomeProps) => {
 
   if (detail === 0) {
     return <MyPaper>
-      {from.result} {from.title}
+      <ResultImage result={from.result}/> {from.title}
     </MyPaper>
   }
 

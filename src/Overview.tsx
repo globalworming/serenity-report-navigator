@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import MyPaper from "./MyPaper";
-import groupBy from "./groupBy";
 import useGlobalState from './state';
 import _ from 'lodash';
 import moment from 'moment';
+import ResultImage from "./ResultImage";
 
 const Overview = () => {
 
@@ -16,16 +16,16 @@ const Overview = () => {
   const earliestDate = outcomes.map(it => moment(it.startTime).valueOf()).sort()[0];
   const latestDate = outcomes.map(it => moment(it.startTime).add(it.duration, 'milliseconds').valueOf()).sort().reverse()[0]
 
-  const byResult = groupBy(outcomes, "result");
+  const byResult = _.countBy(outcomes, it => it.result);
 
   return <><MyPaper>
     <strong>overview</strong>
-    <dl>
-      {_.keys(byResult).map((it, i) => <React.Fragment key={i}>
-        <dt>{it.toLowerCase()}</dt><dd>{byResult[it].length}</dd>
+    <ul>
+      {_.toPairs(byResult).map(([result, count], i) => <React.Fragment key={i}>
+        <li><ResultImage result={result}/> {result.toLowerCase()} {count}</li>
       </React.Fragment>)}
-      <dt>duration</dt><dd>{moment(earliestDate).toISOString()} - {moment(latestDate).toISOString()}</dd>
-    </dl>
+    </ul>
+    <dt>duration</dt><dd>{moment(earliestDate).toISOString()} - {moment(latestDate).toISOString()}</dd>
   </MyPaper></>
   }
 ;

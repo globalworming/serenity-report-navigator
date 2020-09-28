@@ -32,7 +32,7 @@ const App = () => {
         </Route>
       </Router>
       <h2>JSON</h2>
-      <pre>
+      <pre style={{overflow: "auto"}}>
         {JSON.stringify(outcomes, null, 2)}
       </pre>
     </div>
