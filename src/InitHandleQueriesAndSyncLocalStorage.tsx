@@ -35,9 +35,7 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
   }, [init, query.detail, setDetail, setInit]);
 
 
-  function filterInSync() {
-    return _.isEqual(filter, Object.assign(new Filter(), JSON.parse(storedFilter)));
-  }
+  const filterInSync = _.isEqual(filter, Object.assign(new Filter(), JSON.parse(storedFilter)));
 
   useEffect(() => {
     // not initialized? try to get from local storage
@@ -45,11 +43,11 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
       if (parseInt(storedDetail) >= 0 && parseInt(storedDetail) !== detail) {
         setDetail(parseInt(storedDetail))
       }
-      if (!filterInSync()) {
+      if (!filterInSync) {
         setFilter(Object.assign(new Filter(), JSON.parse(storedFilter)))
       }
     }
-  }, [detail, init, setDetail, setFilter, setStoredDetail, storedDetail, storedFilter]);
+  }, [detail, filterInSync, init, setDetail, setFilter, setStoredDetail, storedDetail, storedFilter]);
 
   useEffect(() => {
 
@@ -59,12 +57,12 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
         setStoredDetail(detail.toString());
       }
 
-      if (!filterInSync()) {
+      if (!filterInSync) {
         setStoredFilter(JSON.stringify(filter));
       }
 
     }
-  }, [detail, filter, init, setStoredDetail, setStoredFilter, storedDetail, storedFilter]);
+  }, [detail, filter, filterInSync, init, setStoredDetail, setStoredFilter, storedDetail]);
 
   useEffect(() => {
     // set init when done
