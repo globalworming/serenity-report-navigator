@@ -77,10 +77,10 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
     return <Redirect to={"./"}/>
   }
 
-  return <Box style={{maxWidth: "401px"}}>
+  return <Box style={{maxWidth: "400px"}}>
     <MyPaper>
       <p><strong>Init, handle queries and sync local storage</strong> FIXME: that's a lot for a single component to be responsible for, split?</p>
-      {detail < 0 && <div><strong>loading...</strong> <CircularProgress/></div>}
+      {!init && <CircularProgress color={"secondary"} style={{position: "absolute", top: "3rem", left: "3rem"}}/>}
       <pre style={{overflow: "auto"}}>{[ { state: {detail, filter}}].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>
     </MyPaper>
 
