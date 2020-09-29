@@ -5,7 +5,7 @@ import React, {useEffect} from "react";
 import * as _ from "lodash";
 
 
-const ReadQueryParameters = () => {
+const InitLocalStateFromQueryParameters = () => {
 
   const [init, setInit] = useGlobalState("init");
   const [detail, setDetail] = useGlobalState('detail');
@@ -16,8 +16,12 @@ const ReadQueryParameters = () => {
   const query = qs.parse(location.search);
 
   useEffect(() => {
+    if (init) return;
     // query values override global state
-    if (_.keys(query).length === 0) return;
+    if (_.keys(query).length === 0) {
+      setInit(true)
+      return;
+    }
 
     let result = {detail, view, filter};
 
@@ -27,27 +31,22 @@ const ReadQueryParameters = () => {
       _.set(result, path, query[it])
     });
 
-    console.log("result", result);
 
     // TODO single query parameter will set unused parameters to default
     setDetail(result.detail);
     setView(result.view);
     setFilter(result.filter);
-    console.log("state", detail, filter, view);
     setInit(true)
-
-  }, [detail, filter, query, setDetail, setFilter, setView, view]);
-
+  }, [detail, filter, init, query, setDetail, setFilter, setInit, setView, view]);
 
   return <pre style={{overflow: "auto"}}>{[{
     state: {
       detail,
       filter,
-      view
+      view,
+      init
     }
   }].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>
-
-
 };
 
-export default ReadQueryParameters
+export default InitLocalStateFromQueryParameters
