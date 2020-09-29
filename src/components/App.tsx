@@ -5,16 +5,16 @@ import Overview from "./overview/Overview";
 import {Box} from "@material-ui/core";
 import Controls from "./controls";
 import useGlobalState from "../state"
-import InitHandleQueriesAndSyncLocalStorage from "./InitHandleQueriesAndSyncLocalStorage";
 import ApplyFilter from "./ApplyFilter";
+import ReadQueryParameters from "./ReadQueryParameters";
 
 const App = () => {
     const outcomes = window.outcomes;
     const [init] = useGlobalState('init');
-    if (!init) {
+    if (!init || init) {
       return <Router>
         <Route path="*">
-          <InitHandleQueriesAndSyncLocalStorage/>
+          <ReadQueryParameters />
         </Route>
       </Router>
     }
@@ -22,7 +22,6 @@ const App = () => {
       <Router>
         <Route path="*">
           <Box display="flex" flexWrap={"wrap"}>
-            <InitHandleQueriesAndSyncLocalStorage/>
             <ApplyFilter/>
             <Controls/>
             <Overview/>
