@@ -6,7 +6,7 @@ const DetailLevel = () => {
   const [detail, setDetail] = useGlobalState('detail');
 
   return <>
-    <strong>amount of info</strong> (0-4 does stuff)<br/>
+    <strong>amount of info</strong> (0-4 does stuff), current {detail}
     <Button variant="contained" color="secondary" disableElevation
             onClick={() => setDetail((detail - 1))}>-detail</Button>
     <Button variant="contained" disableElevation

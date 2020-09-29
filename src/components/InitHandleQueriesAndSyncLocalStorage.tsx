@@ -13,6 +13,7 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
   const [init, setInit] = useGlobalState("init");
   const [detail, setDetail] = useGlobalState('detail');
   const [filter, setFilter] = useGlobalState('filter');
+  const [view, setView] = useGlobalState('view');
   const [storedDetail, setStoredDetail] = useLocalStorage('detail', detail.toString());
   const [storedFilter, setStoredFilter] = useLocalStorage('filter', JSON.stringify(filter));
   const location = useLocation();
@@ -85,7 +86,7 @@ const InitHandleQueriesAndSyncLocalStorage = () => {
     <MyPaper>
       <p><strong>Init, handle queries and sync local storage</strong> FIXME: that's a lot for a single component to be responsible for, split?</p>
       {!init && <CircularProgress color={"secondary"} style={{position: "absolute", top: "3rem", left: "3rem"}}/>}
-      <pre style={{overflow: "auto"}}>{[ { state: {detail, filter}}].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>
+      <pre style={{overflow: "auto"}}>{[ { state: {detail, filter, view}}].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>
     </MyPaper>
 
   </Box>

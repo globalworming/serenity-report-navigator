@@ -4,10 +4,11 @@ import TestLinksAndRoutes from './TestLinksAndRoutes';
 import DetailLevel from "./DetailLevel";
 import FilterResult from "./FilterResult";
 import FilterKeywords from "./FilterKeywords";
+import ShowScreenshots from "./ShowScreenshots";
 
 
 const Controls = () => {
-  return <><Paper style={{padding: "1rem", margin: "1rem"}}>
+    return <><Paper style={{padding: "1rem", margin: "1rem"}}>
       <p><strong>controls</strong></p>
       <p>
         <TestLinksAndRoutes/>
@@ -16,11 +17,15 @@ const Controls = () => {
         <DetailLevel/>
       </p>
       <p>
+        <strong>filter</strong>
         <FilterResult/>
-      </p>
-      <p>
         <FilterKeywords/>
       </p>
+      <p>
+        <strong>config</strong>
+        <ShowScreenshots/>
+      </p>
+
     </Paper></>
   }
 ;
