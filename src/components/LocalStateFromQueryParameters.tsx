@@ -12,7 +12,7 @@ const LocalStateFromQueryParameters = () => {
   const [view, setView] = useGlobalState('view');
 
   const location = useLocation();
-  const query = qs.parse(location.search);
+  const query = qs.parse(location.search, {parseNumbers: true});
 
   useEffect(() => {
     if (init) return;
@@ -24,7 +24,14 @@ const LocalStateFromQueryParameters = () => {
 
     let result = {view, filter};
 
-    ["detail", "filter_testResult_exclude", "filter_keyword_include", "view_showScreenshots"].forEach(it => {
+
+    const allowedParameters = ["view_detail", "filter_testResult_exclude", "filter_testResult_include", "filter_keyword_include", "view_showScreenshots"];
+    const unrecognized = _.keys(query).filter(it => !allowedParameters.includes(it));
+    if (unrecognized.length > 0) {
+      console.warn("unrecognized parameters: " + unrecognized.join(", "))
+    }
+
+    allowedParameters.forEach(it => {
       if (!query[it]) return;
       const path = it.replace(/_/g, ".");
       _.set(result, path, query[it])
@@ -35,6 +42,7 @@ const LocalStateFromQueryParameters = () => {
     setView(result.view);
     setFilter(result.filter);
     setInit(true)
+
   }, [filter, init, query, setFilter, setInit, setView, view]);
 
   return <pre style={{overflow: "auto"}}>{[{

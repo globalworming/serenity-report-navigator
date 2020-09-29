@@ -2,12 +2,11 @@ import React from 'react';
 import ExploreData from "./testResults/ExploreData";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Overview from "./overview/Overview";
-import {Box, CircularProgress} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 import Controls from "./controls";
 import useGlobalState from "../state"
 import ApplyFilter from "./ApplyFilter";
 import LocalStateFromQueryParameters from "./LocalStateFromQueryParameters";
-import RemoveQueryParams from "./RemoveQueryParams";
 
 const App = () => {
     const outcomes = window.outcomes;

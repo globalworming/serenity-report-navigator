@@ -1,6 +1,6 @@
 import useGlobalState from "../../state";
 import React, {useEffect, useRef, useState} from "react";
-import Filter, {includeAll} from "../../model/Filter";
+import Filter, {includeAllText} from "../../model/Filter";
 import _ from "lodash";
 
 const FilterKeywords = () => {
@@ -10,7 +10,7 @@ const FilterKeywords = () => {
   const syncFilter = (newValue: string) => {
     const newFilter = Object.assign(new Filter(), filter);
     if (newValue.length === 0) {
-      newFilter.keyword.include = includeAll;
+      newFilter.keyword.include = includeAllText;
       setFilter(newFilter)
       return
     }
@@ -29,7 +29,7 @@ const FilterKeywords = () => {
   }, [debouncedSync, filter.keyword.include, localValue]);
 
   return <>
-    <input type={"text"} placeholder={"search in story, name, ..."} value={localValue === includeAll ? "" : localValue} onChange={(e) => setLocalValue(e.target.value)}/>
+    <input type={"text"} placeholder={"search in story, name, ..."} value={localValue === includeAllText ? "" : localValue} onChange={(e) => setLocalValue(e.target.value)}/>
 
   </>
 };

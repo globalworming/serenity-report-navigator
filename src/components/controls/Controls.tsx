@@ -5,6 +5,7 @@ import DetailLevel from "./DetailLevel";
 import FilterResult from "./FilterResult";
 import FilterKeywords from "./FilterKeywords";
 import ShowScreenshots from "./ShowScreenshots";
+import FocusOnTask from "./FocusOnTask";
 
 
 const Controls = () => {
@@ -24,6 +25,9 @@ const Controls = () => {
       <p>
         <strong>config</strong>
         <ShowScreenshots/>
+      </p>
+      <p>
+        <FocusOnTask/>
       </p>
 
     </Paper></>

@@ -1,9 +1,11 @@
 const  excludeNone: Array<string> = [];
-export const  includeAll = "*";
+export const  includeAllText = "*";
+export const  includeAllResults = ["*"];
 
 class Filter {
   testResult: {
     exclude: Array<string>;
+    include: Array<string>;
   }
 
   keyword: {
@@ -11,8 +13,8 @@ class Filter {
   }
 
   constructor() {
-    this.testResult = {exclude: excludeNone};
-    this.keyword = {include: includeAll};
+    this.testResult = {exclude: excludeNone, include: includeAllResults};
+    this.keyword = {include: includeAllText};
   }
 }
 
