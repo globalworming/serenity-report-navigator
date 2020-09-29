@@ -8,30 +8,34 @@ import useGlobalState from "../state"
 import ApplyFilter from "./ApplyFilter";
 import LocalStateFromQueryParameters from "./LocalStateFromQueryParameters";
 import RemoveQueryParams from "./RemoveQueryParams";
-import SyncLocalStorage from "./SyncLocalStorage";
 
 const App = () => {
     const outcomes = window.outcomes;
     const [init] = useGlobalState('init');
+    const [filter] = useGlobalState('filter');
+    const [view] = useGlobalState('view');
     if (!init) {
       return <Router>
         <Route path="*">
-          <CircularProgress color={"secondary"} style={{position: "absolute", top: "3rem", left: "3rem"}}/>
           <LocalStateFromQueryParameters />
-          <SyncLocalStorage/>>
         </Route>
       </Router>
     }
     return <div className="App">
+      <pre style={{overflow: "auto"}}>{[{
+        state: {
+          filter,
+          view,
+          init
+        }
+      }].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>
       <Router>
         <Route path="*">
           <Box display="flex" flexWrap={"wrap"}>
-            <RemoveQueryParams/>
             <ApplyFilter/>
             <Controls/>
             <Overview/>
             <ExploreData/>
-            <SyncLocalStorage/>
           </Box>
         </Route>
       </Router>

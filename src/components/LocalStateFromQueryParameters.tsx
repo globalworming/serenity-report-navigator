@@ -18,6 +18,7 @@ const LocalStateFromQueryParameters = () => {
     if (init) return;
     // query values override global state
     if (_.keys(query).length === 0) {
+      setInit(true);
       return;
     }
 
@@ -33,6 +34,7 @@ const LocalStateFromQueryParameters = () => {
     // TODO single query parameter will set unused parameters to default
     setView(result.view);
     setFilter(result.filter);
+    setInit(true)
   }, [filter, init, query, setFilter, setInit, setView, view]);
 
   return <pre style={{overflow: "auto"}}>{[{
