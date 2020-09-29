@@ -1,8 +1,9 @@
 import useGlobalState from "../../state";
 import Filter from "../../model/Filter";
 import _ from "lodash";
-import {Button} from "@material-ui/core";
 import React from "react";
+import CheckboxButton from "../atoms/CheckboxButton";
+
 
 const FilterResult = () => {
   const [filter, setFilter] = useGlobalState('filter');
@@ -23,8 +24,9 @@ const FilterResult = () => {
   return <>
     <strong>filter test result</strong><br/>
     {results.map(it => {
-      return <Button key={it} variant="contained"
-                     onClick={() => toggle(it)}>{filter.testResult.exclude.includes(it) ? "" : "-->"} {it}</Button>
+      return <CheckboxButton key={it} checked={!filter.testResult.exclude.includes(it)} onClick={() => toggle(it)}>
+        {it}
+      </CheckboxButton>
 
     })}
   </>

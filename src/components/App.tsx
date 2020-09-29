@@ -1,12 +1,12 @@
 import React from 'react';
-import ExploreData from "../ExploreData";
+import ExploreData from "./testResults/ExploreData";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import Overview from "../Overview";
+import Overview from "./overview/Overview";
 import {Box} from "@material-ui/core";
 import Controls from "./controls";
 import useGlobalState from "../state"
-import InitHandleQueriesAndSyncLocalStorage from "../InitHandleQueriesAndSyncLocalStorage";
-import ApplyFilter from "../ApplyFilter";
+import InitHandleQueriesAndSyncLocalStorage from "./InitHandleQueriesAndSyncLocalStorage";
+import ApplyFilter from "./ApplyFilter";
 
 const App = () => {
     const outcomes = window.outcomes;

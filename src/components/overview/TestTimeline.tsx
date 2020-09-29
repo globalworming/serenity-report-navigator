@@ -2,8 +2,8 @@ import Timeline from 'react-calendar-timeline'
 import 'react-calendar-timeline/lib/Timeline.css'
 import moment from 'moment'
 import React from "react";
-import MyPaper from "./MyPaper";
-import useGlobalState from './state';
+import MyPaper from "../atoms/MyPaper";
+import useGlobalState from '../../state';
 import _ from 'lodash';
 
 const TestTimeline = () => {

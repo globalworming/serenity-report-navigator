@@ -1,12 +1,12 @@
-import useGlobalState from "./state";
+import useGlobalState from "../state";
 import useLocalStorage from "react-use-localstorage";
 import {Redirect, useLocation} from "react-router";
 import qs from "query-string";
 import React, {useEffect} from "react";
 import {Box, CircularProgress} from "@material-ui/core";
-import MyPaper from "./MyPaper";
+import MyPaper from "./atoms/MyPaper";
 import _ from 'lodash';
-import Filter from "./model/Filter";
+import Filter from "../model/Filter";
 
 const InitHandleQueriesAndSyncLocalStorage = () => {
 

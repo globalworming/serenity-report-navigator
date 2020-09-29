@@ -1,9 +1,9 @@
 import React from 'react';
-import MyPaper from "./MyPaper";
-import useGlobalState from './state';
+import MyPaper from "../atoms/MyPaper";
+import useGlobalState from '../../state';
 import _ from 'lodash';
 import moment from 'moment';
-import ResultImage from "./ResultImage";
+import ResultImage from "../../ResultImage";
 
 const Overview = () => {
 

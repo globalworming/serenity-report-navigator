@@ -1,6 +1,6 @@
-import useGlobalState from "./state";
+import useGlobalState from "../state";
 import {useEffect} from "react";
-import {includeAll} from "./model/Filter";
+import {includeAll} from "../model/Filter";
 
 const ApplyFilter = () => {
   const outcomes = window.outcomes;

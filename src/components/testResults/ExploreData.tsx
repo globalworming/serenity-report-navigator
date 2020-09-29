@@ -1,10 +1,10 @@
 import React from 'react';
-import TestOutcome from "./model/TestOutcome";
+import TestOutcome from "../../model/TestOutcome";
 import Outcome from "./Outcome";
 import {Box} from "@material-ui/core";
 import _ from 'lodash';
-import useGlobalState from './state';
-import StoryHeading from "./StoryHeading";
+import useGlobalState from '../../state';
+import StoryHeading from "../../StoryHeading";
 
 declare global {
   // noinspection JSUnusedGlobalSymbols

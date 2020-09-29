@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
 
-import TestOutcome from "./model/TestOutcome";
+import TestOutcome from "../../model/TestOutcome";
 import {Box} from "@material-ui/core";
-import UserStory from "./model/UserStory";
-import Tag from "./model/Tag";
-import TestStep from "./model/TestStep";
+import UserStory from "../../model/UserStory";
+import Tag from "../../model/Tag";
+import TestStep from "../../model/TestStep";
 import useLocalStorage from "react-use-localstorage";
-import MyPaper from "./MyPaper";
-import useGlobalState from "./state";
-import ResultImage from "./ResultImage";
+import MyPaper from "../atoms/MyPaper";
+import useGlobalState from "../../state";
+import ResultImage from "../../ResultImage";
 
 type OutcomeProps = {
   from: TestOutcome
