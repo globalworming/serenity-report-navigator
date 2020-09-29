@@ -19,11 +19,11 @@ type StepsRecursiveProps = {
 }
 
 const Outcome = ({from}: OutcomeProps) => {
-  const [detail] = useGlobalState('detail');
+  const [view] = useGlobalState('view');
   const {testSteps} = from;
   const {successful, ignored, failures, pending, skipped} = from;
   const {duration, startTime} = from;
-
+  const {detail} = view
 
   if (detail === 0) {
     return <MyPaper>

@@ -3,7 +3,6 @@ import Filter from "./model/Filter";
 import View from "./model/View";
 
 const initialState = {
-  detail: 0,
   filter: new Filter(),
   filteredOutcomes: window.outcomes,
   init: false,

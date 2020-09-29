@@ -8,7 +8,6 @@ import * as _ from "lodash";
 const LocalStateFromQueryParameters = () => {
 
   const [init, setInit] = useGlobalState("init");
-  const [detail, setDetail] = useGlobalState('detail');
   const [filter, setFilter] = useGlobalState('filter');
   const [view, setView] = useGlobalState('view');
 
@@ -22,7 +21,7 @@ const LocalStateFromQueryParameters = () => {
       return;
     }
 
-    let result = {detail, view, filter};
+    let result = {view, filter};
 
     ["detail", "filter_testResult_exclude", "filter_keyword_include", "view_showScreenshots"].forEach(it => {
       if (!query[it]) return;
@@ -32,14 +31,12 @@ const LocalStateFromQueryParameters = () => {
 
 
     // TODO single query parameter will set unused parameters to default
-    setDetail(result.detail);
     setView(result.view);
     setFilter(result.filter);
-  }, [detail, filter, init, query, setDetail, setFilter, setInit, setView, view]);
+  }, [filter, init, query, setFilter, setInit, setView, view]);
 
   return <pre style={{overflow: "auto"}}>{[{
     state: {
-      detail,
       filter,
       view,
       init
