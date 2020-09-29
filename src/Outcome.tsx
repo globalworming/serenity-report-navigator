@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './App.css';
+
 import TestOutcome from "./model/TestOutcome";
 import {Box} from "@material-ui/core";
 import UserStory from "./model/UserStory";

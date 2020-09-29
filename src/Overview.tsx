@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import MyPaper from "./MyPaper";
 import useGlobalState from './state';
 import _ from 'lodash';
