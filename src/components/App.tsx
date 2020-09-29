@@ -6,8 +6,9 @@ import {Box, CircularProgress} from "@material-ui/core";
 import Controls from "./controls";
 import useGlobalState from "../state"
 import ApplyFilter from "./ApplyFilter";
-import InitLocalStateFromQueryParameters from "./InitLocalStateFromQueryParameters";
+import LocalStateFromQueryParameters from "./LocalStateFromQueryParameters";
 import RemoveQueryParams from "./RemoveQueryParams";
+import SyncLocalStorage from "./SyncLocalStorage";
 
 const App = () => {
     const outcomes = window.outcomes;
@@ -16,7 +17,8 @@ const App = () => {
       return <Router>
         <Route path="*">
           <CircularProgress color={"secondary"} style={{position: "absolute", top: "3rem", left: "3rem"}}/>
-          <InitLocalStateFromQueryParameters />
+          <LocalStateFromQueryParameters />
+          <SyncLocalStorage/>>
         </Route>
       </Router>
     }
@@ -29,6 +31,7 @@ const App = () => {
             <Controls/>
             <Overview/>
             <ExploreData/>
+            <SyncLocalStorage/>
           </Box>
         </Route>
       </Router>

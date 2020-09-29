@@ -5,7 +5,7 @@ import React, {useEffect} from "react";
 import * as _ from "lodash";
 
 
-const InitLocalStateFromQueryParameters = () => {
+const LocalStateFromQueryParameters = () => {
 
   const [init, setInit] = useGlobalState("init");
   const [detail, setDetail] = useGlobalState('detail');
@@ -19,7 +19,6 @@ const InitLocalStateFromQueryParameters = () => {
     if (init) return;
     // query values override global state
     if (_.keys(query).length === 0) {
-      setInit(true)
       return;
     }
 
@@ -36,7 +35,6 @@ const InitLocalStateFromQueryParameters = () => {
     setDetail(result.detail);
     setView(result.view);
     setFilter(result.filter);
-    setInit(true)
   }, [detail, filter, init, query, setDetail, setFilter, setInit, setView, view]);
 
   return <pre style={{overflow: "auto"}}>{[{
@@ -49,4 +47,4 @@ const InitLocalStateFromQueryParameters = () => {
   }].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>
 };
 
-export default InitLocalStateFromQueryParameters
+export default LocalStateFromQueryParameters
