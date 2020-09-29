@@ -19,6 +19,6 @@ const ApplyFilter = () => {
   }, [filter, outcomes, setFilteredOutcomes]);
 
   return null;
-}
+};
 
 export default ApplyFilter

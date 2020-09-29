@@ -21,8 +21,9 @@ const ExploreData = () => {
 
   return <>
     {_.toPairs(stories).map(([storyName, outcomes]) => <Box flex={"0 0 100%"} key={storyName}>
-      <StoryHeading name={storyName} results={outcomes.map(it => it.result)}/>
-      {outcomes.map(it => <Outcome key={it.name + it.startTime} from={it} />)}
+        <StoryHeading name={storyName} results={outcomes.map(it => it.result)}/>
+        {outcomes.map((it, i) => <Outcome index={i} key={it.name + it.startTime} from={it} />)}
+
       </Box>)}
   </>
 };
