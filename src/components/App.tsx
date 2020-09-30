@@ -13,39 +13,39 @@ const App = () => {
     const [init] = useGlobalState('init');
     const [filter] = useGlobalState('filter');
     const [view] = useGlobalState('view');
-    if (!init) {
-      return <Router>
-        <Route path="*">
-          <LocalStateFromQueryParameters />
-        </Route>
-      </Router>
-    }
-  const printState = <pre style={{overflow: "auto"}}>{[{
-    state: {
-      filter,
-      view,
-      init
-    }
-  }].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>;
-  return <div className="App">
-    {printState}
-    {<><h2>JSON</h2>
-      <pre style={{overflow: "auto"}}>
-        {JSON.stringify(outcomes[0], null, 2)}
-      </pre></> }
-    <Router>
+
+    const printState = <pre style={{overflow: "auto"}}>{[{
+      state: {
+        filter,
+        view,
+        init
+      }
+    }].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>;
+
+    const initWithQueryParameters = <Router>
       <Route path="*">
+        <LocalStateFromQueryParameters/>
+      </Route>
+    </Router>;
+
+    return <div className="App">
+      {!init && initWithQueryParameters}
+      {init && <>
+        {printState}
+        {<><h2>JSON</h2>
+          <pre style={{overflow: "auto"}}>
+        {JSON.stringify(outcomes[0], null, 2)}
+      </pre>
+        </>}
         <Box display="flex" flexWrap={"wrap"}>
           <ApplyFilter/>
           <Controls/>
           <Overview/>
           <ExploreData/>
         </Box>
-      </Route>
-    </Router>
 
-
-  </div>
+      </>}
+    </div>
   }
 ;
 
