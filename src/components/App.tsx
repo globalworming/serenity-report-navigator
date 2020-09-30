@@ -40,7 +40,7 @@ const App = () => {
       </Route>
     </Router>
 
-    {false && <><h2>JSON</h2>
+    {<><h2>JSON</h2>
     <pre style={{overflow: "auto"}}>
         {JSON.stringify(outcomes, null, 2)}
       </pre></> }
