@@ -4,7 +4,8 @@ import * as React from "react";
 type Props = { children: any}
 
 const MyPaper = ({children}: Props) => {
-  return <Paper style={{padding: "1rem", margin: "1rem", maxWidth: "100%", overflow: "hidden"}}>
+  return <Paper style={{padding: "0.25rem", margin: "0.1rem", maxWidth: "100%", overflow: "hidden", minHeight: "2.5rem",
+    lineHeight: 2}}>
     {children}
   </Paper>
 };

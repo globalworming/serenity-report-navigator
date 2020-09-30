@@ -1,10 +1,6 @@
 import React from 'react';
 import TestOutcome from "../../model/TestOutcome";
-import Outcome from "./Outcome";
-import {Box} from "@material-ui/core";
-import _ from 'lodash';
-import useGlobalState from '../../state';
-import StoryHeading from "../../StoryHeading";
+import ByStory from "./ByStory"
 
 declare global {
   // noinspection JSUnusedGlobalSymbols
@@ -14,18 +10,7 @@ declare global {
 }
 
 const ExploreData = () => {
-
-  const [outcomes] = useGlobalState('filteredOutcomes');
-
-  const stories = _.groupBy(outcomes, o => o.userStory.storyName);
-
-  return <>
-    {_.toPairs(stories).map(([storyName, outcomes]) => <Box flex={"0 0 100%"} key={storyName}>
-        <StoryHeading name={storyName} results={outcomes.map(it => it.result)}/>
-        {outcomes.map((it, i) => <Outcome index={i} key={it.name + it.startTime} from={it} />)}
-
-      </Box>)}
-  </>
+  return <ByStory/>
 };
 
 export default ExploreData

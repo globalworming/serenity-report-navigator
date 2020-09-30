@@ -24,15 +24,13 @@ const Outcome = ({from, index}: OutcomeProps) => {
   const {duration, startTime} = from;
   const {detail} = view;
 
-  let outcome = <MyPaper>
-    <ResultImage result={from.result}/> {from.title}
-  </MyPaper>;
+  let outcome = <><ResultImage result={from.result}/> {from.title};</>
 
   if (detail === 1) {
-    outcome = <MyPaper>
+    outcome = <>
       {from.result} {from.title}
       {testSteps && testSteps.map((it, i) => <MyPaper key={i}>{it.description}</MyPaper>)}
-    </MyPaper>
+    </>
   }
 
   if (detail === 2) {
@@ -67,9 +65,9 @@ const Outcome = ({from, index}: OutcomeProps) => {
     </MyPaper>
   }
 
-  return <Delayed wait={index}>
+  return <MyPaper><Delayed wait={index * 5}>
     {outcome}
-  </Delayed>
+  </Delayed></MyPaper>
 };
 
 interface TestStepProps {

@@ -29,6 +29,10 @@ const App = () => {
   }].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>;
   return <div className="App">
     {printState}
+    {<><h2>JSON</h2>
+      <pre style={{overflow: "auto"}}>
+        {JSON.stringify(outcomes[0], null, 2)}
+      </pre></> }
     <Router>
       <Route path="*">
         <Box display="flex" flexWrap={"wrap"}>
@@ -40,10 +44,7 @@ const App = () => {
       </Route>
     </Router>
 
-    {<><h2>JSON</h2>
-    <pre style={{overflow: "auto"}}>
-        {JSON.stringify(outcomes, null, 2)}
-      </pre></> }
+
   </div>
   }
 ;

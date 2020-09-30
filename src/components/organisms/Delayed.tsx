@@ -12,11 +12,11 @@ const Delayed: FunctionComponent<DelayedProps> = ({wait, children}) =>{
   useEffect(() => {
     const timer = setTimeout(() => {
       setHidden(false)
-    }, wait);
+    }, 10 + wait);
     return () => clearTimeout(timer);
   }, [hidden, setHidden, wait]);
 
-  return hidden ? <img style={{width: "40px", height: "40px"}} src={Gif} alt={"loading"} /> : <>{children}</>;
+  return hidden ? <img style={{display: "block", width: "2.5rem", height: "2.5rem"}} src={Gif} alt={"loading"} /> : <>{children}</>;
 };
 
 export default Delayed
