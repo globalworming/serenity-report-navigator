@@ -7,9 +7,16 @@ import Controls from "./controls";
 import useGlobalState from "../state"
 import ApplyFilter from "./ApplyFilter";
 import LocalStateFromQueryParameters from "./LocalStateFromQueryParameters";
+import TestOutcome from "../model/TestOutcome";
+
+declare global {
+  // noinspection JSUnusedGlobalSymbols
+  interface Window {
+    outcomes:Array<TestOutcome>;
+  }
+}
 
 const App = () => {
-    const outcomes = window.outcomes;
     const [init] = useGlobalState('init');
     const [filter] = useGlobalState('filter');
     const [view] = useGlobalState('view');
