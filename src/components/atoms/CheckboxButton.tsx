@@ -2,12 +2,12 @@ import * as React from "react";
 import {Button} from "@material-ui/core";
 import {FunctionComponent} from "react";
 
-interface IProps {
+interface MyProps {
   checked: boolean,
   onClick: Function
 }
 
-const CheckboxButton: FunctionComponent<IProps> = ({checked, onClick, children}) => {
+const CheckboxButton: FunctionComponent<MyProps> = ({checked, onClick, children}) => {
   return <Button variant="contained" onClick={() => onClick()}>
     {
       checked ?
@@ -17,6 +17,6 @@ const CheckboxButton: FunctionComponent<IProps> = ({checked, onClick, children})
       children
     }
   </Button>
-}
+};
 
 export default CheckboxButton

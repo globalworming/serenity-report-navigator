@@ -1,21 +1,23 @@
 import React from 'react';
 
 import TestOutcome from "../../model/TestOutcome";
-import {Box} from "@material-ui/core";
-import TestStep from "../../model/TestStep";
-import ResultImage from "../../ResultImage";
 import Expandable from "../organisms/Expandable";
 import TestStepsRecursive from "./TestStepsRecursive";
 import MyPaper from "../atoms/MyPaper";
+import Emoji from "../atoms/Emoji";
+import RowWithResultAggregate from "../molecules/RowWithResultAggregate";
 
 type OutcomeProps = {
   tell: TestOutcome
 }
 
-
-
 const Outcome = ({tell}: OutcomeProps) => {
-  let outcomeHeading = <><ResultImage result={tell.result}/> {tell.title}</>;
+  const steps = tell.testSteps && tell.testSteps.length > 0 ? tell.testSteps : [];
+  const outcomeHeading = <RowWithResultAggregate tellAll={steps.map(it => it.result)}>
+    {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
+    <Emoji label={"testCase"}>📑</Emoji> {tell.title}
+  </RowWithResultAggregate>;
+
   return <MyPaper>
     <Expandable expandOnGlobalDetail={2} whatsHidden={<TestStepsRecursive depth={0} tellAll={tell.testSteps}/>}>
       {outcomeHeading}
@@ -23,19 +25,5 @@ const Outcome = ({tell}: OutcomeProps) => {
   </MyPaper>
 };
 
-interface TestStepProps {
-  from: TestStep
-}
-
-const TestStepSection = ({from}: TestStepProps) => {
-  return <Box style={{padding: "0.5rem"}}>
-    <strong>step</strong>
-    <dt>result</dt>
-    <dd>{from.result}</dd>
-    <dt>description</dt>
-    <dd>{from.description}</dd>
-    {from.children && from.children.map((it, i) => <TestStepSection key={i} from={it}/>)}
-  </Box>
-};
 
 export default Outcome;

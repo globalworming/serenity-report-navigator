@@ -12,7 +12,7 @@ type MyProps = {
 const HighLevelTestStep: FunctionComponent = ({children}) => {
 
   // FIXME green is not a creative color, add red and yellow
-  return <div style={{padding: "0.25rem", borderLeft: "5px solid green", marginTop: "0.25rem"}}>
+  return <div style={{padding: "0.25rem", marginTop: "0.25rem"}}>
     {children}
   </div>
 };
@@ -34,20 +34,18 @@ const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
             <Delayed wait={i}><Expandable expandOnGlobalDetail={3}
                         whatsHidden={<TestStepsRecursive depth={depth + 1} tellAll={testStep.children}/>}>
               <HighLevelTestStep>
-                  {testStep.description}
+                {testStep.description}
               </HighLevelTestStep>
             </Expandable></Delayed>
           </React.Fragment>;
         }
-
-
       })}
     </>
   }
 
   return <>
     {tellAll.map((testStep, i) => <React.Fragment key={i}>
-      <Box style={{borderLeft: `${depth * 20}px solid green`, paddingLeft: "0.25rem"}}>{testStep.description}</Box>
+      <Box style={{paddingLeft: `${depth * 20}px`}}>{testStep.description}</Box>
       <TestStepsRecursive depth={depth + 1} tellAll={testStep.children}/>
     </React.Fragment>)}
   </>

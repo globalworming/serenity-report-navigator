@@ -1,4 +1,7 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from "react";
+import Emoji from "./components/atoms/Emoji";
+import Result from "./model/Result";
 
 interface ResultImageProps {
   result: string
@@ -6,13 +9,16 @@ interface ResultImageProps {
 
 
 const ResultImage = ({result}: ResultImageProps) =>  {
+
   switch (result) {
-    case "PENDING": return <span role="img" aria-label="pending">➖</span>
-    case "SUCCESS": return <span role="img" aria-label="success">✔️</span>
-    case "FAILURE": return <span role="img" aria-label="failure">⚠️</span>
-    case "IGNORED": return <span role="img" aria-label="ignored">💤</span>
-    case "ERROR": return <span role="img" aria-label="error">❌</span>
+    case Result.Pending: return <Emoji label={Result.Pending}>➖</Emoji>;
+    case Result.Success: return <Emoji label={Result.Success}>✔️</Emoji>;
+    case Result.Failure: return <Emoji label={Result.Failure}>⚠️</Emoji>;
+    case Result.Ignored: return <Emoji label={Result.Ignored}>💤</Emoji>;
+    case Result.Error: return <Emoji label={Result.Error}>❌</Emoji>;
+    case Result.Skipped: return <Emoji label={Result.Skipped}>⏭️</Emoji>
   }
-  return null;
-}
+  return <span>{result}</span>;
+};
+
 export default ResultImage
