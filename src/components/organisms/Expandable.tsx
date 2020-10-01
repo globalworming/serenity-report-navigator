@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useState} from "react";
 import useGlobalState from "../../state";
-import {Box, Switch} from "@material-ui/core";
+import {Box} from "@material-ui/core";
+import ExpandCollapse from "../molecules/ExpandCollapse"
 
 
 interface ExpandabledProps {
@@ -23,11 +24,8 @@ const Expandable: FunctionComponent<ExpandabledProps> = ({expandOnGlobalDetail, 
       <Box display="flex" flex={"1 1 0"}>
         {children}
       </Box>
-      <Switch
-        checked={expanded}
-        onChange={myToggle}
-        name={expanded ? "collapse" : "expand"}
-        inputProps={{'aria-label': expanded ? "collapse" : "expand"}}
+      <ExpandCollapse
+        isExpanded={expanded}
       />
     </Box>
     {expanded && whatsHidden}

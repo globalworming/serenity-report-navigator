@@ -7,6 +7,7 @@ import Story from "./Story";
 
 const ByStory = () => {
   let [outcomes] = useGlobalState('filteredOutcomes');
+  outcomes = [outcomes[4]];
   const outcomesByStoryName = _.groupBy(outcomes, o => o.userStory.storyName);
   return <>
     <Box flex={"0 0 100%"}><h2>by user story:</h2></Box>
