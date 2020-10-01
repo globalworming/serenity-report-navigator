@@ -5,6 +5,6 @@ const StoryName: FunctionComponent = ({children}) => {
   return <Box flex={`1 0 70%`}>
     {children}
   </Box>
-}
+};
 
 export default StoryName

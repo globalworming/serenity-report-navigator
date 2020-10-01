@@ -13,7 +13,7 @@ const Overview = () => {
   }
 
   const earliestDate = outcomes.map(it => moment(it.startTime).valueOf()).sort()[0];
-  const latestDate = outcomes.map(it => moment(it.startTime).add(it.duration, 'milliseconds').valueOf()).sort().reverse()[0]
+  const latestDate = outcomes.map(it => moment(it.startTime).add(it.duration, 'milliseconds').valueOf()).sort().reverse()[0];
 
   const byResult = _.countBy(outcomes, it => it.result);
 

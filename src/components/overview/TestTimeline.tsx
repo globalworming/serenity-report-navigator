@@ -4,7 +4,6 @@ import moment from 'moment'
 import React from "react";
 import MyPaper from "../atoms/MyPaper";
 import useGlobalState from '../../state';
-import _ from 'lodash';
 
 const TestTimeline = () => {
 
@@ -29,7 +28,7 @@ const TestTimeline = () => {
     canResize: false,
     stackItems: true
 
-  }))
+  }));
 
   return <MyPaper>
     <span>{new Date(earliestDate).toString()}</span>

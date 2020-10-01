@@ -18,7 +18,7 @@ const DetailLevel = () => {
     const newView = Object.assign(new View(), view);
     newView.detail = i;
     setView(newView)
-  }
+  };
 
   return <>
     <strong>amount of info</strong> (0-4 does stuff), current {view.detail}

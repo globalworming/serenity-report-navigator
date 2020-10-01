@@ -40,7 +40,7 @@ const SyncLocalStorage = () => {
         setStoredView(JSON.stringify(view))
       }
     }
-  }, [filter, filterInSync, init, setStoredFilter, setStoredView, storedView, viewInSync]);
+  }, [filter, filterInSync, init, setStoredFilter, setStoredView, storedView, view, viewInSync]);
 
   return <Box style={{maxWidth: "400px"}}>
     <MyPaper>

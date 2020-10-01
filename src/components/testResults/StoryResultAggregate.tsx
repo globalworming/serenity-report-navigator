@@ -21,6 +21,6 @@ const StoryResultAggregate = ({outcomes}: Props) => {
       }
     </Box>
   </>
-}
+};
 
 export default StoryResultAggregate
