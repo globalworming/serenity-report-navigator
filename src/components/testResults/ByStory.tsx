@@ -12,15 +12,14 @@ const ByStory = () => {
     <FullWidthWrappingFlexBox>
       <h2>by user story:</h2>
     </FullWidthWrappingFlexBox>
+    <FullWidthWrappingFlexBox>
     {_.keys(outcomesByStoryName).map((storyName) => {
       return <React.Fragment key={storyName}>
-        <FullWidthWrappingFlexBox>
           {/* TODO? always tells the first outcomes story, maybe missing other outcome.userStory.path values*/}
           <Story tell={outcomesByStoryName[storyName][0].userStory} outcomes={outcomesByStoryName[storyName]}/>
-
-        </FullWidthWrappingFlexBox>
       </React.Fragment>;
     })}
+    </FullWidthWrappingFlexBox>
   </>
 };
 

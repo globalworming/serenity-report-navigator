@@ -13,7 +13,7 @@ const ShowScreenshots = () => {
     setView(newView);
   }
 
-  return <CheckboxButton onClick={() => toggle()} checked={view.showScreenshots}>screenshots</CheckboxButton>
+  return <CheckboxButton onClick={() => toggle()} checked={view.showScreenshots}>TODO show screenshots</CheckboxButton>
 };
 
 export default ShowScreenshots

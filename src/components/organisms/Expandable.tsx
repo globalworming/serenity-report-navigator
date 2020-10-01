@@ -22,8 +22,8 @@ const Expandable: FunctionComponent<ExpandabledProps> = ({expandOnGlobalDetail, 
   }
 
   return <>
-    <Box display="flex" flex={"0 0 100%"} flexWrap={"wrap"} justifyContent="space-between" onClick={myToggle}>
-      <Box display="flex" flex={"0 0 90%"}>
+    <Box display="flex" flex={"0 0 100%"} flexWrap={"wrap"} justifyContent="space-between" maxWidth={"100%"} onClick={myToggle}>
+      <Box display="flex" flex={"0 0 90%"} maxWidth={"90%"}>
         {children}
       </Box>
       <Box display="flex" flex={"0 0 10%"}>

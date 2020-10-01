@@ -8,12 +8,26 @@ interface MyProps {
 }
 
 const DisplayTestFailureCause = ({tell}: MyProps) => {
+  if (!tell) return null;
+
+  let rootCause = tell;
+  while (rootCause.rootCause) {
+    rootCause = rootCause.rootCause
+  }
+
   return <FullWidthWrappingFlexBox>
-    {tell && <Expandable expandOnGlobalDetail={0} whatsHidden={
-      <FullWidthWrappingFlexBox>stacktrace</FullWidthWrappingFlexBox>
+    <FullWidthWrappingFlexBox>
+      <pre style={{overflowX: "auto", flex: "0 0 100%"}}>{rootCause.errorType} {rootCause.message}</pre>
+    </FullWidthWrappingFlexBox>
+    <Expandable expandOnGlobalDetail={3} whatsHidden={
+      <FullWidthWrappingFlexBox>
+        <pre>{
+          rootCause.stackTrace.map((it) => `${it.methodName}\t${it.fileName}:${it.lineNumber}`).join("\n")
+        }</pre>
+      </FullWidthWrappingFlexBox>
     }>
-      <FullWidthWrappingFlexBox>failure root cause</FullWidthWrappingFlexBox>
-    </Expandable>}
+    click for stacktrace
+    </Expandable>
   </FullWidthWrappingFlexBox>
 };
 export default DisplayTestFailureCause

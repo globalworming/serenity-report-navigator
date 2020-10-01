@@ -21,7 +21,7 @@ const App = () => {
     const [filter] = useGlobalState('filter');
     const [view] = useGlobalState('view');
 
-    const printState = <pre style={{overflow: "auto", flex: "0 0 30%"}}>{[{
+    const printState = <pre style={{overflow: "auto", flex: "0 0 300px"}}>{[{
       state: {
         filter,
         view,
@@ -35,7 +35,7 @@ const App = () => {
       </Route>
     </Router>;
 
-    return <Box display={"flex"} flexWrap={"wrap"} width={"100%"} className="App">
+    return <Box display={"flex"} flexWrap={"wrap"} width={"100%"} maxWidth={"100%"} className="App">
       {!init && initWithQueryParameters}
       {init && <>
         {printState}

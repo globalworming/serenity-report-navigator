@@ -10,7 +10,7 @@ import FocusOnTask from "./FocusOnTask";
 
 const Controls = () => {
     return <><Paper style={{padding: "1rem", margin: "1rem"}}>
-      <p><strong>controls</strong></p>
+      <p><strong>debug</strong> controls</p>
       <p>
         <TestLinksAndRoutes/>
       </p>
