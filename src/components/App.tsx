@@ -32,11 +32,11 @@ const App = () => {
       {!init && initWithQueryParameters}
       {init && <>
         {printState}
-        {<><h2>JSON</h2>
+        {/*<><h2>JSON</h2>
           <pre style={{overflow: "auto"}}>
         {JSON.stringify(outcomes[0], null, 2)}
       </pre>
-        </>}
+        </>*/}
         <Box display="flex" flexWrap={"wrap"}>
           <ApplyFilter/>
           <Controls/>

@@ -31,7 +31,6 @@ const TestTimeline = () => {
 
   }))
 
-  console.log({earliestDate: items[0].start_time, latestDate: items[0].end_time},{groups, items});
   return <MyPaper>
     <span>{new Date(earliestDate).toString()}</span>
     <Timeline

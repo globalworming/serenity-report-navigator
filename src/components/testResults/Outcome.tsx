@@ -3,71 +3,24 @@ import React from 'react';
 import TestOutcome from "../../model/TestOutcome";
 import {Box} from "@material-ui/core";
 import TestStep from "../../model/TestStep";
-import MyPaper from "../atoms/MyPaper";
-import useGlobalState from "../../state";
 import ResultImage from "../../ResultImage";
-import Delayed from "../organisms/Delayed";
+import Expandable from "../organisms/Expandable";
+import TestStepsRecursive from "./TestStepsRecursive";
+import MyPaper from "../atoms/MyPaper";
 
 type OutcomeProps = {
-  from: TestOutcome
-  index: number
+  tell: TestOutcome
 }
 
-type StepsRecursiveProps = {
-  from: TestStep
-}
 
-const Outcome = ({from, index}: OutcomeProps) => {
-  const [view] = useGlobalState('view');
-  const {testSteps} = from;
-  const {successful, ignored, failures, pending, skipped} = from;
-  const {duration, startTime} = from;
-  const {detail} = view;
 
-  let outcome = <><ResultImage result={from.result}/> {from.title};</>
-
-  if (detail === 1) {
-    outcome = <>
-      {from.result} {from.title}
-      {testSteps && testSteps.map((it, i) => <MyPaper key={i}>{it.description}</MyPaper>)}
-    </>
-  }
-
-  if (detail === 2) {
-    outcome = <MyPaper>
-      {from.result} {from.title}
-      <pre>{JSON.stringify({steps: {successful, ignored, failures, pending, skipped}}, undefined, 2)}</pre>
-      took {duration} seconds, {startTime}
-      {testSteps && testSteps.map((it, i) => <MyPaper key={i}>{it.description}</MyPaper>)}
-    </MyPaper>
-  }
-
-  if (detail === 3) {
-    const StepsRecursive = ({from}: StepsRecursiveProps) => {
-      return <MyPaper>
-        {from.description}
-        {from.children && from.children.map((it, i) => <StepsRecursive key={i} from={it}/>)}
-      </MyPaper>
-    };
-    outcome =  <MyPaper>
-      {from.result} {from.title}
-      <pre>{JSON.stringify({steps: {successful, ignored, failures, pending, skipped}}, undefined, 2)}</pre>
-      took {duration} seconds, {startTime}
-      {testSteps && testSteps.map((it, i) => <StepsRecursive key={i} from={it}/>)}
-    </MyPaper>
-  }
-
-  if (detail >= 4) {
-    outcome = <MyPaper>
-      <br/>
-      <strong>Outcome: {from.title} - {from.name}</strong>
-        {from.testSteps && from.testSteps.map((it, i) => <TestStepSection key={i} from={it}/>)}
-    </MyPaper>
-  }
-
-  return <MyPaper><Delayed wait={index * 5}>
-    {outcome}
-  </Delayed></MyPaper>
+const Outcome = ({tell}: OutcomeProps) => {
+  let outcomeHeading = <><ResultImage result={tell.result}/> {tell.title}</>;
+  return <MyPaper>
+    <Expandable expandOnGlobalDetail={2} whatsHidden={<TestStepsRecursive depth={0} tellAll={tell.testSteps}/>}>
+      {outcomeHeading}
+    </Expandable>
+  </MyPaper>
 };
 
 interface TestStepProps {

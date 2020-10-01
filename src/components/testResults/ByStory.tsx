@@ -1,31 +1,22 @@
-import Outcome from "./Outcome";
+import React from "react";
 import {Box} from "@material-ui/core";
 import _ from 'lodash';
 import useGlobalState from '../../state';
-import Story from "./StoryHeading";
-import React, {useState} from "react";
+import Story from "./Story";
 
 
 const ByStory = () => {
-  const [outcomes] = useGlobalState('filteredOutcomes');
-  const [view] = useGlobalState('view');
-  const storiesAsPairs = _.toPairs(_.groupBy(outcomes, o => o.userStory.storyName));
-
-  const initialState = _.fill(Array(storiesAsPairs.length), view.detail > 0);
-  const [expanded, setExpanded] = useState(initialState);
-
-  const toggle = (index: number) => {
-    let newExpanded: Array<boolean> = Object.assign([], expanded);
-    newExpanded[index] = !expanded[index];
-    setExpanded(newExpanded)
-  }
-
+  let [outcomes] = useGlobalState('filteredOutcomes');
+  const outcomesByStoryName = _.groupBy(outcomes, o => o.userStory.storyName);
   return <>
-    {storiesAsPairs.map(([storyName, outcomes], i) => <Box flex={"0 0 100%"} key={storyName}>
-      <Story name={storyName} index={i} toggle={toggle} results={outcomes.map(it => it.result)}>
-        {outcomes.map((it, i) => <Outcome index={i} key={it.name + it.startTime} from={it} />)}
-      </Story>
-    </Box>)}
+    <Box flex={"0 0 100%"}><h2>by user story:</h2></Box>
+    {_.keys(outcomesByStoryName).map((storyName) => {
+      return <Box flex={"0 0 100%"} key={storyName}>
+        {/* TODO? always tells the first outcomes story, maybe missing other outcome.userStory.path values*/}
+        <Story tell={outcomesByStoryName[storyName][0].userStory} outcomes={outcomesByStoryName[storyName]}/>
+
+      </Box>;
+    })}
   </>
 }
 
