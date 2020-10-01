@@ -3,6 +3,7 @@ import TestStep from "../../model/TestStep";
 import Expandable from "../organisms/Expandable";
 import {Box} from "@material-ui/core";
 import Delayed from "../organisms/Delayed";
+import ResultImage from "../../ResultImage";
 
 type MyProps = {
   tellAll?: Array<TestStep>,
@@ -20,13 +21,17 @@ const HighLevelTestStep: FunctionComponent = ({children}) => {
 const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
   if (!tellAll || tellAll.length === 0) return null;
 
+  const resultAndDescription = (testStep: TestStep) => <>
+    <ResultImage result={testStep.result}/> {testStep.description}
+  </>;
+
   if (depth === 0) {
     return <>
       {tellAll.map((testStep, i) => {
         if (!testStep.children) {
           return <React.Fragment key={i}>
             <HighLevelTestStep>
-                {testStep.description}
+                {resultAndDescription(testStep)}
             </HighLevelTestStep>
           </React.Fragment>;
         } else {
@@ -34,7 +39,7 @@ const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
             <Delayed wait={i}><Expandable expandOnGlobalDetail={3}
                         whatsHidden={<TestStepsRecursive depth={depth + 1} tellAll={testStep.children}/>}>
               <HighLevelTestStep>
-                {testStep.description}
+                {resultAndDescription(testStep)}
               </HighLevelTestStep>
             </Expandable></Delayed>
           </React.Fragment>;
@@ -45,7 +50,9 @@ const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
 
   return <>
     {tellAll.map((testStep, i) => <React.Fragment key={i}>
-      <Box style={{paddingLeft: `${depth * 20}px`}}>{testStep.description}</Box>
+      <Box style={{paddingLeft: `${depth * 20}px`}}>
+        {resultAndDescription(testStep)}
+      </Box>
       <TestStepsRecursive depth={depth + 1} tellAll={testStep.children}/>
     </React.Fragment>)}
   </>
