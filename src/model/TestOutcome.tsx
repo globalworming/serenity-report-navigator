@@ -1,23 +1,25 @@
 import UserStory from "./UserStory";
 import Tag from "./Tag";
 import TestStep from "./TestStep";
+import TestFailureCause from "./TestFailureCause";
 
 interface TestOutcome {
-  title: string
+  duration: string
+  failures: string
+  issues: Array<string>
+  ignored: string
   name: string
+  pending: string
   result: string
   steps: string
   successful: string
-  failures: string
   skipped: string
-  ignored: string
-  pending: string
-  duration: string
+  tags: Array<Tag>
+  testFailureCause: TestFailureCause
+  testSteps: Array<TestStep>
+  title: string
   startTime: Date
   userStory: UserStory
-  issues: Array<string>
-  tags: Array<Tag>
-  testSteps: Array<TestStep>
 }
 
 export default TestOutcome

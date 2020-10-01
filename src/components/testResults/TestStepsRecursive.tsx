@@ -50,7 +50,7 @@ const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
 
   return <>
     {tellAll.map((testStep, i) => <React.Fragment key={i}>
-      <Box style={{paddingLeft: `${depth * 20}px`}}>
+      <Box style={{paddingLeft: `${2 + depth * 2}rem`}}>
         {resultAndDescription(testStep)}
       </Box>
       <TestStepsRecursive depth={depth + 1} tellAll={testStep.children}/>

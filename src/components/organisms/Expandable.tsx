@@ -12,7 +12,9 @@ interface ExpandabledProps {
 const Expandable: FunctionComponent<ExpandabledProps> = ({expandOnGlobalDetail, children, whatsHidden}) => {
   const [view] = useGlobalState('view');
   const [expanded, setExpanded] = useState(view.detail >= expandOnGlobalDetail);
-  const myToggle = () => {
+  const myToggle = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
     setExpanded(!expanded);
   };
   if (!whatsHidden) {
@@ -20,13 +22,15 @@ const Expandable: FunctionComponent<ExpandabledProps> = ({expandOnGlobalDetail, 
   }
 
   return <>
-    <Box display="flex" justifyContent="space-between" onClick={myToggle}>
-      <Box display="flex" flex={"1 1 0"}>
+    <Box display="flex" flex={"0 0 100%"} flexWrap={"wrap"} justifyContent="space-between" onClick={myToggle}>
+      <Box display="flex" flex={"0 0 90%"}>
         {children}
       </Box>
-      <ExpandCollapse
-        isExpanded={expanded}
-      />
+      <Box display="flex" flex={"0 0 10%"}>
+        <ExpandCollapse
+          isExpanded={expanded}
+        />
+      </Box>
     </Box>
     {expanded && whatsHidden}
   </>

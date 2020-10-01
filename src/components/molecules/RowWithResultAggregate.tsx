@@ -11,7 +11,7 @@ const RowWithResultAggregate: FunctionComponent<MyProps>= ({tellAll, children}) 
   const resultPairs = _.toPairs(_.countBy(tellAll));
   let spaceNeeded = resultPairs.length * 10;
 
-  return <>
+  return <Box display={"flex"} flex={"0 0 100%"}>
     <Box flex={`1 0 70%`}>
       {children}
     </Box>
@@ -21,7 +21,7 @@ const RowWithResultAggregate: FunctionComponent<MyProps>= ({tellAll, children}) 
           result={result}/>&nbsp;{count}</React.Fragment>)
       }
     </Box>
-  </>
+  </Box>
 };
 
 export default RowWithResultAggregate

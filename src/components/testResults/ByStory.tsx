@@ -3,20 +3,24 @@ import {Box} from "@material-ui/core";
 import _ from 'lodash';
 import useGlobalState from '../../state';
 import Story from "./Story";
+import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 
 
 const ByStory = () => {
   let [outcomes] = useGlobalState('filteredOutcomes');
-  //outcomes.length=3
   const outcomesByStoryName = _.groupBy(outcomes, o => o.userStory.storyName);
   return <>
-    <Box flex={"0 0 100%"}><h2>by user story:</h2></Box>
+    <FullWidthWrappingFlexBox>
+      <h2>by user story:</h2>
+    </FullWidthWrappingFlexBox>
     {_.keys(outcomesByStoryName).map((storyName) => {
-      return <Box flex={"0 0 100%"} key={storyName}>
-        {/* TODO? always tells the first outcomes story, maybe missing other outcome.userStory.path values*/}
-        <Story tell={outcomesByStoryName[storyName][0].userStory} outcomes={outcomesByStoryName[storyName]}/>
+      return <React.Fragment key={storyName}>
+        <FullWidthWrappingFlexBox>
+          {/* TODO? always tells the first outcomes story, maybe missing other outcome.userStory.path values*/}
+          <Story tell={outcomesByStoryName[storyName][0].userStory} outcomes={outcomesByStoryName[storyName]}/>
 
-      </Box>;
+        </FullWidthWrappingFlexBox>
+      </React.Fragment>;
     })}
   </>
 };

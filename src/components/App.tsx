@@ -21,7 +21,7 @@ const App = () => {
     const [filter] = useGlobalState('filter');
     const [view] = useGlobalState('view');
 
-    const printState = <pre style={{overflow: "auto"}}>{[{
+    const printState = <pre style={{overflow: "auto", flex: "0 0 30%"}}>{[{
       state: {
         filter,
         view,
@@ -35,24 +35,21 @@ const App = () => {
       </Route>
     </Router>;
 
-    return <div className="App">
+    return <Box display={"flex"} flexWrap={"wrap"} width={"100%"} className="App">
       {!init && initWithQueryParameters}
       {init && <>
         {printState}
+        <ApplyFilter/>
+        <Controls/>
+        <Overview/>
+        <ExploreData/>
         {/*<><h2>JSON</h2>
           <pre style={{overflow: "auto"}}>
         {JSON.stringify(outcomes[0], null, 2)}
       </pre>
         </>*/}
-        <Box display="flex" flexWrap={"wrap"}>
-          <ApplyFilter/>
-          <Controls/>
-          <Overview/>
-          <ExploreData/>
-        </Box>
-
       </>}
-    </div>
+    </Box>
   }
 ;
 
