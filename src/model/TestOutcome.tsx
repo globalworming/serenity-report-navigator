@@ -2,15 +2,16 @@ import UserStory from "./UserStory";
 import Tag from "./Tag";
 import TestStep from "./TestStep";
 import TestFailureCause from "./TestFailureCause";
+import Result from "./Result";
 
 interface TestOutcome {
-  duration: string
+  duration: number
   failures: string
   issues: Array<string>
   ignored: string
   name: string
   pending: string
-  result: string
+  result: Result
   steps: string
   successful: string
   skipped: string

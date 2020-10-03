@@ -1,8 +1,8 @@
 import React from 'react';
 import MyPaper from "../atoms/MyPaper";
 import useGlobalState from '../../state';
-import moment from 'moment';
 import ResultPercentage from "./ResultPercentage";
+import Duration from "./Duration";
 
 
 const Overview = () => {
@@ -11,16 +11,18 @@ const Overview = () => {
       return null
     }
 
-    return <MyPaper>
-      <ResultPercentage/>
-    </MyPaper>;
+    return <>
+      <MyPaper>
+        <ResultPercentage/>
+      </MyPaper>
+      <MyPaper>
+        <Duration/>
+      </MyPaper>
 
-    const earliestDate = outcomes.map(it => moment(it.startTime).valueOf()).sort()[0];
-    const latestDate = outcomes.map(it => moment(it.startTime).add(it.duration, 'milliseconds').valueOf()).sort().reverse()[0];
+    </>;
+
   }
 ;
-
-
 
 
 export default Overview;
