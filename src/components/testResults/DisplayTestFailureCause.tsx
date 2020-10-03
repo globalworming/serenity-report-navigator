@@ -22,7 +22,8 @@ const DisplayTestFailureCause = ({tell}: MyProps) => {
     <Expandable expandOnGlobalDetail={3} whatsHidden={
       <FullWidthWrappingFlexBox>
         <pre>{
-          rootCause.stackTrace.map((it) => `${it.methodName}\t${it.fileName}:${it.lineNumber}`).join("\n")
+          rootCause.stackTrace.map((it) =>
+            `at ${it.declaringClass}#${it.methodName}(${it.fileName}:${it.lineNumber})`).join("\n")
         }</pre>
       </FullWidthWrappingFlexBox>
     }>
