@@ -2,7 +2,8 @@ import React from 'react';
 import MyPaper from "../atoms/MyPaper";
 import useGlobalState from '../../state';
 import ResultPercentage from "./ResultPercentage";
-import Duration from "./Duration";
+import DurationsDistribution from "./DurationsDistribution";
+import DurationStatistics from "./DurationStatistics";
 
 
 const Overview = () => {
@@ -16,7 +17,8 @@ const Overview = () => {
         <ResultPercentage/>
       </MyPaper>
       <MyPaper>
-        <Duration/>
+        <DurationsDistribution/>
+        <DurationStatistics/>
       </MyPaper>
 
     </>;
