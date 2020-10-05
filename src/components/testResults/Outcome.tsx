@@ -5,6 +5,7 @@ import Expandable from "../organisms/Expandable";
 import TestStepsRecursive from "./TestStepsRecursive";
 import OutcomeHeading from "./OutcomeHeading"
 import DisplayTestFailureCause from "./DisplayTestFailureCause"
+import OutcomeDescription from "./OutcomeDescription"
 
 type MyProps = {
   tell: TestOutcome
@@ -13,7 +14,10 @@ type MyProps = {
 
 const Outcome = ({tell}: MyProps) => {
   return <>
-    <Expandable expandOnGlobalDetail={2} whatsHidden={<TestStepsRecursive depth={0} tellAll={tell.testSteps}/>}>
+    <Expandable expandOnGlobalDetail={2} whatsHidden={<>
+      <OutcomeDescription tell={tell} />
+      <TestStepsRecursive depth={0} tellAll={tell.testSteps}/>
+    </>}>
       <OutcomeHeading tell={tell}/>
     </Expandable>
     <DisplayTestFailureCause tell={tell.testFailureCause}/>

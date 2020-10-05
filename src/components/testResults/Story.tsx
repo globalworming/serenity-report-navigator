@@ -23,12 +23,12 @@ const Story = ({tell, outcomes}: StoryProps) => {
     </RowWithResultAggregate>
   </Box>;
 
-  const storyOutComes = outcomes.map((it) => <Outcome key={it.name + it.startTime} tell={it} />);
+  const storyOutComes = outcomes.map((it) => <Outcome key={it.name + it.startTime} tell={it}/>);
 
   return <MyPaper>
     <Expandable expandOnGlobalDetail={1} whatsHidden={storyOutComes}>
       {storyHeading}
-  </Expandable></MyPaper>;
+    </Expandable></MyPaper>;
 };
 
 export default Story

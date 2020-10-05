@@ -10,9 +10,6 @@ const ByStory = () => {
   const outcomesByStoryName = _.groupBy(outcomes, o => o.userStory.storyName);
   return <>
     <FullWidthWrappingFlexBox>
-      <h2>by user story:</h2>
-    </FullWidthWrappingFlexBox>
-    <FullWidthWrappingFlexBox>
     {_.keys(outcomesByStoryName).map((storyName) => {
       return <React.Fragment key={storyName}>
           {/* TODO? always tells the first outcomes story, maybe missing other outcome.userStory.path values*/}
