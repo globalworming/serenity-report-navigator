@@ -10,7 +10,7 @@ const DurationStatistics = () => {
   const [outcomes] = useGlobalState("filteredOutcomes");
 
   const sortedDurations = outcomes.map(it => it.duration).sort((a, b) => a - b);
-  const [percentiles, setPercentiles] = useState([80])
+  const [percentiles, setPercentiles] = useState([95])
 
   function percentile(percent: number) {
     const index = Math.floor((sortedDurations.length - 1) * 0.01 * percent);
@@ -23,27 +23,29 @@ const DurationStatistics = () => {
     <FullWidthWrappingFlexBox>
       <ul>
         <li>min {prettyMilliseconds(sortedDurations[0])}</li>
+        <li>
+          max {prettyMilliseconds(sortedDurations[sortedDurations.length - 1])}
+        </li>
+        <li>
+          avg {prettyMilliseconds(_.mean(sortedDurations))}
+        </li>
       </ul>
-      <li>
-        max {prettyMilliseconds(sortedDurations[sortedDurations.length - 1])}
-      </li>
-      <li>
-        avg {prettyMilliseconds(_.mean(sortedDurations))}
-      </li>
-      <li>
-        <Slider
-          orientation="vertical"
-          defaultValue={95}
-          aria-labelledby="discrete-slider-small-steps"
-          step={1}
-          marks
-          min={0}
-          max={100}
-          valueLabelDisplay="auto"
-          onChange={(e, v) => (v instanceof Array)? setPercentiles(v) : setPercentiles([v])}
-        />
-        {percentiles[0]}th percentile: {"<="}{prettyMilliseconds(percentile(percentiles[0]))}
-      </li>
+    </FullWidthWrappingFlexBox>
+    <FullWidthWrappingFlexBox>
+      <Slider
+        style={{width: "100%"}}
+        defaultValue={95}
+        aria-labelledby="discrete-slider-small-steps"
+        step={1}
+        marks
+        min={0}
+        max={100}
+        valueLabelDisplay="auto"
+        onChange={(e, v) => (v instanceof Array)? setPercentiles(v) : setPercentiles([v])}
+      />
+    </FullWidthWrappingFlexBox>
+    <FullWidthWrappingFlexBox>
+      {percentiles[0]}th percentile: {"<="}{prettyMilliseconds(percentile(percentiles[0]))}
     </FullWidthWrappingFlexBox>
 
   </>

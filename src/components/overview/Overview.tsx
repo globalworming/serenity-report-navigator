@@ -4,6 +4,8 @@ import useGlobalState from '../../state';
 import ResultPercentage from "./ResultPercentage";
 import DurationsDistribution from "./DurationsDistribution";
 import DurationStatistics from "./DurationStatistics";
+import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import {Box} from "@material-ui/core";
 
 
 const Overview = () => {
@@ -16,11 +18,20 @@ const Overview = () => {
       <MyPaper>
         <ResultPercentage/>
       </MyPaper>
-      <MyPaper>
-        <DurationsDistribution/>
-        <DurationStatistics/>
-      </MyPaper>
 
+      <FullWidthWrappingFlexBox>
+        <Box flex={"0 0 300px"}>
+          <MyPaper>
+            <DurationsDistribution/>
+          </MyPaper>
+        </Box>
+
+        <Box flex={"0 0 200px"}>
+          <MyPaper>
+            <DurationStatistics/>
+          </MyPaper>
+        </Box>
+      </FullWidthWrappingFlexBox>
     </>;
 
   }

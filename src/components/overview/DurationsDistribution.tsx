@@ -29,7 +29,7 @@ const DurationsDistribution = () => {
   const heightPixel = 300;
 
   return <>
-    <strong>duration distribution </strong>
+    <strong>duration distribution </strong> todo: allow filter for duration > 0
     <TextField label="devisions" variant="outlined" value={devisions}
                onChange={(e) => setDevisions(parseInt(e.target.value))}/>
     <FullWidthWrappingFlexBox>
