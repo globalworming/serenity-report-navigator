@@ -16,7 +16,8 @@ const ResultImage = ({result}: ResultImageProps) =>  {
     case Result.Failure: return <Emoji label={Result.Failure}>⚠️</Emoji>;
     case Result.Ignored: return <Emoji label={Result.Ignored}>💤</Emoji>;
     case Result.Error: return <Emoji label={Result.Error}>❌</Emoji>;
-    case Result.Skipped: return <Emoji label={Result.Skipped}>⏭️</Emoji>
+    case Result.Skipped: return <Emoji label={Result.Skipped}>⏭️</Emoji>;
+    case Result.Compromised: return <Emoji label={Result.Compromised}>⁉️️</Emoji>
   }
   return <span>{result}</span>;
 };

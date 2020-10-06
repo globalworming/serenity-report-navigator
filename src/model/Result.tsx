@@ -4,6 +4,7 @@ enum Result {
   Ignored = "IGNORED",
   Pending = "PENDING",
   Error = "ERROR",
+  Compromised = "COMPROMISED",
   Skipped = "SKIPPED"
 }
 
@@ -19,6 +20,8 @@ export const colorOf = (result: string) => {
       return "#a8a2bc";
     case Result.Error:
       return "#89362d";
+    case Result.Compromised:
+      return "#d645c4";
     case Result.Skipped:
       return "#688975"
   }
