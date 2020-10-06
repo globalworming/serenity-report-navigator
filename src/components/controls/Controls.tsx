@@ -6,6 +6,7 @@ import FilterResult from "./FilterResult";
 import FilterKeywords from "./FilterKeywords";
 import ShowScreenshots from "./ShowScreenshots";
 import FocusOnTask from "./FocusOnTask";
+import FilterTags from "./FilterTags";
 
 
 const Controls = () => {
@@ -18,10 +19,10 @@ const Controls = () => {
         <DetailLevel/>
       </p>
       <p>
-        <strong>filter</strong>
         <FilterResult/>
         <FilterKeywords/>
       </p>
+      <FilterTags/>
       <p>
         <strong>config</strong>
         <ShowScreenshots/>

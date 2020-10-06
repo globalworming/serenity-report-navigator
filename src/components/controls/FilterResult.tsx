@@ -21,7 +21,7 @@ const FilterResult = () => {
   }
 
   let results: Array<string> = _.uniq(outcomes.map((it) => it.result));
-  return <>
+  return <> <strong>filter result</strong>
     {results.map(it => {
       return <CheckboxButton key={it} checked={!filter.testResult.exclude.includes(it)} onClick={() => toggle(it)}>
         {it}

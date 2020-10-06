@@ -55,3 +55,14 @@ const App = () => {
 
 
 export default App;
+
+// todo.. put it somewhere
+export const colorFor = (name: string, opacity: string = "FF") => {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return "#" + ((hash & 0x00FFFFFF) + 0X0F000000).toString(16).slice(-6) + opacity
+    ;
+};
+

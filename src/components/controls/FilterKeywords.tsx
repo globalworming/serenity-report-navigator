@@ -28,7 +28,7 @@ const FilterKeywords = () => {
     return () => debouncedSync.cancel()
   }, [debouncedSync, filter.keyword.include, localValue]);
 
-  return <>
+  return <> <strong>search keyword</strong>
     <input type={"text"} placeholder={"search in story, name, ..."} value={localValue === includeAllText ? "" : localValue} onChange={(e) => setLocalValue(e.target.value)}/>
 
   </>
