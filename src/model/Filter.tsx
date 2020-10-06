@@ -6,11 +6,11 @@ class Filter {
   testResult: {
     exclude: Array<string>;
     include: Array<string>;
-  }
+  };
 
   keyword: {
     include: string;
-  }
+  };
 
   constructor() {
     this.testResult = {exclude: excludeNone, include: includeAllResults};

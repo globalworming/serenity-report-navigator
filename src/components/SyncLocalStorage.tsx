@@ -51,4 +51,5 @@ const SyncLocalStorage = () => {
 
 };
 
+// noinspection JSUnusedGlobalSymbols
 export default SyncLocalStorage

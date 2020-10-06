@@ -29,6 +29,6 @@ const Tags = ({tellAll}: MyProps) => {
     })}
 
   </>;
-}
+};
 
 export default Tags

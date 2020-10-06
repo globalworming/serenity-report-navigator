@@ -15,4 +15,5 @@ const RemoveQueryParams = () => {
   return null
 };
 
+// noinspection JSUnusedGlobalSymbols
 export default RemoveQueryParams
