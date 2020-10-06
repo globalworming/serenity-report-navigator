@@ -1,5 +1,4 @@
 import React from "react";
-import useGlobalState from "../../state";
 import _ from "lodash";
 import MyPaper from "../atoms/MyPaper";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
@@ -16,11 +15,11 @@ const FilterTags = () => {
 
 
   const toggleType = (type: string) => {
-
+    console.log("todo", type)
   };
 
-  const toggleTag = (type: string, it: any) => {
-
+  const toggleTag = (type: string, it: string) => {
+    console.log("todo", type, it)
   };
 
   return <>

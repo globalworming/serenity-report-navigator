@@ -5,7 +5,7 @@ import {joined} from "../../model/Tag";
 import MyPaper from "../atoms/MyPaper";
 import Expandable from "../organisms/Expandable";
 import RowWithResultAggregate from "../molecules/RowWithResultAggregate";
-import TestOutcome, {hasTagOfType} from "../../model/TestOutcome";
+import {hasTagOfType} from "../../model/TestOutcome";
 import {colorFor} from "../App";
 import Tags from "./Tags";
 

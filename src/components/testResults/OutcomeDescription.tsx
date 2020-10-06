@@ -9,7 +9,6 @@ type MyProps = {
 }
 
 const OutcomeDescription = ({tell}: MyProps) => {
-  tell.testSteps = [];
   return <>
     <span>tags: {tell.tags.map(({type, displayName, name}) => (<Button key={`${type}${displayName}`} variant={"outlined"}>{type}:{displayName ? displayName : name}</Button>))}</span>
     <br/><span>duration {prettyMilliseconds(tell.duration)}</span>
