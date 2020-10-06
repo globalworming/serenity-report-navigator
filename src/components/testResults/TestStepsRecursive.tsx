@@ -3,7 +3,7 @@ import TestStep from "../../model/TestStep";
 import Expandable from "../organisms/Expandable";
 import {Box} from "@material-ui/core";
 import Delayed from "../organisms/Delayed";
-import ResultImage from "../../ResultImage";
+import ResultImage from "../atoms/ResultImage";
 
 type MyProps = {
   tellAll?: Array<TestStep>,
@@ -12,7 +12,6 @@ type MyProps = {
 
 const HighLevelTestStep: FunctionComponent = ({children}) => {
 
-  // FIXME green is not a creative color, add red and yellow
   return <div style={{padding: "0.25rem", marginTop: "0.25rem"}}>
     {children}
   </div>

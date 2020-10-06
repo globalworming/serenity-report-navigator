@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from "react";
-import Emoji from "./components/atoms/Emoji";
-import Result from "./model/Result";
+import Emoji from "./Emoji";
+import Result from "../../model/Result";
 
 interface ResultImageProps {
   result: string

@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from "react";
 import {Box} from "@material-ui/core";
-import ResultImage from "../../ResultImage";
+import ResultImage from "../atoms/ResultImage";
 import _ from "lodash";
 
 interface MyProps {

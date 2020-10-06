@@ -1,7 +1,7 @@
 import React from "react"
 import _ from "lodash";
 import TestOutcome from "../../model/TestOutcome";
-import ResultImage from "../../ResultImage";
+import ResultImage from "../atoms/ResultImage";
 import {Box} from "@material-ui/core";
 
 interface Props {
