@@ -24,7 +24,7 @@ const FilterTags = () => {
 
   return <>
     <MyPaper>
-      <strong>filter tags</strong>
+      <strong>TODO filter tags</strong>
       <FullWidthWrappingFlexBox>
         {_.keys(byType).map(type => <React.Fragment key={type}>
           <Box flex={"1 0 20%"}>
@@ -39,6 +39,6 @@ const FilterTags = () => {
       </FullWidthWrappingFlexBox>
     </MyPaper>
   </>
-}
+};
 
 export default FilterTags
