@@ -1,12 +1,12 @@
 import React from "react";
 import MyPaper from "../atoms/MyPaper";
-import {Box} from "@material-ui/core";
 import Expandable from "../organisms/Expandable";
 import UserStory from "../../model/UserStory";
 import TestOutcome from "../../model/TestOutcome";
 import Outcome from "./Outcome";
 import RowWithResultAggregate from "../molecules/RowWithResultAggregate";
 import Emoji from "../atoms/Emoji";
+import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 
 interface StoryProps {
   tell: UserStory,
@@ -16,12 +16,12 @@ interface StoryProps {
 
 const Story = ({tell, outcomes}: StoryProps) => {
 
-  const storyHeading = <Box display="flex" flex={"0 0 100%"}>
+  const storyHeading = <FullWidthWrappingFlexBox>
     <RowWithResultAggregate tellAll={outcomes.map(it => it.result)}>
       {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
       <Emoji label="story">📗</Emoji>&nbsp;{tell.storyName}
     </RowWithResultAggregate>
-  </Box>;
+  </FullWidthWrappingFlexBox>;
 
   const storyOutComes = outcomes.map((it) => <Outcome key={it.name + it.startTime} tell={it}/>);
 
