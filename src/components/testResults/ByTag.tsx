@@ -5,8 +5,9 @@ import {joined} from "../../model/Tag";
 import MyPaper from "../atoms/MyPaper";
 import Expandable from "../organisms/Expandable";
 import RowWithResultAggregate from "../molecules/RowWithResultAggregate";
-import TestOutcome from "../../model/TestOutcome";
+import TestOutcome, {hasTagOfType} from "../../model/TestOutcome";
 import {colorFor} from "../App";
+import Tags from "./Tags";
 
 
 const ByTag = () => {
@@ -15,21 +16,18 @@ const ByTag = () => {
   const tags = _.uniqBy(outcomes.map(it => it.tags).flat(), (it) => joined(it));
   const tagsByType = _.groupBy(tags, it => it.type);
 
-  const hasTagOfType = (type: string, outcome: TestOutcome) =>
-    outcome.tags.map(tag => tag.type).includes(type);
-
   const typeHeading = (type: string) =>
     <RowWithResultAggregate
       tellAll={outcomes.filter(it => hasTagOfType(type, it))
         .map(it => it.result)}>
-      <span style={{padding: "0.25rem", borderRadius: "10px", border: `2px solid ${colorFor(type)}`, background: colorFor(type, "99")}}>{type}</span>
+      <span style={{textTransform: "uppercase", padding: "0.25rem", borderRadius: "10px", border: `2px solid ${colorFor(type)}`, background: colorFor(type, "99")}}>{type}</span>
     </RowWithResultAggregate>;
 
   return <>
       {_.keys(tagsByType).map(type => <React.Fragment key={type}>
         <MyPaper>
           <Expandable expandOnGlobalDetail={1} whatsHidden={<>
-            <span>{tagsByType[type].map(it => it.name)}</span>
+            <Tags tellAll={tagsByType[type]}/>
           </>}>
             {typeHeading(type)}
           </Expandable>
