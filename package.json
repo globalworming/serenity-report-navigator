@@ -16,6 +16,7 @@
     "@types/react-router": "^5.1.5",
     "@types/react-router-dom": "^5.1.5",
     "interactjs": "^1.9.22",
+    "moment": "^2.29.0",
     "pretty-ms": "^7.0.1",
     "query-string": "^6.13.2",
     "react": "^16.13.1",
