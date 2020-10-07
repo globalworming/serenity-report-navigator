@@ -11,6 +11,7 @@ class Filter {
   keyword: {
     include: string;
   };
+  focusOutcome?: string;
 
   constructor() {
     this.testResult = {exclude: excludeNone, include: includeAllResults};

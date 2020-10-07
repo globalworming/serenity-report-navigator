@@ -6,6 +6,8 @@ import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import React from "react";
 import TestOutcome from "../../model/TestOutcome";
 import TestStep from "../../model/TestStep";
+import {Button} from "@material-ui/core";
+import {encodedQuery} from "../LocalStateFromQueryParameters";
 
 interface MyProps {
   tell: TestOutcome
@@ -24,7 +26,7 @@ const OutComeHeading = ({tell}: MyProps) => {
     <MyPaper>
       <RowWithResultAggregate tellAll={results}>
         {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
-        <Emoji label={"testCase"}>📑</Emoji>&nbsp;<ResultImage result={tell.result}/>&nbsp;{tell.title}
+        <Emoji label={"testCase"}>📑</Emoji> <ResultImage result={tell.result}/> {tell.title} <Button onClick={e => e.stopPropagation()} target={"_blank"} href={`?${encodedQuery(tell)}`}><Emoji label={"link to this outcome"}/>🔗</Button>
       </RowWithResultAggregate>
     </MyPaper>
   </FullWidthWrappingFlexBox>

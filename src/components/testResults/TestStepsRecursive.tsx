@@ -17,6 +17,7 @@ const HighLevelTestStep: FunctionComponent = ({children}) => {
   </div>
 };
 
+// FIXME refactor, i dont get it
 const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
   if (!tellAll || tellAll.length === 0) return null;
 

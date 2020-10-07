@@ -13,8 +13,9 @@ const ApplyFilter = () => {
       const checkTestName = () =>
         (filter.keyword.include === includeAllText) ||
         [it.name, it.userStory.storyName, it.title].join("\n").toLowerCase().includes(filter.keyword.include.toLowerCase());
+      const noOtherTestIsHighlighted = () => filter.focusOutcome ? it.id === filter.focusOutcome : true;
 
-      return checkTestResult() && checkTestName();
+      return noOtherTestIsHighlighted() && checkTestResult() && checkTestName();
     }));
   }, [filter, outcomes, setFilteredOutcomes]);
 

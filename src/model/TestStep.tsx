@@ -1,3 +1,5 @@
+import RestQuery from "./RestQuery"
+
 interface TestStep {
   number: number
   result: string
@@ -6,6 +8,8 @@ interface TestStep {
   startTime: Date
   screenshots: Array<string>
   children: Array<TestStep>
+  restQuery: RestQuery
 }
 
 export default TestStep
+

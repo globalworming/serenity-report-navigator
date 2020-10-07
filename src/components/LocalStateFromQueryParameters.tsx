@@ -1,18 +1,30 @@
 import useGlobalState from "../state";
 import {useLocation} from "react-router";
-import qs from "query-string";
+import qs, {ParsedQuery, stringify} from "query-string";
 import React, {useEffect} from "react";
 import * as _ from "lodash";
+import {decodeQueryParams, encodeQueryParams, StringParam} from 'serialize-query-params';
+import TestOutcome from "../model/TestOutcome";
+import Filter from "../model/Filter";
 
+export const paramConfigMap = { outcome: StringParam };
+// encode each parameter according to the configuration
+const decodedQuery = (query: ParsedQuery<string | number>) => decodeQueryParams(
+  paramConfigMap, query
+);
+
+// encode each parameter according to the configuration
+export const encodedQuery = (outcome: TestOutcome) => stringify(encodeQueryParams(
+  paramConfigMap,
+  { outcome: outcome.id}
+));
 
 const LocalStateFromQueryParameters = () => {
-
   const [init, setInit] = useGlobalState("init");
-  const [filter, setFilter] = useGlobalState('filter');
-  const [view, setView] = useGlobalState('view');
+  const [, setFilter] = useGlobalState('filter');
 
   const location = useLocation();
-  const query = qs.parse(location.search, {parseNumbers: true});
+  const query = decodedQuery(qs.parse(location.search, {parseNumbers: true}));
 
   useEffect(() => {
     if (init) return;
@@ -22,33 +34,18 @@ const LocalStateFromQueryParameters = () => {
       return;
     }
 
-    let result = {view, filter};
+    const {outcome} = query;
 
-
-    const allowedParameters = ["view_detail", "filter_testResult_exclude", "filter_testResult_include", "filter_keyword_include", "view_showScreenshots"];
-    const unrecognized = _.keys(query).filter(it => !allowedParameters.includes(it));
-    if (unrecognized.length > 0) {
-      console.warn("unrecognized parameters: " + unrecognized.join(", "))
-    }
-
-    allowedParameters.forEach(it => {
-      if (!query[it]) return;
-      const path = it.replace(/_/g, ".");
-      _.set(result, path, query[it])
-    });
-
-
-    // TODO single query parameter will set unused parameters to default
-    setView(result.view);
-    setFilter(result.filter);
+    const filter = new Filter();
+    filter.focusOutcome = outcome ? outcome : undefined;
+    setFilter(filter);
     setInit(true)
 
-  }, [filter, init, query, setFilter, setInit, setView, view]);
+
+  }, [init, query, setFilter, setInit]);
 
   return <pre style={{overflow: "auto"}}>{[{
     state: {
-      filter,
-      view,
       init
     }
   }].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>
