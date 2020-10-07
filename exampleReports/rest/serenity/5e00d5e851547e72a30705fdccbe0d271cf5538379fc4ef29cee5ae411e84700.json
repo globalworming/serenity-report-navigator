@@ -1,0 +1,99 @@
+{
+  "name": "when updating a post",
+  "id": "com.example.testcases.jsonplaceholder.PostsIT:when updating a post",
+  "testCaseName": "com.example.testcases.jsonplaceholder.PostsIT",
+  "testSteps": [
+    {
+      "number": 1,
+      "description": "rest client executes a PATCH on the resource /posts/1",
+      "duration": 501,
+      "startTime": "2020-10-07T21:25:26.469+02:00[Europe/Berlin]",
+      "result": "SUCCESS",
+      "precondition": false,
+      "level": 0,
+      "children": [
+        {
+          "number": 2,
+          "description": "PATCH https://jsonplaceholder.typicode.com/posts/1",
+          "duration": 0,
+          "startTime": "2020-10-07T21:25:26.970+02:00[Europe/Berlin]",
+          "result": "SUCCESS",
+          "restQuery": {
+            "method": "PATCH",
+            "path": "https://jsonplaceholder.typicode.com/posts/1",
+            "content": "{\n    \"title\": \"newTitle\"\n}",
+            "contentType": "application/json",
+            "requestHeaders": "Accept\u003d*/*\n\t\t\t\tContent-Type\u003dapplication/json; charset\u003dUTF-8",
+            "requestCookies": "",
+            "responseHeaders": "Date: Wed, 07 Oct 2020 19:25:26 GMT\nContent-Type: application/json; charset\u003dutf-8\nTransfer-Encoding: chunked\nConnection: keep-alive\nSet-Cookie: __cfduid\u003dd51ca32a20490bd1812f50abc821fcbfb1602098726; expires\u003dFri, 06-Nov-20 19:25:26 GMT; path\u003d/; domain\u003d.typicode.com; HttpOnly; SameSite\u003dLax\nX-Powered-By: Express\nX-Ratelimit-Limit: 1000\nX-Ratelimit-Remaining: 999\nX-Ratelimit-Reset: 1602098730\nVary: Origin, Accept-Encoding\nAccess-Control-Allow-Credentials: true\nCache-Control: no-cache\nPragma: no-cache\nExpires: -1\nX-Content-Type-Options: nosniff\nEtag: W/\"e2-4vl4Ed7sKZJTM3Ik0Sge3Wa4UTQ\"\nVia: 1.1 vegur\nCF-Cache-Status: DYNAMIC\ncf-request-id: 05a61f9edd00000bf1a9812200000001\nExpect-CT: max-age\u003d604800, report-uri\u003d\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"\nReport-To: {\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report?lkg-colo\u003d20\u0026lkg-time\u003d1602098727\"}],\"group\":\"cf-nel\",\"max_age\":604800}\nNEL: {\"report_to\":\"cf-nel\",\"max_age\":604800}\nServer: cloudflare\nCF-RAY: 5dea02116f970bf1-AMS\nContent-Encoding: gzip",
+            "responseCookies": "__cfduid\u003dd51ca32a20490bd1812f50abc821fcbfb1602098726;Path\u003d/;Domain\u003d.typicode.com;HttpOnly;Expires\u003d06.11.20 19:25",
+            "responseBody": "{\n    \"userId\": 1,\n    \"id\": 1,\n    \"title\": \"newTitle\",\n    \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"\n}",
+            "statusCode": 200
+          },
+          "precondition": false,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "description": "title was updated",
+      "duration": 15,
+      "startTime": "2020-10-07T21:25:26.972+02:00[Europe/Berlin]",
+      "result": "SUCCESS",
+      "precondition": false,
+      "level": 0
+    }
+  ],
+  "userStory": {
+    "id": "com.example.testcases.jsonplaceholder.PostsIT",
+    "storyName": "Posts IT",
+    "storyClassName": "com.example.testcases.jsonplaceholder.PostsIT",
+    "path": "jsonplaceholder",
+    "type": "feature"
+  },
+  "featureTag": {
+    "name": "Jsonplaceholder/Posts IT",
+    "type": "feature",
+    "displayName": "Jsonplaceholder/Posts IT"
+  },
+  "title": "when updating a post",
+  "tags": [
+    {
+      "name": "v2.0 preview",
+      "type": "release",
+      "displayName": "v2.0 preview"
+    },
+    {
+      "name": "Jsonplaceholder/Posts IT",
+      "type": "feature",
+      "displayName": "Posts IT"
+    },
+    {
+      "name": "Jsonplaceholder",
+      "type": "label",
+      "displayName": "Jsonplaceholder"
+    },
+    {
+      "name": "rest api",
+      "type": "tag",
+      "displayName": "rest api"
+    }
+  ],
+  "startTime": "2020-10-07T21:25:26.210+02:00[Europe/Berlin]",
+  "duration": 777,
+  "projectKey": "",
+  "isManualTestingUpToDate": false,
+  "manual": false,
+  "testSource": "JUnit",
+  "actors": [
+    {
+      "name": "rest client",
+      "can": [
+        "call an API at https://jsonplaceholder.typicode.com"
+      ]
+    }
+  ],
+  "order": 0,
+  "result": "SUCCESS"
+}
