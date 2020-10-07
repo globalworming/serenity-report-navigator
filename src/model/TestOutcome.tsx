@@ -3,8 +3,10 @@ import Tag from "./Tag";
 import TestStep from "./TestStep";
 import TestFailureCause from "./TestFailureCause";
 import Result from "./Result";
+import DataTable from "./DataTable";
 
 interface TestOutcome {
+  id: string
   duration: number
   failures: string
   issues: Array<string>
@@ -22,6 +24,7 @@ interface TestOutcome {
   title: string
   startTime: Date
   userStory: UserStory
+  dataTable: DataTable
 }
 
 export default TestOutcome

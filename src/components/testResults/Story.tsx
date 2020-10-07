@@ -7,6 +7,7 @@ import Outcome from "./Outcome";
 import RowWithResultAggregate from "../molecules/RowWithResultAggregate";
 import Emoji from "../atoms/Emoji";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import Narrative from "./Narrative";
 
 interface StoryProps {
   tell: UserStory,
@@ -26,7 +27,10 @@ const Story = ({tell, outcomes}: StoryProps) => {
   const storyOutComes = outcomes.map((it) => <Outcome key={it.name + it.startTime} tell={it}/>);
 
   return <MyPaper>
-    <Expandable expandOnGlobalDetail={1} whatsHidden={storyOutComes}>
+    <Expandable expandOnGlobalDetail={1} whatsHidden={<>
+    <Narrative tell={tell.narrative}/>
+    {storyOutComes}
+    </>}>
       {storyHeading}
     </Expandable></MyPaper>;
 };

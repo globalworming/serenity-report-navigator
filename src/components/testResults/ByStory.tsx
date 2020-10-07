@@ -7,13 +7,13 @@ import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 
 const ByStory = () => {
   let [outcomes] = useGlobalState('filteredOutcomes');
-  const outcomesByStoryName = _.groupBy(outcomes, o => o.userStory.storyName);
+  const outcomesByStoryId = _.groupBy(outcomes, o => o.userStory.id);
   return <>
     <FullWidthWrappingFlexBox>
-    {_.keys(outcomesByStoryName).map((storyName) => {
+    {_.keys(outcomesByStoryId).map((storyName) => {
       return <React.Fragment key={storyName}>
           {/* TODO? always tells the first outcomes story, maybe missing other outcome.userStory.path values*/}
-          <Story tell={outcomesByStoryName[storyName][0].userStory} outcomes={outcomesByStoryName[storyName]}/>
+          <Story tell={outcomesByStoryId[storyName][0].userStory} outcomes={outcomesByStoryId[storyName]}/>
       </React.Fragment>;
     })}
     </FullWidthWrappingFlexBox>

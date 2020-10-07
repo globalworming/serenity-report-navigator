@@ -1,4 +1,5 @@
 interface TestStep {
+  number: number
   result: string
   description: string
   duration: number

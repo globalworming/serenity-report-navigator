@@ -6,7 +6,7 @@ import CheckboxButton from "../atoms/CheckboxButton";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 
 const ExploreData = () => {
-  const [view, setView] = useState(1);
+  const [view, setView] = useState(0);
   const show = view === 0 ? <ByStory/> : <ByTag/>;
   return <>
     <MyPaper>

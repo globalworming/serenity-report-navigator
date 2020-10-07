@@ -7,7 +7,6 @@ import DurationStatistics from "./DurationStatistics";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import {Box} from "@material-ui/core";
 
-
 const Overview = () => {
     const [outcomes] = useGlobalState("filteredOutcomes");
     if (outcomes.length === 0) {
