@@ -6,9 +6,10 @@ import Result from "./Result";
 import DataTable from "./DataTable";
 
 interface TestOutcome {
-  id: string
+  dataTable: DataTable
   duration: number
   failures: string
+  id: string
   issues: Array<string>
   ignored: string
   name: string
@@ -17,14 +18,14 @@ interface TestOutcome {
   steps: string
   successful: string
   skipped: string
+  startTime: Date
+  scenarioOutline: string
   tags: Array<Tag>
   testFailureCause: TestFailureCause
   testSource: string
   testSteps: Array<TestStep>
   title: string
-  startTime: Date
   userStory: UserStory
-  dataTable: DataTable
 }
 
 export default TestOutcome
