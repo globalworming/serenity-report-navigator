@@ -1,7 +1,7 @@
 import useGlobalState from "../state";
 import {useLocation} from "react-router";
 import qs, {ParsedQuery, stringify} from "query-string";
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import * as _ from "lodash";
 import {decodeQueryParams, encodeQueryParams, StringParam} from 'serialize-query-params';
 import TestOutcome from "../model/TestOutcome";
@@ -20,7 +20,7 @@ export const encodedQuery = (outcome: TestOutcome) => stringify(encodeQueryParam
 ));
 
 const LocalStateFromQueryParameters = () => {
-  const [init, setInit] = useGlobalState("init");
+  const [init, setInit] = useGlobalState("hasParsedQuery");
   const [, setFilter] = useGlobalState('filter');
 
   const location = useLocation();
@@ -44,11 +44,7 @@ const LocalStateFromQueryParameters = () => {
 
   }, [init, query, setFilter, setInit]);
 
-  return <pre style={{overflow: "auto"}}>{[{
-    state: {
-      init
-    }
-  }].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>
+  return null;
 };
 
 export default LocalStateFromQueryParameters

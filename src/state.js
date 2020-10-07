@@ -5,7 +5,8 @@ import View from "./model/View";
 const initialState = {
   filter: new Filter(),
   filteredOutcomes: window.outcomes,
-  init: false,
+  hasParsedQuery: false,
+  hasAppliedFilter: false,
   view: new View()
 };
 const {useGlobalState} = createGlobalState(initialState);

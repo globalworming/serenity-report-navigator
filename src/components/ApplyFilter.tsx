@@ -3,6 +3,7 @@ import {useEffect} from "react";
 import {includeAllText} from "../model/Filter";
 
 const ApplyFilter = () => {
+  const [,setInit] = useGlobalState("hasAppliedFilter");
   const outcomes = window.outcomes;
   const [filter] = useGlobalState('filter');
   const [, setFilteredOutcomes] = useGlobalState("filteredOutcomes");
@@ -17,7 +18,8 @@ const ApplyFilter = () => {
 
       return noOtherTestIsHighlighted() && checkTestResult() && checkTestName();
     }));
-  }, [filter, outcomes, setFilteredOutcomes]);
+    setInit(true)
+  }, [filter, outcomes, setFilteredOutcomes, setInit]);
 
   return null;
 };

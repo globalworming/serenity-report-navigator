@@ -17,7 +17,8 @@ declare global {
 }
 
 const App = () => {
-    const [init] = useGlobalState('init');
+    const [parsedQuery] = useGlobalState("hasParsedQuery");
+    const [appliedFilter] = useGlobalState("hasAppliedFilter");
     const [filter] = useGlobalState('filter');
     const [view] = useGlobalState('view');
 
@@ -25,21 +26,22 @@ const App = () => {
       state: {
         filter,
         view,
-        init
+        parsedQuery,
+        appliedFilter
       }
     }].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>;
 
-    const initWithQueryParameters = <Router>
+    const InitWithQueryParameters = () => <Router>
       <Route path="*">
         <LocalStateFromQueryParameters/>
       </Route>
     </Router>;
 
     return <Box display={"flex"} flexWrap={"wrap"} width={"100%"} maxWidth={"100%"} className="App">
-      {!init && initWithQueryParameters}
-      {init && <>
-        {printState}
-        <ApplyFilter/>
+      {printState}
+      {!parsedQuery && <InitWithQueryParameters/>}
+      {parsedQuery && !appliedFilter && <ApplyFilter/>}
+      {parsedQuery && appliedFilter && <>
         <Controls/>
         <Overview/>
         <ExploreData/>

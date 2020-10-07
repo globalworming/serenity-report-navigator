@@ -1,4 +1,4 @@
-export const defaultDetail = 0;
+export const defaultDetail = 4;
 
 class View {
   showScreenshots: boolean;
