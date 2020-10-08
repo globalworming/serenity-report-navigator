@@ -5,18 +5,19 @@ import ExpandCollapse from "../molecules/ExpandCollapse"
 
 
 interface ExpandabledProps {
-  expandOnGlobalDetail: number,
+  depths: number,
   whatsHidden?: any;
 }
 
-const Expandable: FunctionComponent<ExpandabledProps> = ({expandOnGlobalDetail, children, whatsHidden}) => {
-  const [view] = useGlobalState('view');
-  const [expanded, setExpanded] = useState(view.detail >= expandOnGlobalDetail);
+const Expandable: FunctionComponent<ExpandabledProps> = ({depths, children, whatsHidden}) => {
+  const [expandLayers] = useGlobalState('expansionDepth');
+  const [expanded, setExpanded] = useState(expandLayers >= depths);
   const myToggle = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setExpanded(!expanded);
   };
+
   if (!whatsHidden) {
     return <>children</>
   }

@@ -4,7 +4,6 @@ import TestLinksAndRoutes from './TestLinksAndRoutes';
 import DetailLevel from "./DetailLevel";
 import FilterResult from "./FilterResult";
 import FilterKeywords from "./FilterKeywords";
-import ShowScreenshots from "./ShowScreenshots";
 import FocusOnTask from "./FocusOnTask";
 import FilterTags from "./FilterTags";
 
@@ -23,10 +22,6 @@ const Controls = () => {
         <FilterKeywords/>
       </p>
       <FilterTags/>
-      <p>
-        <strong>config</strong>
-        <ShowScreenshots/>
-      </p>
       <p>
         <FocusOnTask/>
       </p>

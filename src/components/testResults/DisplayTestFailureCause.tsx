@@ -19,7 +19,7 @@ const DisplayTestFailureCause = ({tell}: MyProps) => {
     <FullWidthWrappingFlexBox>
       <pre style={{overflowX: "auto", flex: "0 0 100%"}}>{rootCause.errorType} {rootCause.message}</pre>
     </FullWidthWrappingFlexBox>
-    <Expandable expandOnGlobalDetail={3} whatsHidden={
+    <Expandable depths={3} whatsHidden={
       <FullWidthWrappingFlexBox>
         <pre>{
           rootCause.stackTrace.map((it) =>

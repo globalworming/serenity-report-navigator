@@ -20,7 +20,7 @@ const Tags = ({tellAll}: MyProps) => {
     {tellAll.map(tag => {
       const outcomesForTag = outcomes.filter(it => hasTag(tag, it));
       return <React.Fragment key={joined(tag)}>
-        <Expandable expandOnGlobalDetail={2} whatsHidden={outcomesForTag.map((it) => <Outcome key={it.name + it.startTime} tell={it}/>)}>
+        <Expandable depths={2} whatsHidden={outcomesForTag.map((it) => <Outcome key={it.name + it.startTime} tell={it}/>)}>
           <RowWithResultAggregate tellAll={outcomesForTag.map(it => it.result)}>
             <TagHeading tell={tag}/>
           </RowWithResultAggregate>

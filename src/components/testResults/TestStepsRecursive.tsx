@@ -18,7 +18,7 @@ const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
   </Box>;
 
   const testStep = (step: TestStep) => <FullWidthWrappingFlexBox>{resultAndDescription(step)}</FullWidthWrappingFlexBox>;
-  const expandableTestStep = (step: TestStep) => <Expandable expandOnGlobalDetail={3} whatsHidden={
+  const expandableTestStep = (step: TestStep) => <Expandable depths={3} whatsHidden={
     <TestStepsRecursive depth={depth + 1} tellAll={step.children}/>
   }>
     {testStep(step)}

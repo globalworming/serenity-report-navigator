@@ -1,13 +1,8 @@
-export const defaultDetail = 4;
-
-class View {
-  showScreenshots: boolean;
-  detail: number;
-
-  constructor() {
-    this.showScreenshots = false;
-    this.detail = defaultDetail;
-  }
+enum View {
+  DEFAULT = "STORY",
+  STORY = "STORY",
+  FEATURE = "FEATURE",
+  TAG = "TAG",
 }
 
 export default View

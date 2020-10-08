@@ -38,11 +38,14 @@ const App = () => {
     </Router>;
 
     return <Box display={"flex"} flexWrap={"wrap"} width={"100%"} maxWidth={"100%"} className="App">
-      {printState}
+      {process.env.NODE_ENV === 'development' && <>
+        {printState}
+        <Controls/>
+      </>}
+
       {!parsedQuery && <InitWithQueryParameters/>}
       {parsedQuery && !appliedFilter && <ApplyFilter/>}
       {parsedQuery && appliedFilter && <>
-        <Controls/>
         <Overview/>
         <ExploreData/>
         {/*<><h2>JSON</h2>

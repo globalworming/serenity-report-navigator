@@ -14,7 +14,7 @@ type MyProps = {
 
 const Outcome = ({tell}: MyProps) => {
   return <>
-    <Expandable expandOnGlobalDetail={2} whatsHidden={<>
+    <Expandable depths={2} whatsHidden={<>
       <OutcomeDescription tell={tell} />
       <TestStepsRecursive depth={0} tellAll={tell.testSteps}/>
     </>}>

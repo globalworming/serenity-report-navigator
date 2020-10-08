@@ -26,7 +26,7 @@ const OutComeHeading = ({tell}: MyProps) => {
     <MyPaper>
       <RowWithResultAggregate tellAll={results}>
         {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
-        <Emoji label={"testCase"}>📑</Emoji> <ResultImage result={tell.result}/> {tell.title} <Button onClick={e => e.stopPropagation()} target={"_blank"} href={`?${encodedQuery(tell)}`}><Emoji label={"link to this outcome"}/>🔗</Button>
+        <Emoji label={"testCase"}>📑</Emoji> <ResultImage result={tell.result}/> {tell.title} <Button onClick={e => e.stopPropagation()} target={"_blank"} href={`?${encodedQuery(tell)}&view_detail=4`}><Emoji label={"link to this outcome"}/>🔗</Button>
       </RowWithResultAggregate>
     </MyPaper>
   </FullWidthWrappingFlexBox>

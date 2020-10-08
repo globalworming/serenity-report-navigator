@@ -27,7 +27,7 @@ const Story = ({tell, outcomes}: StoryProps) => {
   const storyOutComes = outcomes.map((it) => <Outcome key={it.name + it.startTime} tell={it}/>);
 
   return <MyPaper>
-    <Expandable expandOnGlobalDetail={1} whatsHidden={<>
+    <Expandable depths={1} whatsHidden={<>
     <Narrative tell={tell.narrative}/>
     {storyOutComes}
     </>}>

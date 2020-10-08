@@ -9,6 +9,11 @@ import {Box} from "@material-ui/core";
 
 const Overview = () => {
     const [outcomes] = useGlobalState("filteredOutcomes");
+    const [filter] = useGlobalState("filter");
+    if (filter.focusOutcome) {
+      return null
+    }
+
     if (outcomes.length === 0) {
       return null
     }

@@ -26,7 +26,7 @@ const ByTag = () => {
   return <>
       {_.keys(tagsByType).map(type => <React.Fragment key={type}>
         <MyPaper>
-          <Expandable expandOnGlobalDetail={1} whatsHidden={<>
+          <Expandable depths={1} whatsHidden={<>
             <Tags tellAll={tagsByType[type]}/>
           </>}>
             {typeHeading(type)}

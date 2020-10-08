@@ -1,22 +1,37 @@
-import React, {useState} from 'react';
-import ByStory from "./ByStory"
-import ByTag from "./ByTag"
+import React from 'react';
 import MyPaper from "../atoms/MyPaper";
 import CheckboxButton from "../atoms/CheckboxButton";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import useGlobalState from '../../state';
+import View from '../../model/View';
+import ByStory from "./ByStory";
+import ByTag from "./ByTag";
 
 const ExploreData = () => {
-  const [view, setView] = useState(0);
-  const show = view === 0 ? <ByStory/> : <ByTag/>;
+  const [view, setView] = useGlobalState("view");
+  const [, setDepths] = useGlobalState("expansionDepth");
+
+  const switchTo = (view: View) => {
+    setDepths(0);
+    setView(view)
+
+  };
+
+  const show = (view: View) => {
+    switch (view) {
+      case View.STORY: return <ByStory/>;
+      case View.TAG: return <ByTag/>;
+    }
+  };
+
   return <>
     <MyPaper>
-      <strong>group by</strong>
     <FullWidthWrappingFlexBox>
-      <CheckboxButton checked={view === 0} onClick={() => setView(0)}>by story</CheckboxButton>
-      <CheckboxButton checked={view === 1} onClick={() => setView(1)}>by tag</CheckboxButton>
+      <CheckboxButton checked={view === View.STORY} onClick={() => switchTo(View.STORY)}>by story</CheckboxButton>
+      <CheckboxButton checked={view === View.TAG} onClick={() => switchTo(View.TAG)}>by tag</CheckboxButton>
     </FullWidthWrappingFlexBox>
     </MyPaper>
-    {show}
+    {show(view)}
   </>
 };
 
