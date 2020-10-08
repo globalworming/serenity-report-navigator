@@ -19,13 +19,13 @@ declare global {
 const App = () => {
     const [parsedQuery] = useGlobalState("hasParsedQuery");
     const [appliedFilter] = useGlobalState("hasAppliedFilter");
-    const [filter] = useGlobalState('filter');
     const [view] = useGlobalState('view');
+    const [depth] = useGlobalState('expansionDepth');
 
     const printState = <pre style={{overflow: "auto", flex: "0 0 300px"}}>{[{
       state: {
-        filter,
         view,
+        depth,
         parsedQuery,
         appliedFilter
       }

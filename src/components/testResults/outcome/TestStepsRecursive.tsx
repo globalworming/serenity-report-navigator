@@ -5,6 +5,7 @@ import ResultImage from "../../atoms/ResultImage";
 import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import {Box} from "@material-ui/core";
 import Delayed from "../../organisms/Delayed";
+import DisplayRestQuery from "./DisplayRestQuery";
 
 type MyProps = {
   tellAll?: Array<TestStep>,
@@ -14,11 +15,18 @@ type MyProps = {
 const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
   if (!tellAll || tellAll.length === 0) return null;
 
-  const resultAndDescription = (testStep: TestStep) => <Box style={{paddingLeft: `${0.1 + depth * 2}rem`}}>
-    <ResultImage result={testStep.result}/> {testStep.description}
-  </Box>;
+  const testStep = (step: TestStep) => <FullWidthWrappingFlexBox>
+    <Box style={{paddingLeft: `${0.1 + depth * 2}rem`}}>
+      <ResultImage result={step.result}/> {step.description}
+    </Box>
 
-  const testStep = (step: TestStep) => <FullWidthWrappingFlexBox>{resultAndDescription(step)}</FullWidthWrappingFlexBox>;
+    {step.restQuery &&
+    <FullWidthWrappingFlexBox>
+      <DisplayRestQuery tell={step.restQuery}/>
+    </FullWidthWrappingFlexBox>
+    }
+  </FullWidthWrappingFlexBox>;
+
   const expandableTestStep = (step: TestStep) => <Expandable depths={3} whatsHidden={
     <Delayed wait={depth}>
       <TestStepsRecursive depth={depth + 1} tellAll={step.children}/>
