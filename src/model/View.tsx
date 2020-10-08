@@ -1,7 +1,7 @@
-enum View {
-  DEFAULT = "STORY",
-  STORY = "STORY",
-  TAG = "TAG",
-}
+const View = {
+  DEFAULT: "STORY",
+  STORY: "STORY",
+  TAG: "TAG",
+};
 
 export default View

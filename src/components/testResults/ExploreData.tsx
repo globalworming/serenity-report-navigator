@@ -6,18 +6,19 @@ import useGlobalState from '../../state';
 import View from '../../model/View';
 import ByStory from "./ByStory";
 import ByTag from "./ByTag";
+import LinkTo from "./outcome/LinkTo";
 
 const ExploreData = () => {
   const [view, setView] = useGlobalState("view");
   const [, setDepths] = useGlobalState("expansionDepth");
 
-  const switchTo = (view: View) => {
+  const switchTo = (view: string) => {
     setDepths(0);
     setView(view)
 
   };
 
-  const show = (view: View) => {
+  const show = (view: string) => {
     switch (view) {
       case View.STORY: return <ByStory/>;
       case View.TAG: return <ByTag/>;
@@ -27,8 +28,8 @@ const ExploreData = () => {
   return <>
     <MyPaper>
     <FullWidthWrappingFlexBox>
-      <CheckboxButton checked={view === View.STORY} onClick={() => switchTo(View.STORY)}>by story</CheckboxButton>
-      <CheckboxButton checked={view === View.TAG} onClick={() => switchTo(View.TAG)}>by tag</CheckboxButton>
+      <CheckboxButton checked={view === View.STORY} onClick={() => switchTo(View.STORY)}>by story</CheckboxButton><LinkTo view={View.STORY} depth={0}/>
+      <CheckboxButton checked={view === View.TAG} onClick={() => switchTo(View.TAG)}>by tag</CheckboxButton><LinkTo view={View.TAG} depth={0}/>
     </FullWidthWrappingFlexBox>
     </MyPaper>
     {show(view)}

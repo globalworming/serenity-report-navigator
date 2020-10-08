@@ -10,11 +10,13 @@ import Filter from "../model/Filter";
 interface MyQuery {
   outcomeId?: string
   depth?: number
+  view?: string
 }
 
 const paramConfigMap = {
   outcomeId: StringParam,
-  depth: NumberParam
+  depth: NumberParam,
+  view: StringParam
 };
 
 // encode each parameter according to the configuration
@@ -30,6 +32,7 @@ const LocalStateFromQueryParameters = () => {
   const [init, setInit] = useGlobalState("hasParsedQuery");
   const [, setFilter] = useGlobalState('filter');
   const [, setDepth] = useGlobalState('expansionDepth');
+  const [, setView] = useGlobalState('view');
 
   const location = useLocation();
   const query = decodedQuery(qs.parse(location.search, {parseNumbers: true}));
@@ -42,19 +45,20 @@ const LocalStateFromQueryParameters = () => {
       return;
     }
 
-    const {outcomeId, depth} = query;
+    const {outcomeId, depth, view} = query;
 
     const filter = new Filter();
     filter.focusOutcome = outcomeId ? outcomeId : undefined;
-    if (depth) {
-      setDepth(depth)
-    }
-
     setFilter(filter);
+
+    if (depth) setDepth(depth);
+    if (view) setView(view);
+
+
     setInit(true)
 
 
-  }, [init, query, setDepth, setFilter, setInit]);
+  }, [init, query, setDepth, setFilter, setInit, setView]);
 
   return null;
 };
