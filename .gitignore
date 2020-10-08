@@ -24,3 +24,6 @@ yarn-error.log*
 
 # generated files
 /public/index.html
+
+# project files
+.idea
