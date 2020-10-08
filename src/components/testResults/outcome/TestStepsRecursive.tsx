@@ -4,6 +4,7 @@ import Expandable from "../../organisms/Expandable";
 import ResultImage from "../../atoms/ResultImage";
 import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import {Box} from "@material-ui/core";
+import Delayed from "../../organisms/Delayed";
 
 type MyProps = {
   tellAll?: Array<TestStep>,
@@ -19,7 +20,9 @@ const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
 
   const testStep = (step: TestStep) => <FullWidthWrappingFlexBox>{resultAndDescription(step)}</FullWidthWrappingFlexBox>;
   const expandableTestStep = (step: TestStep) => <Expandable depths={3} whatsHidden={
-    <TestStepsRecursive depth={depth + 1} tellAll={step.children}/>
+    <Delayed wait={depth}>
+      <TestStepsRecursive depth={depth + 1} tellAll={step.children}/>
+    </Delayed>
   }>
     {testStep(step)}
   </Expandable>;
