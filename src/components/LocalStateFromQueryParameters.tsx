@@ -3,25 +3,33 @@ import {useLocation} from "react-router";
 import qs, {ParsedQuery, stringify} from "query-string";
 import {useEffect} from "react";
 import * as _ from "lodash";
-import {decodeQueryParams, encodeQueryParams, StringParam} from 'serialize-query-params';
-import TestOutcome from "../model/TestOutcome";
+import {decodeQueryParams, encodeQueryParams, NumberParam, StringParam} from 'serialize-query-params';
 import Filter from "../model/Filter";
 
-export const paramConfigMap = { outcome: StringParam };
+
+interface MyQuery {
+  outcomeId?: string
+  depth?: number
+}
+
+const paramConfigMap = {
+  outcomeId: StringParam,
+  depth: NumberParam
+};
+
 // encode each parameter according to the configuration
 const decodedQuery = (query: ParsedQuery<string | number>) => decodeQueryParams(
   paramConfigMap, query
 );
 
-// encode each parameter according to the configuration
-export const encodedQuery = (outcome: TestOutcome) => stringify(encodeQueryParams(
-  paramConfigMap,
-  { outcome: outcome.id}
-));
+export const encodedQuery = (query: MyQuery) => {
+  return stringify(encodeQueryParams(paramConfigMap, query));
+};
 
 const LocalStateFromQueryParameters = () => {
   const [init, setInit] = useGlobalState("hasParsedQuery");
   const [, setFilter] = useGlobalState('filter');
+  const [, setDepth] = useGlobalState('expansionDepth');
 
   const location = useLocation();
   const query = decodedQuery(qs.parse(location.search, {parseNumbers: true}));
@@ -34,10 +42,14 @@ const LocalStateFromQueryParameters = () => {
       return;
     }
 
-    const {outcome} = query;
+    const {outcomeId, depth} = query;
 
     const filter = new Filter();
-    filter.focusOutcome = outcome ? outcome : undefined;
+    filter.focusOutcome = outcomeId ? outcomeId : undefined;
+    if (depth) {
+      setDepth(depth)
+    }
+
     setFilter(filter);
     setInit(true)
 
