@@ -19,7 +19,6 @@ const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
     <Box style={{paddingLeft: `${0.1 + depth * 2}rem`}}>
       <ResultImage result={step.result}/> {step.description}
     </Box>
-
     {step.restQuery &&
     <FullWidthWrappingFlexBox>
       <DisplayRestQuery tell={step.restQuery}/>

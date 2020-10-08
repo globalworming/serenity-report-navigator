@@ -54,7 +54,7 @@ const LocalStateFromQueryParameters = () => {
     setInit(true)
 
 
-  }, [init, query, setFilter, setInit]);
+  }, [init, query, setDepth, setFilter, setInit]);
 
   return null;
 };
