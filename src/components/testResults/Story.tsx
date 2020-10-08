@@ -3,7 +3,7 @@ import MyPaper from "../atoms/MyPaper";
 import Expandable from "../organisms/Expandable";
 import UserStory from "../../model/UserStory";
 import TestOutcome from "../../model/TestOutcome";
-import Outcome from "./Outcome";
+import Outcome from "./outcome/Outcome";
 import RowWithResultAggregate from "../molecules/RowWithResultAggregate";
 import Emoji from "../atoms/Emoji";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";

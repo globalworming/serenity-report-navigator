@@ -1,8 +1,8 @@
 import React from "react";
-import TestStep from "../../model/TestStep";
-import Expandable from "../organisms/Expandable";
-import ResultImage from "../atoms/ResultImage";
-import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import TestStep from "../../../model/TestStep";
+import Expandable from "../../organisms/Expandable";
+import ResultImage from "../../atoms/ResultImage";
+import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import {Box} from "@material-ui/core";
 
 type MyProps = {

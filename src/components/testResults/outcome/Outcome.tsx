@@ -1,7 +1,7 @@
 import React from 'react';
 
-import TestOutcome from "../../model/TestOutcome";
-import Expandable from "../organisms/Expandable";
+import TestOutcome from "../../../model/TestOutcome";
+import Expandable from "../../organisms/Expandable";
 import TestStepsRecursive from "./TestStepsRecursive";
 import OutcomeHeading from "./OutcomeHeading"
 import DisplayTestFailureCause from "./DisplayTestFailureCause"

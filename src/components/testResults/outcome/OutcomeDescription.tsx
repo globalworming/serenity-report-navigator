@@ -1,5 +1,5 @@
 import React from "react";
-import TestOutcome from "../../model/TestOutcome";
+import TestOutcome from "../../../model/TestOutcome";
 import prettyMilliseconds from "pretty-ms";
 import moment from "moment";
 import {Button} from "@material-ui/core";

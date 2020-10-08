@@ -1,6 +1,6 @@
-import TestFailureCause from "../../model/TestFailureCause";
-import Expandable from "../organisms/Expandable";
-import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import TestFailureCause from "../../../model/TestFailureCause";
+import Expandable from "../../organisms/Expandable";
+import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import React from "react";
 
 interface MyProps {

@@ -1,13 +1,13 @@
-import MyPaper from "../atoms/MyPaper";
-import RowWithResultAggregate from "../molecules/RowWithResultAggregate";
-import Emoji from "../atoms/Emoji";
-import ResultImage from "../atoms/ResultImage";
-import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import MyPaper from "../../atoms/MyPaper";
+import RowWithResultAggregate from "../../molecules/RowWithResultAggregate";
+import Emoji from "../../atoms/Emoji";
+import ResultImage from "../../atoms/ResultImage";
+import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import React from "react";
-import TestOutcome from "../../model/TestOutcome";
-import TestStep from "../../model/TestStep";
+import TestOutcome from "../../../model/TestOutcome";
+import TestStep from "../../../model/TestStep";
 import {Button} from "@material-ui/core";
-import {encodedQuery} from "../LocalStateFromQueryParameters";
+import {encodedQuery} from "../../LocalStateFromQueryParameters";
 
 interface MyProps {
   tell: TestOutcome

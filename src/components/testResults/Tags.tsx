@@ -5,7 +5,7 @@ import RowWithResultAggregate from "../molecules/RowWithResultAggregate";
 import useGlobalState from "../../state";
 import TestOutcome from "../../model/TestOutcome";
 import TagHeading from "./TagHeading";
-import Outcome from "./Outcome";
+import Outcome from "./outcome/Outcome";
 
 interface MyProps {
   tellAll: Array<Tag>
