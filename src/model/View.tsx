@@ -1,7 +1,5 @@
 const View = {
-  STORY: "STORY",
-  TAG: "TAG",
-  FEATURE: "FEATURE"
+  STORY: "story"
 };
 
 export default View

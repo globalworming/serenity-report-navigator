@@ -3,6 +3,7 @@ import TestOutcome from "../../../model/TestOutcome";
 import prettyMilliseconds from "pretty-ms";
 import moment from "moment";
 import {Button} from "@material-ui/core";
+import {colorFor} from "../../App";
 
 type MyProps = {
   tell: TestOutcome
@@ -10,7 +11,7 @@ type MyProps = {
 
 const OutcomeDescription = ({tell}: MyProps) => {
   return <>
-    <span>tags: {tell.tags.map(({type, displayName, name}) => (<Button key={`${type}${displayName}`} variant={"outlined"}>{type}:{displayName ? displayName : name}</Button>))}</span>
+    <span>tags: {tell.tags.map(({type, displayName, name}) => (<Button style={{background: colorFor(type, "6F")}} key={`${type}${displayName}`} variant={"outlined"}>{type}:{displayName ? displayName : name}</Button>))}</span>
     <br/><span><strong>duration</strong> {prettyMilliseconds(tell.duration)}</span>
     <br/><span><strong>started</strong> {moment(tell.startTime).toISOString()}</span>
     <br/><span><strong>source</strong> {tell.testSource}</span>

@@ -1,6 +1,5 @@
 import MyPaper from "../../atoms/MyPaper";
 import RowWithResultAggregate from "../../molecules/RowWithResultAggregate";
-import Emoji from "../../atoms/Emoji";
 import ResultImage from "../../atoms/ResultImage";
 import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import React from "react";
@@ -24,8 +23,7 @@ const OutComeHeading = ({tell}: MyProps) => {
   return <FullWidthWrappingFlexBox>
     <MyPaper>
       <RowWithResultAggregate tellAll={results}>
-        {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
-        <Emoji label={"testCase"}>📑</Emoji> <ResultImage result={tell.result}/> {tell.title} <LinkTo outcomeId={tell.id} depth={4}/>
+        <span role="img" aria-label={"testCase"}>📑</span> <ResultImage result={tell.result}/> {tell.title} <LinkTo outcomeId={tell.id} depth={4}/>
       </RowWithResultAggregate>
     </MyPaper>
   </FullWidthWrappingFlexBox>

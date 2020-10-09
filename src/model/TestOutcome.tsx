@@ -29,6 +29,3 @@ interface TestOutcome {
 }
 
 export default TestOutcome
-
-export const hasTagOfType = (type: string, outcome: TestOutcome) =>
-  outcome.tags.map(tag => tag.type).includes(type);

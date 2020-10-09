@@ -5,7 +5,6 @@ import UserStory from "../../model/UserStory";
 import TestOutcome from "../../model/TestOutcome";
 import Outcome from "./outcome/Outcome";
 import RowWithResultAggregate from "../molecules/RowWithResultAggregate";
-import Emoji from "../atoms/Emoji";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import Narrative from "./Narrative";
 
@@ -19,8 +18,7 @@ const Story = ({tell, outcomes}: StoryProps) => {
 
   const storyHeading = <FullWidthWrappingFlexBox>
     <RowWithResultAggregate tellAll={outcomes.map(it => it.result)}>
-      {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
-      <Emoji label="story">📚</Emoji>&nbsp;{tell.storyName}
+      <span role="img" aria-label={"story"}>📚</span>&nbsp;{tell.storyName}
     </RowWithResultAggregate>
   </FullWidthWrappingFlexBox>;
 
