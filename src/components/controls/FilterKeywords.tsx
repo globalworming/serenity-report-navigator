@@ -2,6 +2,7 @@ import useGlobalState from "../../state";
 import React, {useEffect, useRef, useState} from "react";
 import Filter from "../../model/Filter";
 import _ from "lodash";
+import {Button} from "@material-ui/core";
 
 const FilterKeywords = () => {
   const [filter, setFilter] = useGlobalState('filter');
@@ -20,10 +21,11 @@ const FilterKeywords = () => {
     debouncedSync(filter, localValue);
     return () => debouncedSync.cancel()
   }, [debouncedSync, filter, localValue]);
-
   return <>
     <input type={"text"} placeholder={"search in story, name, ..."} value={localValue}
            onChange={(e) => setLocalValue(e.target.value)}/>
+    <Button variant={"contained"} color={"secondary"} onClick={() => setLocalValue("")}>X</Button>
+
 
   </>
 };

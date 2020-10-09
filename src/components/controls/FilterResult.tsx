@@ -3,6 +3,7 @@ import Filter from "../../model/Filter";
 import _ from "lodash";
 import React from "react";
 import CheckboxButton from "../atoms/CheckboxButton";
+import {Button} from "@material-ui/core";
 
 
 const FilterResult = () => {
@@ -33,6 +34,7 @@ const FilterResult = () => {
       </CheckboxButton>
 
     })}
+    <Button variant={"contained"} color={"secondary"} onClick={() => setFilter(new Filter())}>X</Button>
   </>
 };
 
