@@ -1,22 +1,7 @@
-const  excludeNone: Array<string> = [];
-export const  includeAllText = "*";
-export const  includeAllResults = ["*"];
-
 class Filter {
-  testResult: {
-    exclude: Array<string>;
-    include: Array<string>;
-  };
-
-  keyword: {
-    include: string;
-  };
-  focusOutcome?: string;
-
-  constructor() {
-    this.testResult = {exclude: excludeNone, include: includeAllResults};
-    this.keyword = {include: includeAllText};
-  }
+  results: Array<string> = [];
+  keyword: string = "";
+  focusOutcome: string = "";
 }
 
 export default Filter

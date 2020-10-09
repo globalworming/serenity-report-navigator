@@ -1,6 +1,5 @@
 import useGlobalState from "../state";
 import {useEffect} from "react";
-import {includeAllText} from "../model/Filter";
 
 const ApplyFilter = () => {
   const [,setInit] = useGlobalState("hasAppliedFilter");
@@ -9,15 +8,13 @@ const ApplyFilter = () => {
   const [, setFilteredOutcomes] = useGlobalState("filteredOutcomes");
 
   useEffect(() => {
-    setFilteredOutcomes(outcomes.filter(it => {
-      const checkTestResult = () => !filter.testResult.exclude.includes(it.result);
-      const checkTestName = () =>
-        (filter.keyword.include === includeAllText) ||
-        [it.name, it.userStory.storyName, it.title].join("\n").toLowerCase().includes(filter.keyword.include.toLowerCase());
-      const noOtherTestIsHighlighted = () => filter.focusOutcome ? it.id === filter.focusOutcome : true;
+    setFilteredOutcomes(
+      outcomes
+        .filter(it => filter.focusOutcome.length > 0 ? it.id === filter.focusOutcome : true)
+        .filter(it => filter.keyword.length > 0 ? [it.name, it.userStory.storyName, it.title].join("\n").toLowerCase().includes(filter.keyword.toLowerCase()) : true)
+        .filter(it => filter.results.length > 0 ? filter.results.includes(it.result): true)
+    );
 
-      return noOtherTestIsHighlighted() && checkTestResult() && checkTestName();
-    }));
     setInit(true)
   }, [filter, outcomes, setFilteredOutcomes, setInit]);
 

@@ -25,7 +25,7 @@ const ExploreData = () => {
 
   const emoji = (label: string) => {
     switch (label) {
-      case "feature": return "📚";
+      case "feature": return "📘";
       case "tag": return "🏷️";
       case "label": return "🔖";
       case "release": return "📦";
@@ -40,8 +40,9 @@ const ExploreData = () => {
     <LinkTo view={it} depth={0}/>
   </>;
 
-  const tags = _.uniqBy(window.outcomes.map(it => it.tags).flat(), (it) => joined(it));
-  const types = _.uniq(tags.map(it => it.type));
+  const tags = _.uniqBy(outcomes.map(it => it.tags).flat(), (it) => joined(it));
+//  const hasOutcomes = (type: string) =>  _.find(outcomes, it => it.tags.map(it => it.type).includes(type)) != null;
+  const types = _.uniq(tags.map(it => it.type));//.filter(hasOutcomes);
   const hasTag = (tag: Tag, outcome: TestOutcome) => outcome.tags.map(outcomeTag => joined(outcomeTag)).includes(joined(tag));
 
   return <>
@@ -62,7 +63,7 @@ const ExploreData = () => {
       types.filter(type => type === view).map(type =>
         tags.filter(it => it.type === type).map(tag => {
           const outcomesForTag = outcomes.filter(outcome => hasTag(tag, outcome));
-          console.log({tag, outcomesForTag});
+          if (outcomesForTag.length === 0) return null;
           return <React.Fragment key={joined(tag)}>
             <MyPaper>
               <Expandable depths={1}

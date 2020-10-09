@@ -8,22 +8,27 @@ import CheckboxButton from "../atoms/CheckboxButton";
 const FilterResult = () => {
   const [filter, setFilter] = useGlobalState('filter');
   const outcomes = window.outcomes;
+  let results: Array<string> = _.uniq(outcomes.map((it) => it.result));
 
   function toggle(result: string) {
     const newFilter = Object.assign(new Filter(), filter);
-    let index = newFilter.testResult.exclude.indexOf(result);
+
+    if (newFilter.results.length === 0) {
+      newFilter.results = results
+    }
+
+    let index = newFilter.results.indexOf(result);
     if (index < 0) {
-      newFilter.testResult.exclude.push(result)
+      newFilter.results.push(result)
     } else {
-      newFilter.testResult.exclude.splice(index, 1)
+      newFilter.results.splice(index, 1)
     }
     setFilter(newFilter)
   }
 
-  let results: Array<string> = _.uniq(outcomes.map((it) => it.result));
   return <> <strong>filter result</strong>
     {results.map(it => {
-      return <CheckboxButton key={it} checked={!filter.testResult.exclude.includes(it)} onClick={() => toggle(it)}>
+      return <CheckboxButton key={it} checked={filter.results.length === 0 || filter.results.includes(it)} onClick={() => toggle(it)}>
         {it}
       </CheckboxButton>
 

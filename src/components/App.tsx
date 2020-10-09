@@ -3,11 +3,12 @@ import ExploreData from "./testResults/ExploreData";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Overview from "./overview/Overview";
 import {Box} from "@material-ui/core";
-import Controls from "./controls";
+import Controls from "./controls/Controls";
 import useGlobalState from "../state"
 import ApplyFilter from "./ApplyFilter";
 import LocalStateFromQueryParameters from "./LocalStateFromQueryParameters";
 import TestOutcome from "../model/TestOutcome";
+import Search from "./controls/Search"
 
 declare global {
   // noinspection JSUnusedGlobalSymbols
@@ -21,13 +22,15 @@ const App = () => {
     const [appliedFilter] = useGlobalState("hasAppliedFilter");
     const [view] = useGlobalState('view');
     const [depth] = useGlobalState('expansionDepth');
+    const [filter] = useGlobalState('filter');
 
     const printState = <pre style={{overflow: "auto", flex: "0 0 300px"}}>{[{
       state: {
         view,
         depth,
         parsedQuery,
-        appliedFilter
+        appliedFilter,
+        filter
       }
     }].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>;
 
@@ -46,6 +49,8 @@ const App = () => {
       {!parsedQuery && <InitWithQueryParameters/>}
       {parsedQuery && !appliedFilter && <ApplyFilter/>}
       {parsedQuery && appliedFilter && <>
+        <ApplyFilter/>
+        <Search />
         <Overview/>
         <ExploreData/>
         {/*<><h2>JSON</h2>

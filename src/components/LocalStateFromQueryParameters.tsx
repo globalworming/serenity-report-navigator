@@ -3,7 +3,7 @@ import {useLocation} from "react-router";
 import qs, {ParsedQuery, stringify} from "query-string";
 import {useEffect} from "react";
 import * as _ from "lodash";
-import {decodeQueryParams, encodeQueryParams, NumberParam, StringParam} from 'serialize-query-params';
+import {ArrayParam, decodeQueryParams, encodeQueryParams, NumberParam, StringParam} from 'serialize-query-params';
 import Filter from "../model/Filter";
 
 
@@ -11,12 +11,14 @@ interface MyQuery {
   outcomeId?: string
   depth?: number
   view?: string
+  results?: Array<string>
 }
 
 const paramConfigMap = {
   outcomeId: StringParam,
   depth: NumberParam,
-  view: StringParam
+  view: StringParam,
+  results: ArrayParam
 };
 
 // encode each parameter according to the configuration
@@ -45,10 +47,15 @@ const LocalStateFromQueryParameters = () => {
       return;
     }
 
-    const {outcomeId, depth, view} = query;
+    const {outcomeId, depth, view, results} = query;
+
+    function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
+      return value !== null && value !== undefined;
+    }
 
     const filter = new Filter();
-    filter.focusOutcome = outcomeId ? outcomeId : undefined;
+    filter.focusOutcome = outcomeId ? outcomeId : "";
+    filter.results = results && results.length > 0 ? results.filter(notEmpty) : [];
     setFilter(filter);
 
     if (depth) setDepth(depth);
