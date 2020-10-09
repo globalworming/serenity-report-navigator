@@ -6,12 +6,16 @@ import React from "react";
 import TestOutcome from "../../../model/TestOutcome";
 import TestStep from "../../../model/TestStep";
 import LinkTo from "./LinkTo"
+import useGlobalState from "../../../state";
 
 interface MyProps {
   tell: TestOutcome
 }
 
 const OutComeHeading = ({tell}: MyProps) => {
+  const [view] = useGlobalState("view");
+
+
   const flatResults = (testSteps: Array<TestStep>) => {
     let result: Array<string> = [];
     if (!testSteps || testSteps.length === 0) return result;
@@ -23,7 +27,7 @@ const OutComeHeading = ({tell}: MyProps) => {
   return <FullWidthWrappingFlexBox>
     <MyPaper>
       <RowWithResultAggregate tellAll={results}>
-        <span role="img" aria-label={"testCase"}>📑</span> <ResultImage result={tell.result}/> {tell.title} <LinkTo outcomeId={tell.id} depth={4}/>
+        <span role="img" aria-label={"testCase"}>📑</span> <ResultImage result={tell.result}/> {tell.title} <LinkTo view={view} outcomeId={tell.id} depth={4}/>
       </RowWithResultAggregate>
     </MyPaper>
   </FullWidthWrappingFlexBox>
