@@ -24,9 +24,7 @@ const FilterKeywords = () => {
   return <>
     <input type={"text"} placeholder={"search in story, name, ..."} value={localValue}
            onChange={(e) => setLocalValue(e.target.value)}/>
-    <Button variant={"contained"} color={"secondary"} onClick={() => setLocalValue("")}>X</Button>
-
-
+    <Button disabled={localValue === ""} variant={"contained"} color={"secondary"} onClick={() => setLocalValue("")}>X</Button>
   </>
 };
 
