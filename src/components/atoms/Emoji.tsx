@@ -5,8 +5,26 @@ interface MyProps {
   label: string
 }
 
+const emoji = (label: string) => {
+  switch (label) {
+    case "feature":
+      return "📘";
+    case "tag":
+      return "🏷️";
+    case "label":
+      return "🔖";
+    case "release":
+      return "📦";
+    case "story":
+      return "📖";
+
+  }
+  return "📚";
+};
+
+
 const Emoji: FunctionComponent<MyProps> = ({label, children}) => {
-  return <span role="img" aria-label={label}>{children}</span>
+  return <span role="img" aria-label={label}>{children ? children : emoji(label)}</span>
 };
 
 export default Emoji

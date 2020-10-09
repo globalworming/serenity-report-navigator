@@ -9,6 +9,7 @@ import ApplyFilter from "./ApplyFilter";
 import LocalStateFromQueryParameters from "./LocalStateFromQueryParameters";
 import TestOutcome from "../model/TestOutcome";
 import SearchAndFilter from "./controls/SearchAndFilter"
+import SwitchViewMode from "./testResults/SwitchViewMode"
 
 declare global {
   // noinspection JSUnusedGlobalSymbols
@@ -52,7 +53,9 @@ const App = () => {
         <ApplyFilter/>
         <SearchAndFilter />
         <Overview/>
+        <SwitchViewMode />
         <ExploreData/>
+        <span>expand/collaps</span>
         {/*<><h2>JSON</h2>
           <pre style={{overflow: "auto"}}>
         {JSON.stringify(outcomes[0], null, 2)}
