@@ -8,7 +8,7 @@ interface MyProps {
 }
 
 const CheckboxButton: FunctionComponent<MyProps> = ({checked, onClick, children}) => {
-  return <Button variant="contained" onClick={() => onClick()}>
+  return <Button style={{margin: "0.2rem", background: "none", color: "#FFF"}} variant="outlined" color={"primary"} onClick={() => onClick()}>
     {
       checked ?
         <span role="img" aria-label="checked">☑️</span>

@@ -2,7 +2,8 @@ import useGlobalState from "../../state";
 import React, {useEffect, useRef, useState} from "react";
 import Filter from "../../model/Filter";
 import _ from "lodash";
-import {Button} from "@material-ui/core";
+import ClearButton from "../molecules/ClearButton";
+import {Box} from "@material-ui/core";
 
 const FilterKeywords = () => {
   const [filter, setFilter] = useGlobalState('filter');
@@ -12,7 +13,7 @@ const FilterKeywords = () => {
     const newFilter = Object.assign(new Filter(), filter);
     newFilter.keyword = newValue;
     setFilter(newFilter)
-    };
+  };
 
   const debouncedSync = useRef(_.debounce(sync, 300)).current;
 
@@ -22,10 +23,14 @@ const FilterKeywords = () => {
     return () => debouncedSync.cancel()
   }, [debouncedSync, filter, localValue]);
   return <>
-    <input type={"text"} placeholder={"search in story, name, ..."} value={localValue}
+    <Box margin={"0 0.2rem"} flex={"1 1 150px"}>
+    <input style={{height: "2rem", width: "100%"}} type={"text"} placeholder={"search in story, name, ..."} value={localValue}
            onChange={(e) => setLocalValue(e.target.value)}/>
-    <Button disabled={localValue === ""} variant={"contained"} color={"secondary"} onClick={() => setLocalValue("")}>X</Button>
-  </>
+  </Box>
+    <Box>
+      <ClearButton disabled={localValue === ""} onClick={() => setLocalValue("")}/>
+    </Box>
+    </>
 };
 
 export default FilterKeywords

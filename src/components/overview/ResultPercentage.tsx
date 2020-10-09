@@ -10,7 +10,7 @@ const ResultPercentage = () => {
   const [outcomes] = useGlobalState("filteredOutcomes");
   const counts = _.toPairs(_.countBy(outcomes, it => it.result));
 
-  return <><Box flex={"0 0 300px"} lineHeight={2} padding={"0.5rem"} bgcolor={"white"}>
+  return <><Box flex={"0 0 300px"} lineHeight={2} padding={"0.5rem"}>
       <Box width={"100%"}><strong>{outcomes.length} results</strong></Box>
       <FullWidthWrappingFlexBox>
         <Box flex={"0 0 50px"}>

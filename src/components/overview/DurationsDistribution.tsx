@@ -29,7 +29,7 @@ const DurationsDistribution = () => {
   const heightPixel = 150;
 
   return <>
-    <Box flex={"0 0 300px"} lineHeight={2} padding={"0.5rem"} bgcolor={"white"}>
+    <Box flex={"0 0 300px"} lineHeight={2} padding={"0.5rem"}>
 
       <strong>duration distribution </strong> todo: allow filter for duration > 0
       <TextField label="divisions" variant="outlined" value={divisions}

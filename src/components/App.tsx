@@ -2,7 +2,6 @@ import React from 'react';
 import ExploreData from "./testResults/ExploreData";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Overview from "./overview/Overview";
-import {Box} from "@material-ui/core";
 import Controls from "./controls/Controls";
 import useGlobalState from "../state"
 import ApplyFilter from "./ApplyFilter";
@@ -11,6 +10,7 @@ import TestOutcome from "../model/TestOutcome";
 import SearchAndFilter from "./controls/SearchAndFilter"
 import SwitchViewMode from "./testResults/SwitchViewMode"
 import ExpandCollapseAll from "./testResults/ExpandCollapseAll"
+import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
 
 declare global {
   // noinspection JSUnusedGlobalSymbols
@@ -18,7 +18,11 @@ declare global {
     outcomes:Array<TestOutcome>;
   }
 }
-
+const style = {
+  background: "#111",
+  padding: "0.2rem",
+  borderTop: "0.2rem solid #DDDDDD"
+};
 const App = () => {
     const [parsedQuery] = useGlobalState("hasParsedQuery");
     const [appliedFilter] = useGlobalState("hasAppliedFilter");
@@ -42,8 +46,8 @@ const App = () => {
       </Route>
     </Router>;
 
-    return <Box display={"flex"} flexWrap={"wrap"} width={"100%"} maxWidth={"100%"} className="App">
-      {process.env.NODE_ENV === 'development' && <>
+  return <FullWidthWrappingFlexBox style={style}>
+      {process.env.NODE_ENV === 'development' && false && <>
         {printState}
         <Controls/>
       </>}
@@ -52,18 +56,14 @@ const App = () => {
       {parsedQuery && !appliedFilter && <ApplyFilter/>}
       {parsedQuery && appliedFilter && <>
         <ApplyFilter/>
+        <h2 style={{color:"#DBA"}}>search and filter</h2>
         <SearchAndFilter />
         <Overview/>
         <SwitchViewMode />
         <ExpandCollapseAll />
         <ExploreData/>
-        {/*<><h2>JSON</h2>
-          <pre style={{overflow: "auto"}}>
-        {JSON.stringify(outcomes[0], null, 2)}
-      </pre>
-        </>*/}
       </>}
-    </Box>
+    </FullWidthWrappingFlexBox>
   }
 ;
 

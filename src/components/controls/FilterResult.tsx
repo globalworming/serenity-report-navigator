@@ -3,7 +3,7 @@ import Filter from "../../model/Filter";
 import _ from "lodash";
 import React from "react";
 import CheckboxButton from "../atoms/CheckboxButton";
-import {Button} from "@material-ui/core";
+import ClearButton from "../molecules/ClearButton";
 
 
 const FilterResult = () => {
@@ -27,7 +27,7 @@ const FilterResult = () => {
     setFilter(newFilter)
   }
 
-  const canBeCleared = filter.results.length > 0;
+  const canBeCleared = filter.results.length > 0 && filter.results.length !== results.length;
 
   const clear = () => {
     const newFilter = Object.assign(new Filter(), filter);
@@ -42,7 +42,7 @@ const FilterResult = () => {
       </CheckboxButton>
 
     })}
-    <Button disabled={!canBeCleared} variant={"contained"} color={"secondary"} onClick={clear}>X</Button>
+    <ClearButton disabled={!canBeCleared} onClick={clear}/>
   </>
 };
 

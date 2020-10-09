@@ -12,10 +12,10 @@ const Overview = () => {
     }
 
     return <>
-      <FullWidthWrappingFlexBox>
+      <FullWidthWrappingFlexBox style={{paddingTop: "1rem", background: "black", color: "white"}}>
         <ResultPercentage/>
-            <DurationsDistribution/>
-            <DurationStatistics/>
+        <DurationsDistribution/>
+        <DurationStatistics/>
       </FullWidthWrappingFlexBox>
     </>;
 
