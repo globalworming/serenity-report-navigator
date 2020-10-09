@@ -8,25 +8,34 @@ import useGlobalState from "../../state";
 const ResultPercentage = () => {
 
   const [outcomes] = useGlobalState("filteredOutcomes");
-  let counts = _.toPairs(_.countBy(outcomes, it => it.result));
+  const counts = _.toPairs(_.countBy(outcomes, it => it.result));
 
-  return <>
-    <strong>results</strong>
-    <FullWidthWrappingFlexBox style={{padding: "1rem"}}>
-      {
-        counts.map(([result, count]) =>
-          <Box key={result} flex={`0 0 ${(count * 100 / outcomes.length)}%`}
-               style={{height:"2rem", backgroundColor: colorOf(result), overflow: "hidden"}}>
-          </Box>
-        )
-      }
-    </FullWidthWrappingFlexBox>
-    <FullWidthWrappingFlexBox>
-      <FullWidthWrappingFlexBox style={{justifyContent: "space-around"}}>{outcomes.length} total: {
-        counts.map(([result, count]) => <span key={result}>{count} {result.toLowerCase()}({(count * 100 / outcomes.length).toFixed(1)}%)</span>
-        )
-      }</FullWidthWrappingFlexBox>
-    </FullWidthWrappingFlexBox>
+  return <><Box flex={"0 0 300px"} lineHeight={2} padding={"0.5rem"} bgcolor={"white"}>
+      <Box width={"100%"}><strong>{outcomes.length} results</strong></Box>
+      <FullWidthWrappingFlexBox>
+        <Box flex={"0 0 50px"}>
+          {
+            counts.map(([result, count]) =>
+              <Box key={result} height={(count * 2 / outcomes.length) * counts.length + "rem"} flex={`0 0 50px`}
+                   style={{background: colorOf(result)}}>
+              </Box>
+            )
+          }
+        </Box>
+        <Box flex={"0 0 200px"}>
+          {
+            counts.map(([result, count]) => <React.Fragment key={result}>
+                <FullWidthWrappingFlexBox style={{justifyContent: "space-between", paddingLeft: "1rem"}}>
+                  <Box>{count}</Box>
+                  <Box>{result.toLowerCase()}</Box>
+                  <Box>({(count * 100 / outcomes.length).toFixed(1)}%)</Box>
+                </FullWidthWrappingFlexBox>
+              </React.Fragment>
+            )
+          }
+        </Box>
+      </FullWidthWrappingFlexBox>
+  </Box>
   </>;
 };
 
