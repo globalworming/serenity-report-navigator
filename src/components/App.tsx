@@ -8,7 +8,7 @@ import useGlobalState from "../state"
 import ApplyFilter from "./ApplyFilter";
 import LocalStateFromQueryParameters from "./LocalStateFromQueryParameters";
 import TestOutcome from "../model/TestOutcome";
-import Search from "./controls/Search"
+import SearchAndFilter from "./controls/SearchAndFilter"
 
 declare global {
   // noinspection JSUnusedGlobalSymbols
@@ -50,7 +50,7 @@ const App = () => {
       {parsedQuery && !appliedFilter && <ApplyFilter/>}
       {parsedQuery && appliedFilter && <>
         <ApplyFilter/>
-        <Search />
+        <SearchAndFilter />
         <Overview/>
         <ExploreData/>
         {/*<><h2>JSON</h2>

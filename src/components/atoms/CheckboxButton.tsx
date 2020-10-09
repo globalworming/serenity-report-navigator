@@ -14,8 +14,8 @@ const CheckboxButton: FunctionComponent<MyProps> = ({checked, onClick, children}
         <span role="img" aria-label="checked">☑️</span>
         : <span role="img" aria-label="unchecked">🚫</span>
     }&nbsp;{
-      children
-    }
+    children
+  }
   </Button>
 };
 
