@@ -7,7 +7,7 @@ import {ArrayParam, decodeQueryParams, encodeQueryParams, NumberParam, StringPar
 import Filter from "../model/Filter";
 
 
-interface MyQuery {
+export interface MyQuery {
   outcomeId?: string
   depth?: number
   view?: string

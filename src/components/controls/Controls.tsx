@@ -2,8 +2,6 @@ import React from 'react';
 import {Paper} from "@material-ui/core";
 import TestLinksAndRoutes from './TestLinksAndRoutes';
 import DetailLevel from "./DetailLevel";
-import FilterResult from "./FilterResult";
-import FilterKeywords from "./FilterKeywords";
 import FocusOnTask from "./FocusOnTask";
 import FilterTags from "./FilterTags";
 
@@ -16,10 +14,6 @@ const Controls = () => {
       </p>
       <p>
         <DetailLevel/>
-      </p>
-      <p>
-        <FilterResult/>
-        <FilterKeywords/>
       </p>
       <FilterTags/>
       <p>

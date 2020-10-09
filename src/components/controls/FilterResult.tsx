@@ -26,7 +26,7 @@ const FilterResult = () => {
     setFilter(newFilter)
   }
 
-  return <> <strong>filter result</strong>
+  return <>
     {results.map(it => {
       return <CheckboxButton key={it} checked={filter.results.length === 0 || filter.results.includes(it)} onClick={() => toggle(it)}>
         {it}
