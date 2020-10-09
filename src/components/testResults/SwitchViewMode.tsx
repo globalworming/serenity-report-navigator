@@ -1,4 +1,3 @@
-import MyPaper from "../atoms/MyPaper";
 import React from "react";
 import {Box} from "@material-ui/core";
 import CheckboxButton from "../atoms/CheckboxButton";
@@ -34,7 +33,6 @@ const SwitchViewMode = () => {
 
 
   return <Box flex={"1 1 300px"}>
-    <MyPaper>
       <FullWidthWrappingFlexBox style={{justifyContent: "space-between"}}>
         {
           [["story"], types].flat().map(it => <React.Fragment key={it}>
@@ -42,7 +40,6 @@ const SwitchViewMode = () => {
           </React.Fragment>)
         }
       </FullWidthWrappingFlexBox>
-    </MyPaper>
   </Box>
 };
 

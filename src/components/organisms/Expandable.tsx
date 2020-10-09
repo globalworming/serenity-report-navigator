@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from "react";
+import React, {FunctionComponent, useEffect, useState} from "react";
 import useGlobalState from "../../state";
 import {Box} from "@material-ui/core";
 import ExpandCollapse from "../molecules/ExpandCollapse"
@@ -12,10 +12,16 @@ interface ExpandabledProps {
 const Expandable: FunctionComponent<ExpandabledProps> = ({depths, children, whatsHidden}) => {
   const [expandLayers] = useGlobalState('expansionDepth');
   const [expanded, setExpanded] = useState(expandLayers >= depths);
+
+  useEffect(() => {
+      setExpanded(expandLayers >= depths)
+  }, [depths, expandLayers]);
+
   const myToggle = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setExpanded(!expanded);
+
   };
 
   if (!whatsHidden) {

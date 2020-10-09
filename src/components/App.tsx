@@ -10,6 +10,7 @@ import LocalStateFromQueryParameters from "./LocalStateFromQueryParameters";
 import TestOutcome from "../model/TestOutcome";
 import SearchAndFilter from "./controls/SearchAndFilter"
 import SwitchViewMode from "./testResults/SwitchViewMode"
+import ExpandCollapseAll from "./testResults/ExpandCollapseAll"
 
 declare global {
   // noinspection JSUnusedGlobalSymbols
@@ -54,7 +55,7 @@ const App = () => {
         <SearchAndFilter />
         <Overview/>
         <SwitchViewMode />
-        <span>expand/collaps</span>
+        <ExpandCollapseAll />
         <ExploreData/>
         {/*<><h2>JSON</h2>
           <pre style={{overflow: "auto"}}>
