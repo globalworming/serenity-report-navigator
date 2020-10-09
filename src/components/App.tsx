@@ -54,8 +54,8 @@ const App = () => {
         <SearchAndFilter />
         <Overview/>
         <SwitchViewMode />
-        <ExploreData/>
         <span>expand/collaps</span>
+        <ExploreData/>
         {/*<><h2>JSON</h2>
           <pre style={{overflow: "auto"}}>
         {JSON.stringify(outcomes[0], null, 2)}

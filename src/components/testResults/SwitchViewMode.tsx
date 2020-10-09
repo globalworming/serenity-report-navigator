@@ -7,6 +7,7 @@ import useGlobalState from "../../state";
 import * as _ from "lodash";
 import {joined} from "../../model/Tag";
 import Emoji from "../atoms/Emoji";
+import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 
 const SwitchViewMode = () => {
   const [view, setView] = useGlobalState("view");
@@ -25,19 +26,22 @@ const SwitchViewMode = () => {
 
 
   const switchToViewButton = (it: string) => <>
-    <CheckboxButton checked={view === it} onClick={() => switchTo(it)}>{it}&nbsp;<Emoji label={it}/></CheckboxButton>
-    <LinkTo view={it} depth={0}/>
+    <Box>
+      <CheckboxButton checked={view === it} onClick={() => switchTo(it)}>{it}&nbsp;<Emoji label={it}/></CheckboxButton>
+      <LinkTo view={it} depth={0}/>
+    </Box>
   </>;
 
 
-  return <Box flex={"1 1 400px"}>
+  return <Box flex={"1 1 300px"}>
     <MyPaper>
-      {
-        [["story"], types].flat().map(it => <React.Fragment key={it}>
-          {switchToViewButton(it)}
-        </React.Fragment>)
-      }
-
+      <FullWidthWrappingFlexBox style={{justifyContent: "space-between"}}>
+        {
+          [["story"], types].flat().map(it => <React.Fragment key={it}>
+            {switchToViewButton(it)}
+          </React.Fragment>)
+        }
+      </FullWidthWrappingFlexBox>
     </MyPaper>
   </Box>
 };
