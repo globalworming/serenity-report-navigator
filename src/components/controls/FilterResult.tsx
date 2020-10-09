@@ -29,6 +29,12 @@ const FilterResult = () => {
 
   const canBeCleared = filter.results.length > 0;
 
+  const clear = () => {
+    const newFilter = Object.assign(new Filter(), filter);
+    newFilter.results = [];
+    setFilter(newFilter)
+  };
+
   return <>
     {results.map(it => {
       return <CheckboxButton key={it} checked={filter.results.length === 0 || filter.results.includes(it)} onClick={() => toggle(it)}>
@@ -36,7 +42,7 @@ const FilterResult = () => {
       </CheckboxButton>
 
     })}
-    <Button disabled={!canBeCleared} variant={"contained"} color={"secondary"} onClick={() => setFilter(new Filter())}>X</Button>
+    <Button disabled={!canBeCleared} variant={"contained"} color={"secondary"} onClick={clear}>X</Button>
   </>
 };
 
