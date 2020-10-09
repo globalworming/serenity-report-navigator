@@ -12,13 +12,15 @@ export interface MyQuery {
   depth?: number
   view?: string
   results?: Array<string>
+  text?: string
 }
 
 const paramConfigMap = {
   outcomeId: StringParam,
   depth: NumberParam,
   view: StringParam,
-  results: ArrayParam
+  results: ArrayParam,
+  text: StringParam
 };
 
 // encode each parameter according to the configuration
@@ -47,7 +49,7 @@ const LocalStateFromQueryParameters = () => {
       return;
     }
 
-    const {outcomeId, depth, view, results} = query;
+    const {outcomeId, depth, view, results, text} = query;
 
     function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
       return value !== null && value !== undefined;
@@ -56,6 +58,7 @@ const LocalStateFromQueryParameters = () => {
     const filter = new Filter();
     filter.focusOutcome = outcomeId ? outcomeId : "";
     filter.results = results && results.length > 0 ? results.filter(notEmpty) : [];
+    filter.keyword = text ? text : "";
     setFilter(filter);
 
     if (depth) setDepth(depth);

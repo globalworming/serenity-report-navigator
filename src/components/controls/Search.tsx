@@ -8,7 +8,7 @@ const Search = () => {
   const [view] = useGlobalState("view");
   const [filter] = useGlobalState("filter");
 
-  return <><FilterKeywords/><FilterResult/><LinkTo view={view} results={filter.results}/></>
+  return <><FilterKeywords/><FilterResult/><LinkTo view={view} results={filter.results} text={filter.keyword}/></>
 };
 
 export default Search
