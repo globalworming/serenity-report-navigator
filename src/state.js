@@ -7,7 +7,7 @@ const initialState = {
   filteredOutcomes: window.outcomes,
   hasParsedQuery: false,
   hasAppliedFilter: false,
-  view: View.DEFAULT,
+  view: View.STORY,
   expansionDepth: 0
 };
 const {useGlobalState} = createGlobalState(initialState);

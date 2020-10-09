@@ -20,7 +20,7 @@ const Story = ({tell, outcomes}: StoryProps) => {
   const storyHeading = <FullWidthWrappingFlexBox>
     <RowWithResultAggregate tellAll={outcomes.map(it => it.result)}>
       {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
-      <Emoji label="story">📗</Emoji>&nbsp;{tell.storyName}
+      <Emoji label="story">📚</Emoji>&nbsp;{tell.storyName}
     </RowWithResultAggregate>
   </FullWidthWrappingFlexBox>;
 

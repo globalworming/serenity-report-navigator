@@ -7,6 +7,8 @@ import View from '../../model/View';
 import ByStory from "./ByStory";
 import ByTag from "./ByTag";
 import LinkTo from "./outcome/LinkTo";
+import * as _ from "lodash";
+import ByFeature from "./ByFeature";
 
 const ExploreData = () => {
   const [view, setView] = useGlobalState("view");
@@ -22,14 +24,26 @@ const ExploreData = () => {
     switch (view) {
       case View.STORY: return <ByStory/>;
       case View.TAG: return <ByTag/>;
+      case View.FEATURE: return <ByFeature/>;
     }
   };
+
+
+
+  function switchToViewButton(it: string) {
+    return <><CheckboxButton checked={view === it} onClick={() => switchTo(it)}>{it}</CheckboxButton><LinkTo view={it}
+                                                                                                             depth={0}/></>;
+  }
 
   return <>
     <MyPaper>
     <FullWidthWrappingFlexBox>
-      <CheckboxButton checked={view === View.STORY} onClick={() => switchTo(View.STORY)}>by story</CheckboxButton><LinkTo view={View.STORY} depth={0}/>
-      <CheckboxButton checked={view === View.TAG} onClick={() => switchTo(View.TAG)}>by tag</CheckboxButton><LinkTo view={View.TAG} depth={0}/>
+      {
+        [_.keys(View).filter(it => it !== View.TAG).map(it => <React.Fragment key={it}>
+          {switchToViewButton(it)}
+        </React.Fragment>)]
+      }
+      {switchToViewButton(View.TAG)}
     </FullWidthWrappingFlexBox>
     </MyPaper>
     {show(view)}
