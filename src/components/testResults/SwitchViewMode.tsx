@@ -1,6 +1,5 @@
 import React from "react";
 import {Box, Button} from "@material-ui/core";
-import CheckboxButton from "../atoms/CheckboxButton";
 import LinkTo from "./outcome/LinkTo";
 import useGlobalState from "../../state";
 import * as _ from "lodash";
