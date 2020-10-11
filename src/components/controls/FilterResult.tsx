@@ -8,6 +8,8 @@ import ClearButton from "../molecules/ClearButton";
 
 const FilterResult = () => {
   const [filter, setFilter] = useGlobalState('filter');
+  const [, setDepths] = useGlobalState('expansionDepth');
+
   const outcomes = window.outcomes;
   let results: Array<string> = _.uniq(outcomes.map((it) => it.result));
 
@@ -30,6 +32,7 @@ const FilterResult = () => {
   const canBeCleared = filter.results.length > 0 && filter.results.length !== results.length;
 
   const clear = () => {
+    setDepths(0);
     const newFilter = Object.assign(new Filter(), filter);
     newFilter.results = [];
     setFilter(newFilter)

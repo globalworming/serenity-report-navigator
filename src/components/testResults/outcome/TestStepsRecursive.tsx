@@ -4,7 +4,6 @@ import Expandable from "../../organisms/Expandable";
 import ResultImage from "../../atoms/ResultImage";
 import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import {Box} from "@material-ui/core";
-import Delayed from "../../organisms/Delayed";
 import DisplayRestQuery from "./DisplayRestQuery";
 
 type MyProps = {
@@ -27,22 +26,18 @@ const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
   </FullWidthWrappingFlexBox>;
 
   const expandableTestStep = (step: TestStep) => <Expandable depths={3} whatsHidden={
-    <Delayed wait={depth}>
       <TestStepsRecursive depth={depth + 1} tellAll={step.children}/>
-    </Delayed>
   }>
     {testStep(step)}
   </Expandable>;
 
-  return <>{
-    tellAll.map((step => {
-      function stepVariant() {
-        if (!step.children || step.children.length === 0) return testStep(step);
-        return expandableTestStep(step);
-      }
+  function stepVariant(step: TestStep) {
+    if (!step.children || step.children.length === 0) return testStep(step);
+    return expandableTestStep(step);
+  }
 
-      return <React.Fragment key={step.number}>{stepVariant()}</React.Fragment>;
-    }))
-  }</>
+  return <>
+      {tellAll.map(step => <React.Fragment key={step.number}>{stepVariant(step)}</React.Fragment>)}
+  </>
 };
 export default TestStepsRecursive

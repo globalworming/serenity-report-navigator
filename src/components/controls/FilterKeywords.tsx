@@ -7,6 +7,7 @@ import {Box} from "@material-ui/core";
 
 const FilterKeywords = () => {
   const [filter, setFilter] = useGlobalState('filter');
+  const [, setDepths] = useGlobalState('expansionDepth');
   const [localValue, setLocalValue] = useState(filter.keyword);
 
   const sync = (filter: Filter, newValue: string) => {
@@ -22,13 +23,19 @@ const FilterKeywords = () => {
     debouncedSync(filter, localValue);
     return () => debouncedSync.cancel()
   }, [debouncedSync, filter, localValue]);
+
+  function clear() {
+    setDepths(0);
+    setLocalValue("")
+  }
+
   return <>
     <Box margin={"0 0.2rem"} flex={"1 1 150px"}>
     <input style={{height: "2rem", width: "100%"}} type={"text"} placeholder={"search in story, name, ..."} value={localValue}
            onChange={(e) => setLocalValue(e.target.value)}/>
   </Box>
     <Box>
-      <ClearButton disabled={localValue === ""} onClick={() => setLocalValue("")}/>
+      <ClearButton disabled={localValue === ""} onClick={clear}/>
     </Box>
     </>
 };

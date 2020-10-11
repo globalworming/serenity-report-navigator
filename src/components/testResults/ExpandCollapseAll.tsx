@@ -5,15 +5,15 @@ import {Box, Button} from "@material-ui/core";
 import useGlobalState from "../../state"
 
 const ExpandCollapseAll = () => {
-  const [,setDepths] = useGlobalState("expansionDepth");
+  const [depths, setDepths] = useGlobalState("expansionDepth");
   const style= {width: "1.5rem", height: "1.5rem"};
 
   function expandAll() {
-    setDepths(4)
+    setDepths(Math.max(depths + 1, 1));
   }
 
   function collapseAll() {
-    setDepths(0)
+    setDepths(depths - 1)
   }
 
   return <Box display={"flex"} paddingTop={"1rem"}>

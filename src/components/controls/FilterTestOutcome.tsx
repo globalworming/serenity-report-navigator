@@ -6,11 +6,13 @@ import ClearButton from "../molecules/ClearButton";
 
 const FilterTestOutcome = () => {
   const [filter, setFilter] = useGlobalState('filter');
+  const [, setDepths] = useGlobalState('expansionDepth');
   if (filter.focusOutcome.length <= 0) {
     return null
   }
 
   const clear = () => {
+    setDepths(0);
     const newFilter = Object.assign(new Filter(), filter);
     newFilter.focusOutcome = "";
     setFilter(newFilter)
