@@ -1,6 +1,6 @@
 import * as React from "react";
-import ExpandIcon from "./noun_Split Vertical_2439343.svg"
-import CollapseIcon from "./noun_collapse vertical_2439339.svg"
+import ExpandIcon from "../atoms/noun_Split Vertical_2439343.svg"
+import CollapseIcon from "../atoms/noun_collapse vertical_2439339.svg"
 import {Box, Button} from "@material-ui/core";
 import useGlobalState from "../../state"
 
@@ -17,12 +17,12 @@ const ExpandCollapseAll = () => {
   }
 
   return <Box display={"flex"} paddingTop={"1rem"}>
-    <Button variant={"contained"} color={"primary"} onClick={expandAll}>
+    <Button variant={"contained"} style={{background: "#333"}} onClick={expandAll}>
       <img
         style={style}
         alt={"expand-all"} aria-label={"expand-all"} src={ExpandIcon}/>
     </Button>
-    <Button variant={"contained"} color={"primary"} onClick={collapseAll}>
+    <Button variant={"contained"} style={{background: "#333"}} onClick={collapseAll}>
       <img
         style={style}
         alt={"collapse-all"} aria-label={"collapse-all"} src={CollapseIcon}/>

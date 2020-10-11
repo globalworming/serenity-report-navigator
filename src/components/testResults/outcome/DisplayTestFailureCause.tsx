@@ -17,7 +17,7 @@ const DisplayTestFailureCause = ({tell}: MyProps) => {
     rootCause = rootCause.rootCause
   }
 
-  return <FullWidthWrappingFlexBox>
+  return <FullWidthWrappingFlexBox style={{padding: "2rem"}}>
     <FullWidthWrappingFlexBox>
       <OneClickCopy text={`${rootCause.errorType} ${rootCause.message}`}/>
       <pre style={{overflowX: "auto", flex: "0 0 100%"}}>{rootCause.errorType} {rootCause.message}</pre>

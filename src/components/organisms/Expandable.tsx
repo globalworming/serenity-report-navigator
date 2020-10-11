@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useEffect, useState} from "react";
 import useGlobalState from "../../state";
 import {Box} from "@material-ui/core";
-import ExpandCollapse from "../molecules/ExpandCollapse"
+import ExpandCollapse from "../atoms/ExpandCollapse"
 
 
 interface ExpandabledProps {
@@ -30,10 +30,10 @@ const Expandable: FunctionComponent<ExpandabledProps> = ({depths, children, what
 
   return <>
     <Box display="flex" flex={"0 0 100%"} flexWrap={"wrap"} justifyContent="space-between" maxWidth={"100%"} onClick={myToggle}>
-      <Box display="flex" flex={"0 0 90%"} maxWidth={"90%"}>
+      <Box display="flex" flex={"1 0 80%"}>
         {children}
       </Box>
-      <Box display="flex" flex={"0 0 10%"}>
+      <Box display="flex" flex={"0 0 70px"}>
         <ExpandCollapse
           isExpanded={expanded}
         />

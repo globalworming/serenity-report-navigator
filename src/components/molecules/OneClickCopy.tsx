@@ -22,7 +22,7 @@ const OneClickCopy = ({text}: MyProps) => {
   }, [copied, setCopied]);
 
   return <CopyToClipboard text={text} onCopy={() => setCopied(true)}>
-    <Button variant={"contained"}>{copied ? "copied" : "copy"}</Button>
+    <Button size={"small"} style={{margin: "0 auto", color: "white", borderColor: "#DBA"}} variant={"outlined"}>{copied ? "copied" : "copy"}</Button>
   </CopyToClipboard>
 };
 

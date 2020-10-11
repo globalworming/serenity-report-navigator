@@ -1,13 +1,13 @@
-import {Paper} from "@material-ui/core";
 import * as React from "react";
+import Box from "@material-ui/core/Box";
 
 type Props = { children: any}
 
 const MyPaper = ({children}: Props) => {
-  return <Paper variant="outlined" style={{padding: "0.25rem", margin: "0.1rem 0", width: "100%", maxWidth: "100%", overflow: "hidden", minHeight: "2.5rem",
+  return <Box style={{color: "white", padding: "0.1rem", width: "100%", maxWidth: "100%", overflow: "hidden",
     lineHeight: 2}}>
     {children}
-  </Paper>
+  </Box>
 };
 
 export default MyPaper

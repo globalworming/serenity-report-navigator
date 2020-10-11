@@ -19,6 +19,7 @@ ReactDOM.render(
     </div>
     <h1>serenity report navigator <a href="https://github.com/globalworming/serenity-report-navigator">GitHub</a></h1>
     <p>concise reporting to stakeholders - in-depth steps and traces - wallboard mode - mobile friendly</p>
+    <p>customizable theme and view options</p>
     <p>no server needed, should still work simply opening the index.html</p>
     {/*<Profiler id="Navigation" onRender={onRender}>*/}
       <App/>

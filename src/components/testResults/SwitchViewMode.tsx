@@ -1,5 +1,5 @@
 import React from "react";
-import {Box} from "@material-ui/core";
+import {Box, Button} from "@material-ui/core";
 import CheckboxButton from "../atoms/CheckboxButton";
 import LinkTo from "./outcome/LinkTo";
 import useGlobalState from "../../state";
@@ -25,8 +25,8 @@ const SwitchViewMode = () => {
 
 
   const switchToViewButton = (it: string) => <>
-    <Box>
-      <CheckboxButton checked={view === it} onClick={() => switchTo(it)}>{it}&nbsp;<Emoji label={it}/></CheckboxButton>
+    <Box onClick={() => switchTo(it)}>
+      <Button variant={view === it ? "contained" : "outlined"} color={"secondary"}>{it}&nbsp;<Emoji label={it}/></Button>
       <LinkTo view={it} depth={0}/>
     </Box>
   </>;
