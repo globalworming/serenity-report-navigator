@@ -3,6 +3,7 @@ import useGlobalState from '../../state';
 import ByStory from "./ByStory";
 import ByScreenshots from "./ByScreenshots";
 import ByTags from "./ByTags";
+import Overview from "./stats/Overview";
 
 const ExploreData = () => {
   const [view] = useGlobalState("view");
@@ -11,6 +12,7 @@ const ExploreData = () => {
     switch (view) {
       case "story": return <ByStory/>;
       case "screenshots": return <ByScreenshots/>
+      case "stats": return <Overview/>
     }
     return <ByTags />
   };

@@ -25,8 +25,8 @@ const flatSteps = (testSteps: Array<TestStep>) => {
 const ByScreenshots = () => {
   let [outcomes] = useGlobalState('filteredOutcomes');
   const localOutcomes = outcomes.filter(it => findScreenshots(it.testSteps).length > 0);
+  localOutcomes.length = 1;
   const outcomesByStoryId = _.groupBy(localOutcomes, o => o.userStory.id);
-
 
   return <>
     <FullWidthWrappingFlexBox style={{paddingTop: "1rem"}}>

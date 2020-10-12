@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import useGlobalState from "../../state";
+import useGlobalState from "../../../state";
 import prettyMilliseconds from "pretty-ms";
-import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
-import Result, {colorOf} from "../../model/Result";
+import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
+import Result, {colorOf} from "../../../model/Result";
 import {Box} from "@material-ui/core";
-import CheckboxButton from "../atoms/CheckboxButton";
+import CheckboxButton from "../../atoms/CheckboxButton";
 
 const DurationsDistribution = () => {
   const [outcomes] = useGlobalState("filteredOutcomes");

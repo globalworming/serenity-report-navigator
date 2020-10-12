@@ -1,7 +1,6 @@
 import React from 'react';
 import ExploreData from "./testResults/ExploreData";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import Overview from "./overview/Overview";
 import Controls from "./controls/Controls";
 import useGlobalState from "../state"
 import ApplyFilter from "./ApplyFilter";
@@ -58,7 +57,6 @@ const App = () => {
         <ApplyFilter/>
         <h2 style={{color:"#DBA"}}>search and filter</h2>
         <SearchAndFilter />
-        <Overview/>
         <SwitchViewMode />
         <ExpandCollapseAll />
         <ExploreData/>

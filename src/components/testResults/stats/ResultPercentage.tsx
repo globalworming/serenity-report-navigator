@@ -1,9 +1,9 @@
-import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import {Box} from "@material-ui/core";
 import _ from 'lodash';
 import React from "react";
-import {colorOf} from "../../model/Result";
-import useGlobalState from "../../state";
+import useGlobalState from "../../../state";
+import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
+import {colorOf} from "../../../model/Result";
 
 const ResultPercentage = () => {
 

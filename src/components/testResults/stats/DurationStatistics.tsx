@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import useGlobalState from "../../state";
+import useGlobalState from "../../../state";
 import prettyMilliseconds from "pretty-ms";
-import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import {Box, Slider} from "@material-ui/core";
 import _ from "lodash";
 

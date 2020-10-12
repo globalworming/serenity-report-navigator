@@ -1,9 +1,9 @@
 import React from 'react';
-import useGlobalState from '../../state';
 import ResultPercentage from "./ResultPercentage";
 import DurationsDistribution from "./DurationsDistribution";
 import DurationStatistics from "./DurationStatistics";
-import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
+import useGlobalState from '../../../state';
 
 const Overview = () => {
     const [outcomes] = useGlobalState("filteredOutcomes");
