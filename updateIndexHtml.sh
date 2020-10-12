@@ -24,3 +24,8 @@ ls $PROJECT_ROOT/exampleReports/*/serenity/*json | xargs cat | sed 's#}{#},{#g' 
 echo "];" >> ${PROJECT_ROOT}/xx00
 
 cat xx00 xx01 > ${TARGET_INDEX_HTML}
+
+
+rm -rf ${PROJECT_ROOT}/public/screenshots
+cp ${PROJECT_ROOT}/exampleReports/*/serenity/*png ${PROJECT_ROOT}/public/screenshots
+

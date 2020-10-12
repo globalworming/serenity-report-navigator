@@ -34,7 +34,7 @@ const SwitchViewMode = () => {
   return <Box flex={"1 1 300px"}>
       <FullWidthWrappingFlexBox style={{justifyContent: "space-between", paddingTop: "1rem"}}>
         {
-          [["story"], types].flat().map(it => <React.Fragment key={it}>
+          [["story", "screenshots"], types].flat().map(it => <React.Fragment key={it}>
             {switchToViewButton(it)}
           </React.Fragment>)
         }

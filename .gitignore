@@ -24,6 +24,7 @@ yarn-error.log*
 
 # generated files
 /public/index.html
+/public/screenshots
 
 # project files
 .idea
