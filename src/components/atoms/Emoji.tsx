@@ -17,6 +17,12 @@ const emoji = (label: string) => {
       return "📦";
     case "story":
       return "📖";
+    case "bigscreen":
+      return "🖥️";
+    case "mobile":
+      return "📱";
+    case "one hundred":
+      return "💯";
 
   }
   return "📚";
