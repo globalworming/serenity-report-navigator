@@ -3,11 +3,13 @@ import useGlobalState from "../../state";
 import prettyMilliseconds from "pretty-ms";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import Result, {colorOf} from "../../model/Result";
-import {Box, TextField} from "@material-ui/core";
+import {Box} from "@material-ui/core";
+import CheckboxButton from "../atoms/CheckboxButton";
 
 const DurationsDistribution = () => {
   const [outcomes] = useGlobalState("filteredOutcomes");
-  const [divisions, setDivisions] = useState(30);
+  const [divisions] = useState(30);
+  const [filterZero, setFilterZero] = useState(true);
 
   const maximumDuration = Math.max(...outcomes.map(it => it.duration)) + 1;
   let bars: Array<Array<Result>> = [];
@@ -15,6 +17,7 @@ const DurationsDistribution = () => {
   for (let i = 0; i < divisions; i++) {
     bars.push(
       outcomes
+        .filter(it => filterZero ? it.duration > 0 : true)
         .filter(it => {
             return (it.duration < (maximumDuration / divisions * i) + ((maximumDuration) / divisions))
               && (it.duration >= (maximumDuration / divisions * (i - 1)) + ((maximumDuration) / divisions));
@@ -27,13 +30,14 @@ const DurationsDistribution = () => {
 
   const maxBarItems = Math.max(...bars.map(it => it.length));
   const heightPixel = 150;
+  const toggle = () => setFilterZero(!filterZero);
 
   return <>
     <Box flex={"0 0 300px"} lineHeight={2} padding={"0.5rem"}>
 
-      <strong>duration distribution </strong> todo: allow filter for duration > 0
-      <TextField label="divisions" variant="outlined" value={divisions}
-                 onChange={(e) => setDivisions(parseInt(e.target.value))}/>
+      <strong>duration distribution </strong> <CheckboxButton checked={filterZero} onClick={toggle}>hide 0ms results</CheckboxButton>
+      {/*<TextField label="divisions" variant="outlined" value={divisions}
+                 onChange={(e) => setDivisions(parseInt(e.target.value))}/>*/}
       <FullWidthWrappingFlexBox>
         <FullWidthWrappingFlexBox style={{minHeight: `${heightPixel}px`}}>
           {bars.map(

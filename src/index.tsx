@@ -20,7 +20,7 @@ const spanStyle = {padding: "0.2rem"};
 
 ReactDOM.render(
   <React.StrictMode>
-    <a style={{position: "absolute", right: 0, top: "0.5rem"}} className="externalLink" href="https://github.com/globalworming/serenity-report-navigator/stargazers"><img
+    <a style={{position: "absolute", right: "0.5rem", top: "0.5rem"}} className="externalLink" href="https://github.com/globalworming/serenity-report-navigator"><img
       src="https://x.h7e.eu/badges/xz/q/github/starGazers/gh-stargazers/globalworming/serenity-report-navigator" alt="GitHub Stars" /></a>
     <FullWidthWrappingFlexBox  style={{background: "#3f51b5", color: "white"}}>
       <FullWidthWrappingFlexBox>

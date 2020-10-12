@@ -4,6 +4,7 @@ import _ from "lodash";
 import React from "react";
 import CheckboxButton from "../atoms/CheckboxButton";
 import ClearButton from "../molecules/ClearButton";
+import ResultImage from "../atoms/ResultImage";
 
 
 const FilterResult = () => {
@@ -41,7 +42,7 @@ const FilterResult = () => {
   return <>
     {results.map(it => {
       return <CheckboxButton key={it} checked={filter.results.length === 0 || filter.results.includes(it)} onClick={() => toggle(it)}>
-        {it}
+        {it} <ResultImage result={it}/>
       </CheckboxButton>
 
     })}
