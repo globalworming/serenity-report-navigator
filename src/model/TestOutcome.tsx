@@ -18,7 +18,7 @@ interface TestOutcome {
   steps: string
   successful: string
   skipped: string
-  startTime: Date
+  startTime: string
   scenarioOutline: string
   tags: Array<Tag>
   testFailureCause: TestFailureCause
