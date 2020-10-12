@@ -38,7 +38,7 @@ ReactDOM.render(
         <span style={spanStyle}>
           <Emoji label={"mobile"}/> mobile friendly
         </span>
-        <span>
+        <span style={spanStyle}>
           <Emoji label={"one hundred"}/> customizable theme and view options
         </span>
       </FullWidthWrappingFlexBox>
