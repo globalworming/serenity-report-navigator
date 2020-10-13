@@ -7,6 +7,8 @@ import FullWidthWrappingFlexBox from "./components/molecules/FullWidthWrappingFl
 import Emoji from "./components/atoms/Emoji";
 import ResultImage from "./components/atoms/ResultImage";
 import Result from "./model/Result";
+import {Box} from "@material-ui/core";
+import EnableTracking from "./components/EnableTracking";
 //import {Profiler, ProfilerOnRenderCallback} from 'react';
 
 /*
@@ -20,8 +22,11 @@ const spanStyle = {padding: "0.2rem"};
 
 ReactDOM.render(
   <React.StrictMode>
-    <a style={{position: "absolute", right: "0.5rem", top: "0.5rem"}} className="externalLink" href="https://github.com/globalworming/serenity-report-navigator"><img
-      src="https://x.h7e.eu/badges/xz/q/github/starGazers/gh-stargazers/globalworming/serenity-report-navigator" alt="GitHub Stars" /></a>
+    <Box style={{position: "absolute", right: "0.5rem", top: "0.5rem", textAlign: "right"}}>
+      <a style={{display: "block"}} className="externalLink" href="https://github.com/globalworming/serenity-report-navigator"><img
+        src="https://x.h7e.eu/badges/xz/q/github/starGazers/gh-stargazers/globalworming/serenity-report-navigator" alt="GitHub Stars" /></a>
+    </Box>
+
     <FullWidthWrappingFlexBox  style={{background: "#3f51b5", color: "white"}}>
       <FullWidthWrappingFlexBox>
         <h1 style={{padding: "0.5rem", display: "inline"}}>Serenity Report Navigator</h1>
@@ -42,6 +47,7 @@ ReactDOM.render(
           <Emoji label={"one hundred"}/> customizable theme and view options
         </span>
       </FullWidthWrappingFlexBox>
+      <EnableTracking />
     </FullWidthWrappingFlexBox>
     {/*<Profiler id="Navigation" onRender={onRender}>*/}
       <App/>
