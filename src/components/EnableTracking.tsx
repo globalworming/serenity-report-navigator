@@ -16,7 +16,7 @@ const EnableTracking = () => {
     <Box style={{marginLeft: "auto"}}>
       <CheckboxButton checked={track === "t"} onClick={toggle}>allow anonymous usage tracking</CheckboxButton>
     </Box>
-    {track === "t" && <img style={{width: 0, height: 0}}
+    {track === "t" && <img alt={"tracking-pixel"} style={{width: 0, height: 0}}
                            src={`https://9j6d0cvfq0.execute-api.eu-west-1.amazonaws.com/trackUsage?event=enableTracking&env=${process.env.NODE_ENV}&t=${moment().valueOf()}`}/>}
   </>
 };

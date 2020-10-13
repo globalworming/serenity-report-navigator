@@ -11,7 +11,7 @@ const ExploreData = () => {
   const displayView = (view: string) => {
     switch (view) {
       case "story": return <ByStory/>;
-      case "screenshots": return <ByScreenshots/>
+      case "screenshots": return <ByScreenshots/>;
       case "stats": return <Overview/>
     }
     return <ByTags />

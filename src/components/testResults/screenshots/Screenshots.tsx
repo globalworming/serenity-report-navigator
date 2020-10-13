@@ -22,7 +22,7 @@ const Screenshots = ({tell, height}: MyProps) => {
   const testSteps = flatSteps(tell.testSteps);
 
   const firstScreenshotIndex = testSteps.findIndex(it => it.screenshots && it.screenshots.length > 0);
-  const [index, setIndex] = useState(firstScreenshotIndex);
+  const [index] = useState(firstScreenshotIndex);
 
   const testStep = testSteps[index];
 
