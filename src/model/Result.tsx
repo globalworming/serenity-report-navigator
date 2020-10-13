@@ -19,7 +19,7 @@ export const colorOf = (result: string) => {
     case Result.Ignored:
       return "#a8a2bc";
     case Result.Error:
-      return "#89362d";
+      return "#e7222a";
     case Result.Compromised:
       return "#d645c4";
     case Result.Skipped:

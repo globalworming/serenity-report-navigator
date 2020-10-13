@@ -7,6 +7,7 @@ import TestOutcome from "../../../model/TestOutcome";
 import TestStep from "../../../model/TestStep";
 import LinkTo from "./LinkTo"
 import useGlobalState from "../../../state";
+import Emoji from "../../atoms/Emoji";
 
 interface MyProps {
   tell: TestOutcome
@@ -27,7 +28,7 @@ const OutComeHeading = ({tell}: MyProps) => {
   return <FullWidthWrappingFlexBox>
     <MyPaper>
       <RowWithResultAggregate tellAll={results}>
-        <span role="img" aria-label={"testCase"}>📑</span> <ResultImage result={tell.result}/> {tell.title} <LinkTo view={view} outcomeId={tell.id} depth={4}/>
+        <Emoji label={"outcome"}/> <ResultImage result={tell.result}/> {tell.title} <LinkTo view={view} outcomeId={tell.id} depth={4}/>
       </RowWithResultAggregate>
     </MyPaper>
   </FullWidthWrappingFlexBox>

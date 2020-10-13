@@ -3,6 +3,7 @@ import RowWithResultAggregate from "../molecules/RowWithResultAggregate";
 import React from "react";
 import TestOutcome from "../../model/TestOutcome";
 import UserStory from "../../model/UserStory";
+import Emoji from "../atoms/Emoji";
 
 interface MyProps {
   outcomes: Array<TestOutcome>,
@@ -11,7 +12,7 @@ interface MyProps {
 
 const StoryHeading = ({tell, outcomes}: MyProps) => <FullWidthWrappingFlexBox>
   <RowWithResultAggregate tellAll={outcomes.map(it => it.result)}>
-    <span role="img" aria-label={"story"}>📚</span>&nbsp;{tell.storyName}
+    <Emoji label={"story"}/>&nbsp;{tell.storyName}
   </RowWithResultAggregate>
 </FullWidthWrappingFlexBox>;
 

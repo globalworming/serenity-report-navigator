@@ -27,6 +27,8 @@ const emoji = (label: string) => {
       return "💯";
     case "stats":
       return "📊";
+    case "outcome":
+      return "📑";
 
   }
   return "📚";

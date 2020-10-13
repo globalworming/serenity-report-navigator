@@ -3,9 +3,9 @@ import _ from 'lodash';
 import useGlobalState from '../../state';
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import TestStep, {Screenshot} from "../../model/TestStep";
-import StoryHeading from "./StoryHeading";
-import MyPaper from "../atoms/MyPaper";
-import OutComeHeading from "./outcome/OutcomeHeading";
+import Screenshots from "./screenshots/Screenshots";
+import {Box} from "@material-ui/core";
+import Emoji from "../atoms/Emoji";
 
 const findScreenshots = (testSteps: Array<TestStep>) => {
   let steps: Array<Screenshot> = [];
@@ -15,51 +15,32 @@ const findScreenshots = (testSteps: Array<TestStep>) => {
   return steps;
 };
 
-const flatSteps = (testSteps: Array<TestStep>) => {
-  let result: Array<TestStep> = [];
-  if (!testSteps || testSteps.length === 0) return result;
-  result = result.concat(testSteps);
-  testSteps.forEach(testStep => result = result.concat(flatSteps(testStep.children)));
-  return result;
-};
-
 
 const ByScreenshots = () => {
   let [outcomes] = useGlobalState('filteredOutcomes');
   const localOutcomes = outcomes.filter(it => findScreenshots(it.testSteps).length > 0);
   const outcomesByStoryId = _.groupBy(localOutcomes, o => o.userStory.id);
 
+  const zoom = 2.2;
+  const height = 9 * zoom;
+  const width = 16 * zoom;
+
   return <>
     <FullWidthWrappingFlexBox style={{paddingTop: "1rem"}}>
-      {_.keys(outcomesByStoryId).map((storyName) => {
-        return <React.Fragment key={storyName}>
-          <MyPaper>
-            <StoryHeading outcomes={outcomesByStoryId[storyName]} tell={outcomesByStoryId[storyName][0].userStory}/>
+      {_.keys(outcomesByStoryId).map((storyId) => {
+        return <React.Fragment key={storyId}>
+          <FullWidthWrappingFlexBox style={{color: "#DBA", paddingTop: "1rem"}}>
+            <FullWidthWrappingFlexBox style={{justifyContent: "center", fontSize: "2rem"}}><Emoji label={"story"}/>&nbsp;{outcomesByStoryId[storyId][0].userStory.storyName}</FullWidthWrappingFlexBox>
             {
-              outcomesByStoryId[storyName].map((outcome, i) =>
-                <React.Fragment key={i + storyName}>
-                  <OutComeHeading tell={outcome}/>
-                  {
-                    flatSteps(outcome.testSteps)
-                      .filter(it => it.screenshots && it.screenshots.length > 0)
-                      .slice(0, 1)
-                      .map((it) => <React.Fragment key={`${i} ${it.number}`}>
-                          {
-                            it.screenshots && [it.screenshots[0]].map(it => it.screenshot)
-                              .map((it, j) =>
-                                <FullWidthWrappingFlexBox key={`${j} ${it}`}>
-                                  <img alt={`screenshot ${i} ${j}`} style={{width: "100%", height: "100%"}}
-                                       src={"./screenshots/" + it}/>
-                                </FullWidthWrappingFlexBox>
-                              )
-                          }
-                        </React.Fragment>
-                      )
-                  }
+              outcomesByStoryId[storyId].map((outcome, i) =>
+                <React.Fragment key={i + storyId}>
+                  <Box flex={`1 1 ${width}rem`} maxWidth={"none"} padding={"0.5rem"}>
+                    <Screenshots tell={outcome} height={height}/>
+                  </Box>
                 </React.Fragment>
               )
             }
-          </MyPaper>
+          </FullWidthWrappingFlexBox>
         </React.Fragment>;
       })}
     </FullWidthWrappingFlexBox>
