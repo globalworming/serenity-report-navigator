@@ -26,6 +26,7 @@ echo "];" >> ${PROJECT_ROOT}/xx00
 cat xx00 xx01 > ${TARGET_INDEX_HTML}
 
 
-rm -rf ${PROJECT_ROOT}/public/screenshots/*png
+mkdir ${PROJECT_ROOT}/public/screenshots/ || true
+rm -rf ${PROJECT_ROOT}/public/screenshots/*png || true
 cp ${PROJECT_ROOT}/exampleReports/*/serenity/*png ${PROJECT_ROOT}/public/screenshots
 
