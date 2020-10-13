@@ -26,7 +26,7 @@ ReactDOM.render(
       <FullWidthWrappingFlexBox>
         <h1 style={{padding: "0.5rem", display: "inline"}}>Serenity Report Navigator</h1>
       </FullWidthWrappingFlexBox>
-      <FullWidthWrappingFlexBox style={{marginLeft: "0.5rem", lineHeight:"2"}}>
+      <FullWidthWrappingFlexBox style={{lineHeight:"2"}}>
         <span style={spanStyle}>
           <Emoji label={"stories"}/> concise reporting of features</span>
         <span style={spanStyle}>
