@@ -35,10 +35,8 @@ const Screenshots = ({tell, height}: MyProps) => {
       step => step.screenshots.map(screenshot => ({step, screenshot: screenshot.screenshot}))
     )
     .flat(), it => it.step.number);
-  console.log({screenshotToTestStep});
 
   const [index, setIndex] = useState(0);
-
   const {screenshot, step} = screenshotToTestStep[index];
 
 
