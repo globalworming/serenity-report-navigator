@@ -14,7 +14,7 @@ const OutcomeDescription = ({tell}: MyProps) => {
   return <Box style={{padding: "1rem"}}>
     <span>tags: {tell.tags.map(({type, displayName, name}) => (<Button style={{color: "white", background: colorFor(type, "1F"), border: `1px solid ${colorFor(type)}`}} key={`${type}${displayName}`} variant={"outlined"}>{type}:{displayName ? displayName : name}</Button>))}</span>
     <br/><span><strong>duration</strong>: {prettyMilliseconds(tell.duration)}</span>
-    <br/><span><strong>started {moment(startTime).fromNow()}</strong>: {startTime}</span>
+    <br/><span><strong>started {moment(startTime).fromNow()}</strong>: {moment(startTime).toISOString()}</span>
     <br/><span><strong>source</strong>: {tell.testSource}</span>
     <br/><span><strong>outline</strong>: {tell.scenarioOutline}</span>
   </Box>
