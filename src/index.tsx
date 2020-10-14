@@ -47,7 +47,7 @@ ReactDOM.render(
           <Emoji label={"one hundred"}/> customizable theme and view options
         </span>
       </FullWidthWrappingFlexBox>
-      <EnableTracking />
+      {false && <EnableTracking />}
     </FullWidthWrappingFlexBox>
     {/*<Profiler id="Navigation" onRender={onRender}>*/}
       <App/>
