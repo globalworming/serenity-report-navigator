@@ -16,15 +16,14 @@ interface MyProps {
 const OutComeHeading = ({tell}: MyProps) => {
   const [view] = useGlobalState("view");
 
-
-  const flatResults = (testSteps: Array<TestStep>) => {
+  const allResults = (testSteps: Array<TestStep>) => {
     let result: Array<string> = [];
     if (!testSteps || testSteps.length === 0) return result;
-    result = result.concat(Object.assign([], testSteps.map(it => it.result)));
-    testSteps.forEach(testStep => result = result.concat(flatResults(testStep.children)));
+    result = result.concat(testSteps.map(it => it.result));
+    testSteps.forEach(testStep => result = result.concat(allResults(testStep.children)));
     return result;
   };
-  let results = flatResults(tell.testSteps);
+  let results = allResults(tell.testSteps);
   return <FullWidthWrappingFlexBox>
     <MyPaper>
       <RowWithResultAggregate tellAll={results}>

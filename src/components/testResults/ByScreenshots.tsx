@@ -4,7 +4,6 @@ import useGlobalState from '../../state';
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import TestStep, {Screenshot} from "../../model/TestStep";
 import Screenshots from "./screenshots/Screenshots";
-import {Box} from "@material-ui/core";
 import Emoji from "../atoms/Emoji";
 
 const findScreenshots = (testSteps: Array<TestStep>) => {
@@ -21,10 +20,7 @@ const ByScreenshots = () => {
   const localOutcomes = outcomes.filter(it => findScreenshots(it.testSteps).length > 0);
   const outcomesByStoryId = _.groupBy(localOutcomes, o => o.userStory.id);
 
-  const zoom = 2.2;
-  const height = 9 * zoom;
-  const width = 16 * zoom;
-
+  const width = 30;
   return <>
     <FullWidthWrappingFlexBox style={{paddingTop: "1rem"}}>
       {_.keys(outcomesByStoryId).map((storyId) => {
@@ -34,9 +30,9 @@ const ByScreenshots = () => {
             {
               outcomesByStoryId[storyId].map((outcome, i) =>
                 <React.Fragment key={i + storyId}>
-                  <Box flex={`1 1 ${width}rem`} maxWidth={"none"} padding={"0.5rem"}>
-                    <Screenshots tell={outcome} height={height}/>
-                  </Box>
+                  <FullWidthWrappingFlexBox style={{flex: `1 1 ${width* 2}rem`}}>
+                    <Screenshots tell={outcome} width={width} />
+                  </FullWidthWrappingFlexBox>
                 </React.Fragment>
               )
             }
