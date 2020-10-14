@@ -1,13 +1,12 @@
 import TestStep from "../../../model/TestStep";
 import React, {useState} from "react";
-import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import TestOutcome from "../../../model/TestOutcome";
 import ResultImage from "../../atoms/ResultImage";
-import {Box, Button} from "@material-ui/core";
-import Fullscreen from "./noun_Expand proportionally_1691340.svg";
+import {Box} from "@material-ui/core";
 import * as _ from "lodash";
-import Emoji from "../../atoms/Emoji";
 import TestStepDescriptions from "./TestStepDescriptions";
+import ScreenShot from "./ScreenShot";
+import Controls from "./Controls";
 
 const flatSteps = (testSteps: Array<TestStep>) => {
   let result: Array<TestStep> = [];
@@ -42,41 +41,12 @@ const Screenshots = ({tell, width}: MyProps) => {
   const {screenShot, step} = screenshotToTestStep[index];
 
 
-  const controlStyle = {border: "3px solid #DDBBAADD", background: "#FFFFFFDD", margin: "0.5rem"};
   return <React.Fragment>
 
     <Box flex={`1 1 ${width}rem`} maxWidth={"none"} padding={"0.5rem"}>
-      <FullWidthWrappingFlexBox
-        style={{
-          backgroundImage: `url("./screenshots/${screenShot}")`,
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          //boxShadow: `${colorOf(tell.result)} -1px -1px 10px 2px`,
-          width: "100%",
-          display: "block",
-          height: 0.8 * width +"rem"
-        }}
-      />
-      <FullWidthWrappingFlexBox style={{padding: "1rem", justifyContent: "space-around"}}>
-        <Button style={controlStyle} variant={"text"} onClick={() => setIndex(Math.max(index - 1, 0))}>&lt;</Button>
-        {
-          screenshotToTestStep.map((_, i) => <Button key={i} style={{
-            minWidth: "20px",
-            color: "white",
-            background: i === index ? "rgba(57,57,57,0.87)" : "none"
-          }} variant={"text"}>{i === index ? <Emoji label={"screenshots"}/> : "*"}</Button>)
-        }
-        <Button style={controlStyle} variant={"text"}
-                onClick={() => setIndex(Math.min(index + 1, screenshotToTestStep.length - 1))}>&gt;</Button>
-        <Button style={controlStyle} variant={"text"} href={`./screenshots/${screenShot}`} target={"_blank"}>
-          <img alt={"fullscreen"}
-               style={{width: "2rem"}}
-               src={Fullscreen}/>
-        </Button>
-      </FullWidthWrappingFlexBox>
+      <ScreenShot fileName={screenShot} width={width}/>
+      <Controls fileName={screenShot} index={index} setIndex={setIndex} items={screenshotToTestStep.length}></Controls>
     </Box>
-
 
     <Box flex={`1 1 ${width}rem`} maxWidth={"none"} padding={"0.5rem"}>
       <Box style={{padding: "0.2rem", background: "#FFFFFFDD", color: "black", margin: "0.5rem"}}><ResultImage
