@@ -28,7 +28,9 @@ const decodedQuery = (query: ParsedQuery<string | number>) => decodeQueryParams(
   paramConfigMap, query
 );
 
-export const encodedQuery = (query: MyQuery) => {
+export const queryString = (props: MyQuery) => `?${encodedQuery(props)}`;
+
+const encodedQuery = (query: MyQuery) => {
   return stringify(encodeQueryParams(paramConfigMap, query));
 };
 

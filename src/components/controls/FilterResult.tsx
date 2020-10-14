@@ -40,13 +40,14 @@ const FilterResult = () => {
   };
 
   return <>
+    <ClearButton disabled={!canBeCleared} onClick={clear}/>
     {results.map(it => {
-      return <CheckboxButton key={it} checked={filter.results.length === 0 || filter.results.includes(it)} onClick={() => toggle(it)}>
+      return <React.Fragment key={it}>
+        <CheckboxButton fullWidth={true} checked={filter.results.length === 0 || filter.results.includes(it)} onClick={() => toggle(it)}>
         {it} <ResultImage result={it}/>
-      </CheckboxButton>
+      </CheckboxButton></React.Fragment>
 
     })}
-    <ClearButton disabled={!canBeCleared} onClick={clear}/>
   </>
 };
 

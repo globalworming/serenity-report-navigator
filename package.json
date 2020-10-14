@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -28,8 +29,8 @@
     "react-router-dom": "^5.1.5",
     "react-scripts": "3.4.3",
     "react-use-localstorage": "^3.5.3",
-    "typescript": "~3.7.2",
-    "serialize-query-params": "1.2.3"
+    "serialize-query-params": "1.2.3",
+    "typescript": "~3.7.2"
   },
   "scripts": {
     "start": "bash ./updateIndexHtml.sh; react-scripts start",

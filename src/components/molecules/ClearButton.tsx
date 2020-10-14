@@ -10,7 +10,10 @@ interface MyProps {
 const ClearButton: FunctionComponent<MyProps> = ({disabled, onClick}) => {
 
   const style = Object.assign({
-    margin: "0.2rem"
+    margin: "0.2rem",
+    marginLeft: "auto",
+    padding: "0",
+    minWidth: "1rem"
   }, disabled ? {
     background: "#53767f",
     color: "black"

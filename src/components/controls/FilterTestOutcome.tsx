@@ -19,8 +19,8 @@ const FilterTestOutcome = () => {
   };
 
   return <>
-    <Button variant={"contained"} color={"primary"}>Outcome: {filter.focusOutcome}</Button>
     <ClearButton disabled={false} onClick={clear}/>
+    <Button variant={"contained"} color={"primary"}>Outcome: {filter.focusOutcome}</Button>
   </>
 };
 

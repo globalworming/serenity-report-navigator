@@ -10,17 +10,21 @@ import SearchAndFilter from "./controls/SearchAndFilter"
 import SwitchViewMode from "./testResults/SwitchViewMode"
 import ExpandCollapseAll from "./testResults/ExpandCollapseAll"
 import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
+import Header from "./Header";
+import {Box} from "@material-ui/core";
+
 
 declare global {
   // noinspection JSUnusedGlobalSymbols
   interface Window {
-    outcomes:Array<TestOutcome>;
+    outcomes: Array<TestOutcome>;
   }
 }
 const style = {
   background: "#111",
   padding: "0.2rem",
-  borderTop: "0.2rem solid #DDDDDD"
+  borderTop: "0.2rem solid #DDDDDD",
+  color: "white"
 };
 const App = () => {
     const [parsedQuery] = useGlobalState("hasParsedQuery");
@@ -45,22 +49,30 @@ const App = () => {
       </Route>
     </Router>;
 
-  return <FullWidthWrappingFlexBox style={style}>
+    return <FullWidthWrappingFlexBox style={style}>
       {process.env.NODE_ENV === 'development' && false && <>
         {printState}
         <Controls/>
       </>}
-
       {!parsedQuery && <InitWithQueryParameters/>}
       {parsedQuery && !appliedFilter && <ApplyFilter/>}
-      {parsedQuery && appliedFilter && <>
-        <ApplyFilter/>
-        <h2 style={{color:"#DBA"}}>search and filter</h2>
-        <SearchAndFilter />
-        <SwitchViewMode />
-        <ExpandCollapseAll />
-        <ExploreData/>
-      </>}
+
+
+      <Header/>
+      <FullWidthWrappingFlexBox>
+        <Box flex={"0 0 15rem"} borderRight={"2px solid white"} padding={"1rem 0.2rem"}>
+          <SearchAndFilter/>
+        </Box>
+        <Box flex={"1 0 40%"}>
+          <SwitchViewMode/>
+          {parsedQuery && appliedFilter && <>
+            <ApplyFilter/>
+            <ExploreData/>
+          </>}
+
+        </Box>
+
+      </FullWidthWrappingFlexBox>
     </FullWidthWrappingFlexBox>
   }
 ;

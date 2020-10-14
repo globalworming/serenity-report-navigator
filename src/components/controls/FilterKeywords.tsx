@@ -31,7 +31,8 @@ const FilterKeywords = () => {
 
   return <>
     <Box margin={"0 0.2rem"} flex={"1 1 150px"}>
-    <input style={{height: "2rem", width: "100%"}} type={"text"} placeholder={"search in story, name, ..."} value={localValue}
+    <input style={{height: "2rem", width: "100%", padding: "0.5rem", color: "white", background: "black", borderColor: "white"}}
+           type={"text"} placeholder={"search in story, name, ..."} value={localValue}
            onChange={(e) => setLocalValue(e.target.value)}/>
   </Box>
     <Box>

@@ -5,17 +5,67 @@ import LinkTo from "../testResults/outcome/LinkTo";
 import useGlobalState from "../../state";
 import FilterTestOutcome from "./FilterTestOutcome";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import {Button, Divider, Link} from "@material-ui/core";
+import Result from "../../model/Result";
+import Filter from "../../model/Filter";
 
 const SearchAndFilter = () => {
-  const [view] = useGlobalState("view");
-  const [filter] = useGlobalState("filter");
-  const [depth] = useGlobalState("expansionDepth");
+  const [view, setView] = useGlobalState("view");
+  const [filter, setFilter] = useGlobalState("filter");
+  const [depth, setDepths] = useGlobalState("expansionDepth");
 
+  const showPendingStories = () => {
+    const newFilter = Object.assign(new Filter(), filter);
+    newFilter.results = [Result.Pending];
+    setFilter(newFilter);
+    setDepths(1);
+    setView("outcomes")
+  };
+
+  const showViewOutcomeErrors = () => {
+    const newFilter = Object.assign(new Filter(), filter);
+    newFilter.results = [Result.Failure, Result.Error, Result.Compromised];
+    setFilter(newFilter);
+    setDepths(4);
+    setView("outcomes")
+  };
+
+  const divider = <FullWidthWrappingFlexBox>
+    <hr style={{width: "20%"}}/>
+  </FullWidthWrappingFlexBox>;
   return <FullWidthWrappingFlexBox>
+
+    <span style={{textTransform: "capitalize"}}>quick access</span>
+    <Button fullWidth={true} color={"secondary"} variant={"text"} onClick={showViewOutcomeErrors}>
+      trace errors <LinkTo depth={4} results={[Result.Failure, Result.Error, Result.Compromised]}/>
+    </Button>
+    <Button fullWidth={true} color={"secondary"} variant={"text"} onClick={showPendingStories}>
+      pending stories <LinkTo depth={1} view={"story"} results={[Result.Pending]}/>
+    </Button>
+    {divider}
+
+
     <FilterKeywords/>
+    {divider}
+
+    <span style={{textTransform: "capitalize"}}>filter</span>
     <FilterResult/>
-    <FilterTestOutcome/>
-    <LinkTo view={view} results={filter.results} text={filter.keyword} outcomeId={filter.focusOutcome} depth={depth}/>
+    {divider}
+
+    {filter.focusOutcome.length > 0 && <>
+      <span style={{textTransform: "capitalize"}}>outcome</span>
+      <FilterTestOutcome/>
+      {divider}
+    </>
+    }
+
+
+
+    <span style={{textTransform: "capitalize"}}>share filter: <LinkTo view={view} results={filter.results}
+                                                                      text={filter.keyword}
+                                                                      outcomeId={filter.focusOutcome}
+                                                                      depth={depth}/></span>
+
   </FullWidthWrappingFlexBox>
 };
 
