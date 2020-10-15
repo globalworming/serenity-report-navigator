@@ -45,7 +45,7 @@ const Screenshots = ({tell, width}: MyProps) => {
 
     <Box flex={`1 1 ${width}rem`} maxWidth={"none"} padding={"0.5rem"}>
       <ScreenShot fileName={screenShot} width={width}/>
-      <Controls fileName={screenShot} index={index} setIndex={setIndex} items={screenshotToTestStep.length}></Controls>
+      <Controls fileName={screenShot} index={index} setIndex={setIndex} items={screenshotToTestStep.length}/>
     </Box>
 
     <Box flex={`1 1 ${width}rem`} maxWidth={"none"} padding={"0.5rem"}>

@@ -43,4 +43,5 @@ const ByTags = () => {
   </>
 };
 
+// noinspection JSUnusedGlobalSymbols
 export default ByTags

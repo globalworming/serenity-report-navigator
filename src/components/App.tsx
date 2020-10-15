@@ -35,8 +35,6 @@ const App = () => {
     const [depth] = useGlobalState('expansionDepth');
     const [filter] = useGlobalState('filter');
     const [outcomes] = useGlobalState("filteredOutcomes");
-
-
     const counts = appliedFilter ? _.toPairs(_.countBy(outcomes, it => it.result)) : [];
 
 

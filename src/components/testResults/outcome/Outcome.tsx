@@ -8,7 +8,6 @@ import DisplayTestFailureCause from "./DisplayTestFailureCause"
 import OutcomeDescription from "./OutcomeDescription"
 import {Box} from "@material-ui/core";
 import {colorOf} from "../../../model/Result";
-import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 
 type MyProps = {
   tell: TestOutcome

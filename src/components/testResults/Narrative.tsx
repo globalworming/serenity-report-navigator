@@ -1,5 +1,4 @@
 import React from "react";
-import MyPaper from "../atoms/MyPaper";
 import useGlobalState from "../../state";
 import ResultImage from "../atoms/ResultImage";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
