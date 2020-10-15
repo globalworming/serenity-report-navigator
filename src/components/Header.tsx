@@ -2,7 +2,7 @@ import {Box, Button, ClickAwayListener, Typography} from "@material-ui/core";
 import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
 import Emoji from "./atoms/Emoji";
 import ResultImage from "./atoms/ResultImage";
-import Result from "../model/Result";
+import Result, {colorOf} from "../model/Result";
 import EnableTracking from "./EnableTracking";
 import React, {useState} from "react";
 

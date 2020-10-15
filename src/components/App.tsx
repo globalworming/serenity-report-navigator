@@ -12,6 +12,8 @@ import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
 import Header from "./Header";
 import {Box} from "@material-ui/core";
 import ExpandCollapseAll from "./testResults/ExpandCollapseAll";
+import {colorOf} from "../model/Result";
+import * as _ from "lodash";
 
 
 declare global {
@@ -32,6 +34,11 @@ const App = () => {
     const [view] = useGlobalState('view');
     const [depth] = useGlobalState('expansionDepth');
     const [filter] = useGlobalState('filter');
+    const [outcomes] = useGlobalState("filteredOutcomes");
+
+
+    const counts = appliedFilter ? _.toPairs(_.countBy(outcomes, it => it.result)) : [];
+
 
     const printState = <pre style={{overflow: "auto", flex: "0 0 300px"}}>{[{
       state: {
@@ -59,6 +66,16 @@ const App = () => {
 
 
       <Header/>
+
+      <Box height={"0.5rem"} display={"flex"} overflow={"hidden"} width={"100%"}>
+        {
+          counts.map(([result, count]) => <React.Fragment key={result}>
+              <Box style={{boxShadow: "inset black 0px 0px 3px 1px"}} height={"1rem"} width={count * 100 / outcomes.length + "%"} bgcolor={colorOf(result)}/>
+            </React.Fragment>
+          )
+        }
+      </Box>
+
       <FullWidthWrappingFlexBox>
         <Box flex={"0 0 15rem"} padding={"1rem 0.2rem"}>
           <SideMenu/>

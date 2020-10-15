@@ -15,8 +15,8 @@ const ExpandCollapseAll = () => {
   }
   return <>
     <Box className={"expandCollapseAll"} style={{textAlign: "right"}}>
-      <ExpandCollapse isExpanded={true} onClick={expandAll}/>
-      <ExpandCollapse isExpanded={false} onClick={collapseAll}/>
+      <ExpandCollapse isExpanded={false} onClick={expandAll}/>
+      <ExpandCollapse isExpanded={true} onClick={collapseAll}/>
     </Box>
   </>
 };

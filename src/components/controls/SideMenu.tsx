@@ -23,7 +23,8 @@ const SideMenu = () => {
     newFilter.results = [Result.Pending];
     setFilter(newFilter);
     setDepths(1);
-    setView("outcomes")
+    setView("story")
+
   };
 
   const showViewOutcomeErrors = () => {
@@ -31,7 +32,7 @@ const SideMenu = () => {
     newFilter.results = [Result.Failure, Result.Error, Result.Compromised];
     setFilter(newFilter);
     setDepths(4);
-    setView("outcomes")
+    setView("story")
   };
 
   const divider = <FullWidthWrappingFlexBox>
@@ -44,7 +45,7 @@ const SideMenu = () => {
       trace errors <LinkTo depth={4} results={[Result.Failure, Result.Error, Result.Compromised]}/>
     </Button>
     <Button fullWidth={true} color={"secondary"} variant={"text"} onClick={showPendingStories}>
-      pending stories <LinkTo depth={1} view={"story"} results={[Result.Pending]}/>
+      pending stories <LinkTo depth={1} results={[Result.Pending]}/>
     </Button>
     {divider}
 

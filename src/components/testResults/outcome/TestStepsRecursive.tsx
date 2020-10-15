@@ -14,7 +14,7 @@ type MyProps = {
 const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
   if (!tellAll || tellAll.length === 0) return null;
 
-  const testStep = (step: TestStep) => <FullWidthWrappingFlexBox style={{paddingTop: "0.2rem"}}>
+  const testStep = (step: TestStep) => <FullWidthWrappingFlexBox style={{paddingTop: "0.2rem", color: "white"}}>
     <Box style={{paddingLeft: `${0.1 + depth * 2}rem`}}>
       <ResultImage result={step.result}/> {step.description}
     </Box>

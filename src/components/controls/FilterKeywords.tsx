@@ -13,7 +13,8 @@ const FilterKeywords = () => {
   const sync = (filter: Filter, newValue: string) => {
     const newFilter = Object.assign(new Filter(), filter);
     newFilter.keyword = newValue;
-    setFilter(newFilter)
+    setFilter(newFilter);
+    setDepths(0)
   };
 
   const debouncedSync = useRef(_.debounce(sync, 300)).current;

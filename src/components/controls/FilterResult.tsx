@@ -27,6 +27,7 @@ const FilterResult = () => {
     } else {
       newFilter.results.splice(index, 1)
     }
+    setDepths(0);
     setFilter(newFilter)
   }
 

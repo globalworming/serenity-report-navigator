@@ -17,7 +17,7 @@ type MyProps = {
 
 const Outcome = ({tell}: MyProps) => {
   return <>
-    <Box style={{boxShadow: `${colorOf(tell.result)}  -2px 2px 0px 0px`, background: "black"}}>
+    <Box className={"outcome"} style={{width: "100%", boxShadow: `${colorOf(tell.result)}  -2px 2px 0px 0px`, background: "black"}}>
       <Expandable depths={2} whatsHidden={<>
         <OutcomeDescription tell={tell} />
         <TestStepsRecursive depth={0} tellAll={tell.testSteps}/>
@@ -26,6 +26,7 @@ const Outcome = ({tell}: MyProps) => {
       </Expandable>
       <DisplayTestFailureCause tell={tell.testFailureCause}/>
     </Box>
+    <hr style={{margin: "0.25rem auto", width: "20%", height: "5px", backgroundColor: "#a2a2a2"}}/>
   </>
 };
 

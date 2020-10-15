@@ -11,7 +11,7 @@ type MyProps = {
 const OutcomeDescription = ({tell}: MyProps) => {
   const startTime = typeof tell.startTime === "string" && tell.startTime.toString().includes("[") ? tell.startTime.split("[")[0] : tell.startTime;
 
-  return <Box style={{padding: "1rem"}}>
+  return <Box style={{padding: "1rem", color: "white"}}>
     <span>tags: {tell.tags.map(({type, displayName, name}) => (<Button style={{color: "white", background: colorFor(type, "1F"), border: `1px solid ${colorFor(type)}`}} key={`${type}${displayName}`} variant={"outlined"}>{type}:{displayName ? displayName : name}</Button>))}</span>
     <br/><span><strong>duration</strong>: {prettyMilliseconds(tell.duration)}</span>
     <br/><span><strong>started {moment(startTime).fromNow()}</strong>: {moment(startTime).toISOString()}</span>
