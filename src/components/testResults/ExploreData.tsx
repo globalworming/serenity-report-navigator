@@ -2,7 +2,6 @@ import React from 'react';
 import useGlobalState from '../../state';
 import ByStory from "./ByStory";
 import ByScreenshots from "./ByScreenshots";
-import ByTags from "./ByTags";
 import Overview from "./stats/Overview";
 
 const ExploreData = () => {
@@ -14,7 +13,7 @@ const ExploreData = () => {
       case "screenshots": return <ByScreenshots/>;
       case "stats": return <Overview/>
     }
-    return <ByTags />
+    return <Overview/>
   };
   return <>
     {displayView(view)}

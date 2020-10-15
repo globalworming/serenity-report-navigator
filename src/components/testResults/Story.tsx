@@ -19,13 +19,13 @@ const Story = ({tell, outcomes}: StoryProps) => {
 
   const storyOutComes = outcomes.map((it) => <Outcome key={it.name + it.startTime} tell={it}/>);
 
-  return <MyPaper>
+  return <>
     <Expandable depths={1} whatsHidden={<>
     <Narrative tell={tell.narrative}/>
     {storyOutComes}
     </>}>
       {storyHeading}
-    </Expandable></MyPaper>;
+    </Expandable></>;
 };
 
 export default Story

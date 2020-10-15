@@ -14,7 +14,6 @@ const SwitchViewMode = () => {
 
   // this expensive calculations are made in ExploreData.tsx also, could better be globally in ApplyFilter.tsx
   const tags = _.uniqBy(outcomes.map(it => it.tags).flat(), (it) => joined(it));
-  const types = _.uniq(tags.map(it => it.type));//.filter(hasOutcomes);
 
   const switchTo = (view: string) => {
     setDepth(0);
@@ -34,7 +33,7 @@ const SwitchViewMode = () => {
   return <Box flex={"1 1 300px"}>
       <FullWidthWrappingFlexBox style={{justifyContent: "space-between", paddingTop: "1rem"}}>
         {
-          [["story", "stats", "screenshots"], types].flat().map(it => <React.Fragment key={it}>
+          ["story", "stats", "screenshots"].map(it => <React.Fragment key={it}>
             {switchToViewButton(it)}
           </React.Fragment>)
         }

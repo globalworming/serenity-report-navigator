@@ -5,14 +5,18 @@ import LinkTo from "../testResults/outcome/LinkTo";
 import useGlobalState from "../../state";
 import FilterTestOutcome from "./FilterTestOutcome";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
-import {Button, Divider, Link} from "@material-ui/core";
+import {Button} from "@material-ui/core";
 import Result from "../../model/Result";
 import Filter from "../../model/Filter";
 
-const SearchAndFilter = () => {
+const SideMenu = () => {
   const [view, setView] = useGlobalState("view");
   const [filter, setFilter] = useGlobalState("filter");
   const [depth, setDepths] = useGlobalState("expansionDepth");
+
+  // FIXME filter tags
+  //const types = _.uniq(tags.map(it => it.type));//.filter(hasOutcomes);
+
 
   const showPendingStories = () => {
     const newFilter = Object.assign(new Filter(), filter);
@@ -69,4 +73,4 @@ const SearchAndFilter = () => {
   </FullWidthWrappingFlexBox>
 };
 
-export default SearchAndFilter
+export default SideMenu
