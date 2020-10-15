@@ -78,8 +78,8 @@ const App = () => {
         <Box flex={"0 0 15rem"} padding={"1rem 0.2rem"}>
           <SideMenu/>
         </Box>
-        <Box flex={"1 0 40%"} style={{boxShadow: `inset white  3px 0px 5px -2px`, background: "black"}}>
-          <Box style={{margin: "0.25rem", background: "black"}}>
+        <Box flex={"1 0 40%"}>
+          <Box>
             <FullWidthWrappingFlexBox>
               <Box flex={"1 0 70%"}>
                 <SwitchViewMode/>
