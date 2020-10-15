@@ -39,11 +39,17 @@ const Header = () => {
   </ClickAwayListener>;
 
   return <>
-    <Box style={{position: "absolute", right: "0.5rem", top: "0.5rem", textAlign: "right"}}>
-      <a style={{display: "block"}} className="externalLink"
-         href="https://github.com/globalworming/serenity-report-navigator"><img
+    <Box style={{position: "absolute", right: "0.75rem", top: "0.75rem", textAlign: "right"}}>
+      <a href="https://github.com/globalworming/serenity-report-navigator">
+        <img
+          style={{height: "1.5rem"}}
         src="https://x.h7e.eu/badges/xz/q/github/starGazers/gh-stargazers/globalworming/serenity-report-navigator"
         alt="GitHub Stars"/></a>
+
+
+    </Box>
+    <Box style={{position: "absolute", right: "8rem", top: "0.5rem", textAlign: "right"}}>
+      <iframe src="https://github.com/sponsors/globalworming/button" title="Sponsor globalworming" height="35" width="116" style={{border: 0}}/>
     </Box>
 
     <FullWidthWrappingFlexBox style={{background: "#3f51b5", color: "white"}}>
