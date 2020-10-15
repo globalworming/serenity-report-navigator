@@ -19,7 +19,7 @@ const Narrative = ({tell}: MyProps) => {
   function renderExample(exampleLine: string) {
     const outcomeTitle = exampleLine.split("} ")[1];
     return <>
-      <MyPaper>
+      <Box style={{background: "black"}}>
         <strong>{outcomeTitle}</strong>
         {
           outcomes
@@ -27,7 +27,7 @@ const Narrative = ({tell}: MyProps) => {
             .filter(outcome => outcome.testSteps[0].description.startsWith("Example"))
             .map(outcome => outcome.dataTable)
             .map((data, i) => <React.Fragment key={i}>
-              <MyPaper>
+              <>
                 <FullWidthWrappingFlexBox>{data.scenarioOutline}</FullWidthWrappingFlexBox>
                 <FullWidthWrappingFlexBox>
                   <Box flex={"1 0 10%"}/>
@@ -48,16 +48,17 @@ const Narrative = ({tell}: MyProps) => {
                     </React.Fragment>)
                   }
                 </FullWidthWrappingFlexBox>
-              </MyPaper>
+              </>
             </React.Fragment>)
         }
-      </MyPaper>
+      </Box>
     </>;
   }
 
 // see serenity-core/serenity-model/src/main/java/net/thucydides/core/requirements/model/cucumber/DescriptionWithScenarioReferences.java
   const lines: Array<any> = tell.split("\n").filter(it => it !== "").map((it, i) => it.includes("{Example") ? <React.Fragment key={i}>{renderExample(it)}</React.Fragment> : it);
-  return <MyPaper>{lines.map((it, i) => <div style={{margin: "0.5rem"}} key={i}>{it}</div>)}</MyPaper>
+
+  return <>{lines.map((it, i) => <FullWidthWrappingFlexBox style={{padding: "0.5rem", background: "black", color: "white"}} key={i}>{it}</FullWidthWrappingFlexBox>)}</>
 };
 
 export default Narrative

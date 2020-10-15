@@ -7,13 +7,15 @@ import CollapseIcon from "./noun_collapse vertical_2439339.svg"
 
 interface MyProps {
   isExpanded: boolean
+  onClick?: Function
 }
 
-const ExpandCollapse = ({isExpanded}: MyProps) => {
-  const style = {width: "1.5rem", height: "1.5rem", paddingTop: "0.2rem"};
+const ExpandCollapse = ({isExpanded, onClick}: MyProps) => {
+  const style = {width: "1.5rem", height: "1.5rem"};
+  const buttonStyle = {background: "black", margin: "0.25em", minWidth: 0, padding: 0, paddingTop: "0.2rem", borderRadius: "100%"};
 
-  return <Button variant={"contained"}
-                 style={{background: "#333", margin: "0 auto", padding: "0", color: "#DBA", display: "block"}}>
+
+  return <Button variant={"outlined"} style={buttonStyle} color={"secondary"} onClick={(() => onClick !== undefined && onClick())}>
     {!isExpanded &&
     <img
         style={style}

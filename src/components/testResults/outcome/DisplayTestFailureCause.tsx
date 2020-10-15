@@ -19,20 +19,24 @@ const DisplayTestFailureCause = ({tell}: MyProps) => {
 
   return <FullWidthWrappingFlexBox style={{padding: "2rem"}}>
     <FullWidthWrappingFlexBox>
+      <pre style={{overflowX: "auto", flex: "0 0 100%", color: "red"}} >{rootCause.errorType} {rootCause.message}</pre>
       <OneClickCopy text={`${rootCause.errorType} ${rootCause.message}`}/>
-      <pre style={{overflowX: "auto", flex: "0 0 100%"}}>{rootCause.errorType} {rootCause.message}</pre>
     </FullWidthWrappingFlexBox>
     <Expandable depths={3} whatsHidden={
       <FullWidthWrappingFlexBox>
-        <OneClickCopy text={`${rootCause.errorType} ${rootCause.message} \n` + rootCause.stackTrace.map((it) =>
-          `at ${it.declaringClass}#${it.methodName}(${it.fileName}:${it.lineNumber})`).join("\n")}/>
-        <pre style={{overflowX: "auto", flex: "0 0 100%"}}>{
+
+
+        <pre style={{overflowX: "auto", flex: "0 0 100%", color: "red"}}>{
           rootCause.stackTrace.map((it) =>
             `at ${it.declaringClass}#${it.methodName}(${it.fileName}:${it.lineNumber})`).join("\n")
         }</pre>
+
+        <OneClickCopy text={`${rootCause.errorType} ${rootCause.message} \n` + rootCause.stackTrace.map((it) =>
+          `at ${it.declaringClass}#${it.methodName}(${it.fileName}:${it.lineNumber})`).join("\n")}/>
+
       </FullWidthWrappingFlexBox>
     }>
-    <Button variant={"contained"} color={"secondary"}>full trace</Button>
+    <Button style={{marginLeft: "auto"}} variant={"outlined"} color={"secondary"}>full trace</Button>
     </Expandable>
   </FullWidthWrappingFlexBox>
 };

@@ -11,6 +11,7 @@ import SwitchViewMode from "./testResults/SwitchViewMode"
 import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
 import Header from "./Header";
 import {Box} from "@material-ui/core";
+import ExpandCollapseAll from "./testResults/ExpandCollapseAll";
 
 
 declare global {
@@ -59,16 +60,24 @@ const App = () => {
 
       <Header/>
       <FullWidthWrappingFlexBox>
-        <Box flex={"0 0 15rem"} padding={"1rem 0.2rem"} >
+        <Box flex={"0 0 15rem"} padding={"1rem 0.2rem"}>
           <SideMenu/>
         </Box>
-        <Box flex={"1 0 40%"} style={{boxShadow: `inset white  3px 3px 5px -2px`, background: "#3f51b5"}}>
-          <SwitchViewMode/>
-          {parsedQuery && appliedFilter && <>
-            <ApplyFilter/>
-            <ExploreData/>
-          </>}
-
+        <Box flex={"1 0 40%"} style={{boxShadow: `inset white  3px 0px 5px -2px`, background: "black"}}>
+          <Box style={{margin: "0.25rem", background: "black"}}>
+            <FullWidthWrappingFlexBox>
+              <Box flex={"1 0 70%"}>
+                <SwitchViewMode/>
+              </Box>
+              <Box flex={"0 0 6rem"}>
+                <ExpandCollapseAll/>
+              </Box>
+            </FullWidthWrappingFlexBox>
+            {parsedQuery && appliedFilter && <>
+              <ApplyFilter/>
+              <ExploreData/>
+            </>}
+          </Box>
         </Box>
 
       </FullWidthWrappingFlexBox>

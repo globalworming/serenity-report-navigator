@@ -6,6 +6,8 @@ import TestOutcome from "../../model/TestOutcome";
 import Outcome from "./outcome/Outcome";
 import Narrative from "./Narrative";
 import StoryHeading from "./StoryHeading";
+import {Box} from "@material-ui/core";
+import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 
 interface StoryProps {
   tell: UserStory,
@@ -20,12 +22,16 @@ const Story = ({tell, outcomes}: StoryProps) => {
   const storyOutComes = outcomes.map((it) => <Outcome key={it.name + it.startTime} tell={it}/>);
 
   return <>
-    <Expandable depths={1} whatsHidden={<>
-    <Narrative tell={tell.narrative}/>
-    {storyOutComes}
-    </>}>
-      {storyHeading}
-    </Expandable></>;
+    <FullWidthWrappingFlexBox className={"story"} style={{padding: "0.1rem", background: "#EEE", color: "black", borderRadius: "10px", marginBottom: "1rem"}}>
+      <Expandable depths={1} whatsHidden={<>
+        <Narrative tell={tell.narrative}/>
+        {storyOutComes}
+      </>}>
+        {storyHeading}
+      </Expandable>
+    </FullWidthWrappingFlexBox>
+  </>
+
 };
 
 export default Story

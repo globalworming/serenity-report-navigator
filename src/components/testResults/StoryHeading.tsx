@@ -10,10 +10,11 @@ interface MyProps {
   tell: UserStory
 }
 
-const StoryHeading = ({tell, outcomes}: MyProps) => <FullWidthWrappingFlexBox>
-  <RowWithResultAggregate tellAll={outcomes.map(it => it.result)}>
-    <Emoji label={"story"}/>&nbsp;{tell.storyName}
-  </RowWithResultAggregate>
-</FullWidthWrappingFlexBox>;
+const StoryHeading = ({tell, outcomes}: MyProps) =>
+  <FullWidthWrappingFlexBox className={"storyHeading"} style={{lineHeight: 2.3}}>
+    <RowWithResultAggregate tellAll={outcomes.map(it => it.result)}>
+      <Emoji label={"story"}/>&nbsp;{tell.storyName}
+    </RowWithResultAggregate>
+  </FullWidthWrappingFlexBox>;
 
 export default StoryHeading

@@ -24,21 +24,23 @@ const SwitchViewMode = () => {
 
   const switchToViewButton = (it: string) => <>
     <Box onClick={() => switchTo(it)}>
-      <Button variant={view === it ? "contained" : "outlined"} color={"secondary"}>{it}&nbsp;<Emoji label={it}/></Button>
+      <Button disableElevation variant={view === it ? "contained" : "outlined"} color={"secondary"} style={{borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}>
+        {it}&nbsp;<Emoji label={it} />
+      </Button>
       <LinkTo view={it} depth={0}/>
     </Box>
   </>;
 
 
-  return <Box flex={"1 1 300px"}>
-      <FullWidthWrappingFlexBox style={{justifyContent: "space-between", paddingTop: "1rem"}}>
+  return <>
+      <FullWidthWrappingFlexBox className={"switchWrapper"} style={{justifyContent: "space-between", padding: "0.25rem", paddingBottom: 0, background: "black"}}>
         {
           ["story", "stats", "screenshots"].map(it => <React.Fragment key={it}>
             {switchToViewButton(it)}
           </React.Fragment>)
         }
       </FullWidthWrappingFlexBox>
-  </Box>
+  </>
 };
 
 export default SwitchViewMode

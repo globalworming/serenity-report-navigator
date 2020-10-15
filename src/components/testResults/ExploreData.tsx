@@ -16,7 +16,7 @@ const ExploreData = () => {
     return <Overview/>
   };
   return <>
-    {displayView(view)}
+      {displayView(view)}
   </>
 };
 
