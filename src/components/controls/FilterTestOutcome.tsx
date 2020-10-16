@@ -20,7 +20,7 @@ const FilterTestOutcome = () => {
 
   return <>
     <ClearButton disabled={false} onClick={clear}/>
-    <Button variant={"contained"} color={"primary"}>Outcome: {filter.focusOutcome}</Button>
+    <Button variant={"contained"} color={"primary"}>Outcome: {filter.focusOutcome.split(".").join(" ")}</Button>
   </>
 };
 

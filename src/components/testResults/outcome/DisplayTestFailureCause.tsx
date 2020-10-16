@@ -4,6 +4,7 @@ import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import React from "react";
 import OneClickCopy from "../../molecules/OneClickCopy";
 import {Button} from "@material-ui/core";
+import Pre from "../../atoms/Pre";
 
 interface MyProps {
   tell: TestFailureCause
@@ -19,17 +20,19 @@ const DisplayTestFailureCause = ({tell}: MyProps) => {
 
   return <FullWidthWrappingFlexBox style={{padding: "2rem"}}>
     <FullWidthWrappingFlexBox>
-      <pre style={{overflowX: "auto", flex: "0 0 100%", color: "red"}} >{rootCause.errorType} {rootCause.message}</pre>
+
+      <Pre style={{color: "red"}} >{rootCause.errorType} {rootCause.message}</Pre>
+
       <OneClickCopy text={`${rootCause.errorType} ${rootCause.message}`}/>
     </FullWidthWrappingFlexBox>
     <Expandable depths={3} whatsHidden={
       <FullWidthWrappingFlexBox>
 
 
-        <pre style={{overflowX: "auto", flex: "0 0 100%", color: "red"}}>{
+        <Pre style={{color: "red"}}>{
           rootCause.stackTrace.map((it) =>
             `at ${it.declaringClass}#${it.methodName}(${it.fileName}:${it.lineNumber})`).join("\n")
-        }</pre>
+        }</Pre>
 
         <OneClickCopy text={`${rootCause.errorType} ${rootCause.message} \n` + rootCause.stackTrace.map((it) =>
           `at ${it.declaringClass}#${it.methodName}(${it.fileName}:${it.lineNumber})`).join("\n")}/>
