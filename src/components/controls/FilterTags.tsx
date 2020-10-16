@@ -1,43 +1,79 @@
 import React from "react";
 import _ from "lodash";
-import MyPaper from "../atoms/MyPaper";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
-import {Box} from "@material-ui/core";
-import CheckboxButton from "../atoms/CheckboxButton";
-import {joined} from "../../model/Tag";
-
+import {Button} from "@material-ui/core";
+import Tag, {joined} from "../../model/Tag";
+import ClearButton from "../molecules/ClearButton";
+import useGlobalState from "../../state";
+import Filter from "../../model/Filter";
+import Emoji from "../atoms/Emoji";
 
 
 const FilterTags = () => {
-  const outcomes = window.outcomes;
-  const tags = _.uniqBy(outcomes.map(it => it.tags).flat(), (it) => joined(it));
+
+  const [outcomes] = useGlobalState("filteredOutcomes");
+  const [filter, setFilter] = useGlobalState("filter");
+  const [, setDepths] = useGlobalState("expansionDepth");
+  const [appliedFilter] = useGlobalState("hasAppliedFilter");
+  const tags = appliedFilter ? _.uniqBy(outcomes.map(it => it.tags).flat(), (it) => joined(it)) : [];
   const byType = _.groupBy(tags, it => it.type);
+  const types =  filter.focusType.length > 0 ? [filter.focusType] : _.keys(byType);
+  const canBeCleared = filter.focusType !== "" || filter.focusTag !== "";
 
-
-  const toggleType = (type: string) => {
-    console.log("todo", type)
+  const clear = () => {
+    setDepths(0);
+    const newFilter = Object.assign(new Filter(), filter);
+    newFilter.focusTag = "";
+    newFilter.focusType = "";
+    setFilter(newFilter)
   };
 
-  const toggleTag = (type: string, it: string) => {
-    console.log("todo", type, it)
-  };
+  function focusType(type: string) {
+    setDepths(0);
+    const newFilter = Object.assign(new Filter(), filter);
+    newFilter.focusTag = "";
+    newFilter.focusType = type;
+    setFilter(newFilter)
+  }
+
+  function focusTag(tag: Tag) {
+    setDepths(0);
+    const newFilter = Object.assign(new Filter(), filter);
+    newFilter.focusTag = tag.name;
+    newFilter.focusType = tag.type;
+    setFilter(newFilter)
+  }
+
 
   return <>
-    <MyPaper>
-      <strong>TODO filter tags</strong>
-      <FullWidthWrappingFlexBox>
-        {_.keys(byType).map(type => <React.Fragment key={type}>
-          <Box flex={"1 0 20%"}>
-            <CheckboxButton checked={true} onClick={() => toggleType(type)}>{type}</CheckboxButton>
-            <ul style={{maxHeight: "10rem", overflowX: "auto"}}>
-              {byType[type].map(it =>
-                <CheckboxButton key={joined(it)} checked={true} onClick={() => toggleTag(type, it.name)}>{it.displayName ? it.displayName : it.name}</CheckboxButton>
-              )}
-            </ul>
-          </Box>
-        </React.Fragment>)}
-      </FullWidthWrappingFlexBox>
-    </MyPaper>
+    <ClearButton disabled={!canBeCleared} onClick={clear}/>
+    <FullWidthWrappingFlexBox>
+      {types.map(type => <React.Fragment key={type}>
+        <Button fullWidth={true}
+                style={{margin: "0.2rem", color: "#FFF", wordBreak: "break-word", background: filter.focusType === type ? "#DDDDDD30" : "#00000000"}}
+                variant="outlined" color={"primary"}
+                onClick={() => focusType(type)}
+
+        >
+          <Emoji label={type}/>&nbsp;{type}
+        </Button>
+
+        <FullWidthWrappingFlexBox style={{overflowY: "auto", maxHeight: filter.focusType === type ? "none" : "7rem", marginBottom: "1rem"}}>
+          {byType[type].map(it =>
+            <Button key={it.name} fullWidth={true}
+                    style={{
+                      margin: "0.2rem", color: "#FFF", marginLeft: "1rem", wordBreak: "break-word",
+                      background: filter.focusTag === it.name ? "#DDDDDD30" : "#00000000"
+                    }}
+                    variant="outlined" color={"primary"}
+                    onClick={() => focusTag(it)}
+            >
+              &nbsp;{it.displayName ? it.displayName : it.name}
+            </Button>
+          )}
+        </FullWidthWrappingFlexBox>
+      </React.Fragment>)}
+    </FullWidthWrappingFlexBox>
   </>
 };
 

@@ -45,7 +45,7 @@ const FilterResult = () => {
     {results.map(it => {
       return <React.Fragment key={it}>
         <CheckboxButton fullWidth={true} checked={filter.results.length === 0 || filter.results.includes(it)} onClick={() => toggle(it)}>
-        {it} <ResultImage result={it}/>
+        {it}&nbsp;<ResultImage result={it}/>
       </CheckboxButton></React.Fragment>
 
     })}

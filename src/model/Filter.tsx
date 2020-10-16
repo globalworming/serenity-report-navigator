@@ -1,7 +1,9 @@
 class Filter {
   results: Array<string> = [];
-  keyword: string = "";
-  focusOutcome: string = "";
+  keyword = "";
+  focusOutcome = "";
+  focusType = "";
+  focusTag = "";
 }
 
 export default Filter

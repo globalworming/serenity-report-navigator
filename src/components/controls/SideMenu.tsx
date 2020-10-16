@@ -8,17 +8,12 @@ import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import {Button} from "@material-ui/core";
 import Result from "../../model/Result";
 import Filter from "../../model/Filter";
+import FilterTags from "./FilterTags";
 
 const SideMenu = () => {
   const [view, setView] = useGlobalState("view");
   const [filter, setFilter] = useGlobalState("filter");
   const [depth, setDepths] = useGlobalState("expansionDepth");
-  /* FIXME filter tags
-  const [outcomes] = useGlobalState("filteredOutcomes");
-  const [appliedFilter] = useGlobalState("hasAppliedFilter");
-  const tags = appliedFilter ? _.uniqBy(outcomes.map(it => it.tags).flat(), (it) => joined(it)) : [];
-  const types = _.uniq(tags.map(it => it.type));//.filter(hasOutcomes);
-  */
 
   const showPendingStories = () => {
     const newFilter = Object.assign(new Filter(), filter);
@@ -65,6 +60,9 @@ const SideMenu = () => {
       {divider}
     </>
     }
+
+    <span style={{textTransform: "capitalize"}}>tags</span>
+    <FilterTags/>
 
 
 
