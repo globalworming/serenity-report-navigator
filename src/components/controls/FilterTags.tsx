@@ -2,7 +2,7 @@ import React from "react";
 import _ from "lodash";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import {Button} from "@material-ui/core";
-import Tag, {joined} from "../../model/Tag";
+import Tag from "../../model/Tag";
 import ClearButton from "../molecules/ClearButton";
 import useGlobalState from "../../state";
 import Filter from "../../model/Filter";
@@ -11,13 +11,11 @@ import Emoji from "../atoms/Emoji";
 
 const FilterTags = () => {
 
-  const [outcomes] = useGlobalState("filteredOutcomes");
   const [filter, setFilter] = useGlobalState("filter");
   const [, setDepths] = useGlobalState("expansionDepth");
-  const [appliedFilter] = useGlobalState("hasAppliedFilter");
-  const tags = appliedFilter ? _.uniqBy(outcomes.map(it => it.tags).flat(), (it) => joined(it)) : [];
-  const byType = _.groupBy(tags, it => it.type);
-  const types =  filter.focusType.length > 0 ? [filter.focusType] : _.keys(byType);
+  const [tagsByType] = useGlobalState("tagsByType");
+
+  const types =  filter.focusType.length > 0 ? [filter.focusType] : _.keys(tagsByType);
   const canBeCleared = filter.focusType !== "" || filter.focusTag !== "";
 
   const clear = () => {
@@ -59,7 +57,7 @@ const FilterTags = () => {
         </Button>
 
         <FullWidthWrappingFlexBox style={{overflowY: "auto", maxHeight: filter.focusType === type ? "none" : "7rem", marginBottom: "1rem"}}>
-          {byType[type].map(it =>
+          {tagsByType[type].map(it =>
             <Button key={it.name} fullWidth={true}
                     style={{
                       margin: "0.2rem", color: "#FFF", marginLeft: "1rem", wordBreak: "break-word",

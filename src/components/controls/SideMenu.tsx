@@ -69,6 +69,8 @@ const SideMenu = () => {
     <span style={{textTransform: "capitalize"}}>share filter: <LinkTo view={view} results={filter.results}
                                                                       text={filter.keyword}
                                                                       outcomeId={filter.focusOutcome}
+                                                                      type={filter.focusType}
+                                                                      tag={filter.focusTag}
                                                                       depth={depth}/></span>
 
   </FullWidthWrappingFlexBox>
