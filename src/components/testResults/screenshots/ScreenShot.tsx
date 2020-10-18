@@ -6,9 +6,11 @@ interface MyProps1 {
   width: number
 }
 
+const stage = process.env.REACT_APP_STAGE;
+const screenshotDir = stage === "template" ? "../" : "./screenshots/";
 const ScreenShot = ({fileName, width}: MyProps1) => <FullWidthWrappingFlexBox
   style={{
-    backgroundImage: `url("./screenshots/${fileName}")`,
+    backgroundImage: "url('"+ screenshotDir + fileName + "')",
     backgroundSize: "contain",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",

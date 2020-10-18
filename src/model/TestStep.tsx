@@ -17,3 +17,12 @@ interface TestStep {
 
 export default TestStep
 
+export const flatSteps = (testSteps: Array<TestStep>) => {
+  let result: Array<TestStep> = [];
+  if (!testSteps || testSteps.length === 0) return result;
+  testSteps.forEach(testStep => {
+    result.push(testStep);
+    result.push(...flatSteps(testStep.children));
+  });
+  return result;
+};
