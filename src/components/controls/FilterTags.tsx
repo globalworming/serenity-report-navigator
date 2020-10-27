@@ -46,7 +46,7 @@ const FilterTags = () => {
   return <>
     <ClearButton disabled={!canBeCleared} onClick={clear}/>
     <FullWidthWrappingFlexBox>
-      {types.map(type => <React.Fragment key={type}>
+      {types.filter(it => it !== "feature").map(type => <React.Fragment key={type}>
         <Button fullWidth={true}
                 style={{margin: "0.2rem", color: "#FFF", wordBreak: "break-word", background: filter.focusType === type ? "#DDDDDD30" : "#00000000"}}
                 variant="outlined" color={"primary"}

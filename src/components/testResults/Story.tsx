@@ -20,7 +20,7 @@ const Story = ({tell, outcomes}: StoryProps) => {
   const storyOutComes = outcomes.map((it) => <Outcome key={it.name + it.startTime} tell={it}/>);
 
   return <>
-    <FullWidthWrappingFlexBox className={"story"} style={{padding: "0.1rem", background: "#464646", color: "white", borderRadius: "10px", marginBottom: "1rem"}}>
+    <FullWidthWrappingFlexBox className={"story"} style={{color: "white", borderTopLeftRadius: "10px", borderBottomLeftRadius: "10px", marginBottom: "1rem"}}>
       <Expandable depths={1} whatsHidden={<>
         <Narrative tell={tell.narrative}/>
         {storyOutComes}

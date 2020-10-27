@@ -16,7 +16,7 @@ type MyProps = {
 
 const Outcome = ({tell}: MyProps) => {
   return <>
-    <Box className={"outcome"} style={{width: "100%", boxShadow: `${colorOf(tell.result)}  -2px 2px 0px 0px`, background: "black"}}>
+    <Box className={"outcome"} style={{width: "100%", borderTopLeftRadius: "10px", borderBottomLeftRadius: "10px", margin: "0.2rem", borderLeft: `0.2rem solid ${colorOf(tell.result)}`, background: "black"}}>
       <Expandable depths={2} whatsHidden={<>
         <OutcomeDescription tell={tell} />
         <TestStepsRecursive depth={0} tellAll={tell.testSteps}/>

@@ -19,11 +19,11 @@ const StepDurations = () => {
     <FullWidthWrappingFlexBox
       style={{flex: "0 0 30rem", lineHeight: 2, padding: "0.5rem", justifyContent: "space-around"}}>
       <FullWidthWrappingFlexBox>
-        <strong>longest running step took {prettyMilliseconds(allMax)}</strong>
+        <strong>top 50 longest running steps, max {prettyMilliseconds(allMax)}</strong>
       </FullWidthWrappingFlexBox>
       <FullWidthWrappingFlexBox style={{maxHeight: "15rem", overflow: "auto"}}>
         {
-          _.keys(grouped).map(it => {
+          _.keys(grouped).slice(0, 50).map(it => {
               const steps = grouped[it];
               const min = Math.min(...steps.map(it => it.duration));
               const max = Math.max(...steps.map(it => it.duration));
@@ -33,7 +33,7 @@ const StepDurations = () => {
 
                 <Box
                   style={{
-                    width: `${max / allMax * 100}%`,
+                    width: `${Math.max(1, max / allMax * 100)}%`,
                     background: `linear-gradient(90deg, #33333360 ${min / max * 100}%, #3F51B5 ${ min / max * 100}%, #33333360 ${Math.min(100, (min / max * 100) +30)}%)`,
                     borderRight: "1px solid white",
                     borderBottom: "1px solid #A0A0A0",
