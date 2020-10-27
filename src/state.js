@@ -4,6 +4,10 @@ import View from "./model/View";
 import _ from "lodash";
 import {joined} from "./model/Tag";
 
+window.outcomes = _.shuffle(window.outcomes);
+window.outcomes = window.outcomes.slice(0, 30);
+
+
 const initialState = {
   filter: new Filter(),
   filteredOutcomes: window.outcomes,

@@ -8,6 +8,7 @@ import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 const SwitchViewMode = () => {
   const [view, setView] = useGlobalState("view");
   const [, setDepth] = useGlobalState('expansionDepth');
+  const [filter] = useGlobalState("filter");
 
   const switchTo = (view: string) => {
     setDepth(0);
@@ -20,7 +21,13 @@ const SwitchViewMode = () => {
       <Button disableElevation variant={view === it ? "contained" : "outlined"} color={"secondary"} style={{borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}>
         {it}&nbsp;<Emoji label={it} />
       </Button>
-      <LinkTo view={it} depth={0}/>
+      <LinkTo view={it} depth={0}
+              results={filter.results}
+              text={filter.keyword}
+              outcomeId={filter.focusOutcome}
+              type={filter.focusType}
+              tag={filter.focusTag}
+      />
     </Box>
   </>;
 
