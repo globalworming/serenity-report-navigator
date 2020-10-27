@@ -4,6 +4,7 @@ import DurationsDistribution from "./DurationsDistribution";
 import DurationStatistics from "./DurationStatistics";
 import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import useGlobalState from '../../../state';
+import StepDurations from "./StepDurations";
 
 const Overview = () => {
     const [outcomes] = useGlobalState("filteredOutcomes");
@@ -16,6 +17,7 @@ const Overview = () => {
         <ResultPercentage/>
         <DurationsDistribution/>
         <DurationStatistics/>
+        <StepDurations/>
       </FullWidthWrappingFlexBox>
     </>;
 
