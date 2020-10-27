@@ -5,7 +5,7 @@ import ResultImage from "../../atoms/ResultImage";
 import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import {Box} from "@material-ui/core";
 import DisplayRestQuery from "./DisplayRestQuery";
-import ScreenShot from "../screenshots/ScreenShot";
+import ScreenShot from "../../molecules/ScreenShot";
 
 type MyProps = {
   tellAll?: Array<TestStep>,
@@ -19,12 +19,6 @@ const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
     <Box style={{paddingLeft: `${0.1 + depth * 2}rem`}}>
       <ResultImage result={step.result}/> {step.description}
     </Box>
-    {
-      step.screenshots && <FullWidthWrappingFlexBox>
-        {step.screenshots.map((it, i) => <React.Fragment key={i}><Box flex={"0 1 11rem"}><ScreenShot fileName={it.screenshot} width={10}/></Box></React.Fragment>)}
-      </FullWidthWrappingFlexBox>
-
-    }
     {step.restQuery &&
     <FullWidthWrappingFlexBox>
       <DisplayRestQuery tell={step.restQuery}/>
@@ -39,8 +33,15 @@ const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
   </Expandable>;
 
   function stepVariant(step: TestStep) {
-    if (!step.children || step.children.length === 0) return testStep(step);
-    return expandableTestStep(step);
+    return <>
+      {
+        step.screenshots && step.result && <FullWidthWrappingFlexBox>
+          {step.screenshots.map((it, i) => <React.Fragment key={i}><Box flex={"0 1 11rem"}><ScreenShot fileName={it.screenshot} width={10}/></Box></React.Fragment>)}
+        </FullWidthWrappingFlexBox>
+      }
+      { !step.children && testStep(step)}
+      { step.children && expandableTestStep(step)}
+    </>
   }
 
   return <>

@@ -5,8 +5,8 @@ import ResultImage from "../../atoms/ResultImage";
 import {Box} from "@material-ui/core";
 import * as _ from "lodash";
 import TestStepDescriptions from "./TestStepDescriptions";
-import ScreenShot from "./ScreenShot";
 import Controls from "./Controls";
+import ScreenShot from "../../molecules/ScreenShot";
 
 interface MyProps {
   tell: TestOutcome

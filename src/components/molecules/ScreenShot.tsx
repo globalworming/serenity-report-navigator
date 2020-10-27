@@ -1,4 +1,4 @@
-import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
+import FullWidthWrappingFlexBox from "./FullWidthWrappingFlexBox";
 import React from "react";
 
 interface MyProps1 {
@@ -8,7 +8,7 @@ interface MyProps1 {
 
 const stage = process.env.REACT_APP_STAGE;
 const screenshotDir = stage === "template" ? "../" : "./screenshots/";
-const ScreenShot = ({fileName, width}: MyProps1) => <FullWidthWrappingFlexBox
+const ScreenShot = ({fileName, width}: MyProps1) => <a href={screenshotDir + fileName} rel={"noopener noreferrer"} target={"_blank"  }><FullWidthWrappingFlexBox
   style={{
     backgroundImage: "url('"+ screenshotDir + fileName + "')",
     backgroundSize: "contain",
@@ -19,6 +19,6 @@ const ScreenShot = ({fileName, width}: MyProps1) => <FullWidthWrappingFlexBox
     display: "block",
     height: 0.8 * width + "rem"
   }}
-/>;
+/></a>;
 
 export default ScreenShot

@@ -3,8 +3,8 @@ import _ from 'lodash';
 import useGlobalState from '../../state';
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import TestStep, {Screenshot} from "../../model/TestStep";
-import Screenshots from "./screenshots/Screenshots";
 import Emoji from "../atoms/Emoji";
+import Screenshots from "./screenshots/Screenshots";
 
 const findScreenshots = (testSteps: Array<TestStep>) => {
   let steps: Array<Screenshot> = [];

@@ -1,4 +1,3 @@
-import MyPaper from "../../atoms/MyPaper";
 import RowWithResultAggregate from "../../molecules/RowWithResultAggregate";
 import ResultImage from "../../atoms/ResultImage";
 import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
@@ -25,11 +24,9 @@ const OutComeHeading = ({tell}: MyProps) => {
   };
   let results = allResults(tell.testSteps);
   return <FullWidthWrappingFlexBox>
-    <MyPaper>
       <RowWithResultAggregate tellAll={results}>
         <Emoji label={"outcome"}/> <ResultImage result={tell.result}/> {tell.title} <LinkTo view={view} outcomeId={tell.id} depth={4}/>
       </RowWithResultAggregate>
-    </MyPaper>
   </FullWidthWrappingFlexBox>
 };
 
