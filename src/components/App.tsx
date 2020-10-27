@@ -1,7 +1,6 @@
 import React from 'react';
 import ExploreData from "./testResults/ExploreData";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import Controls from "./controls/Controls";
 import useGlobalState from "../state"
 import ApplyFilter from "./ApplyFilter";
 import LocalStateFromQueryParameters from "./LocalStateFromQueryParameters";
@@ -31,22 +30,8 @@ const style = {
 const App = () => {
     const [parsedQuery] = useGlobalState("hasParsedQuery");
     const [appliedFilter] = useGlobalState("hasAppliedFilter");
-    const [view] = useGlobalState('view');
-    const [depth] = useGlobalState('expansionDepth');
-    const [filter] = useGlobalState('filter');
     const [outcomes] = useGlobalState("filteredOutcomes");
     const counts = appliedFilter ? _.toPairs(_.countBy(outcomes, it => it.result)) : [];
-
-
-    const printState = <pre style={{overflow: "auto", flex: "0 0 300px"}}>{[{
-      state: {
-        view,
-        depth,
-        parsedQuery,
-        appliedFilter,
-        filter
-      }
-    }].map(it => JSON.stringify(it, undefined, 2)).join("\n")}</pre>;
 
     const InitWithQueryParameters = () => <Router>
       <Route path="*">
@@ -55,13 +40,8 @@ const App = () => {
     </Router>;
 
     return <FullWidthWrappingFlexBox style={style}>
-      {process.env.NODE_ENV === 'development' && false && <>
-        {printState}
-        <Controls/>
-      </>}
       {!parsedQuery && <InitWithQueryParameters/>}
       {parsedQuery && !appliedFilter && <ApplyFilter/>}
-
 
       <Header/>
 

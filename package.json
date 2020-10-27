@@ -30,7 +30,8 @@
     "react-scripts": "3.4.3",
     "react-use-localstorage": "^3.5.3",
     "serialize-query-params": "1.2.3",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "lodash": "4.17.20"
   },
   "scripts": {
     "start": "bash ./buildWithExampleResources.sh; react-scripts start",

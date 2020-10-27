@@ -4,10 +4,6 @@ import View from "./model/View";
 import _ from "lodash";
 import {joined} from "./model/Tag";
 
-
-
-
-
 const initialState = {
   filter: new Filter(),
   filteredOutcomes: window.outcomes,
