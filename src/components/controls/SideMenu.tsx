@@ -16,7 +16,7 @@ const SideMenu = () => {
   const [depth, setDepths] = useGlobalState("expansionDepth");
 
   const showPendingStories = () => {
-    const newFilter = Object.assign(new Filter(), filter);
+    const newFilter = new Filter();
     newFilter.results = [Result.Pending];
     setFilter(newFilter);
     setDepths(1);
@@ -25,7 +25,7 @@ const SideMenu = () => {
   };
 
   const showViewOutcomeErrors = () => {
-    const newFilter = Object.assign(new Filter(), filter);
+    const newFilter = new Filter();
     newFilter.results = [Result.Failure, Result.Error, Result.Compromised];
     setFilter(newFilter);
     setDepths(4);
