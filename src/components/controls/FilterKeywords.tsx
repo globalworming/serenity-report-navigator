@@ -20,15 +20,14 @@ const FilterKeywords = () => {
   const debouncedSync = useRef(_.debounce(sync, 300)).current;
 
   useEffect(() => {
+    setLocalValue(filter.keyword)
+  }, [filter.keyword]);
+
+  useEffect(() => {
     if (filter.keyword === localValue) return;
     debouncedSync(filter, localValue);
     return () => debouncedSync.cancel()
   }, [debouncedSync, filter, localValue]);
-
-  function clear() {
-    setDepths(0);
-    setLocalValue("")
-  }
 
   return <>
     <Box margin={"0 0.2rem"} flex={"1 1 150px"}>
@@ -37,7 +36,7 @@ const FilterKeywords = () => {
            onChange={(e) => setLocalValue(e.target.value)}/>
   </Box>
     <Box>
-      <ClearButton disabled={localValue === ""} onClick={clear}/>
+      <ClearButton disabled={localValue === ""} onClick={() => setLocalValue("")}/>
     </Box>
     </>
 };
