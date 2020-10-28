@@ -48,11 +48,12 @@ const TestStepsRecursive = ({tellAll, depth}: MyProps) => {
   </Expandable>;
 
   function stepVariant(step: TestStep) {
+    const screenshotWidth=20;
     return <>
       {
         step.screenshots && step.result && <FullWidthWrappingFlexBox style={{paddingLeft: `${0.1 + depth * 2}rem`}}>
-          {step.screenshots.map((it, i) => <React.Fragment key={i}><Box flex={"0 1 11rem"}><ScreenShot
-            fileName={it.screenshot} width={10}/></Box></React.Fragment>)}
+          {step.screenshots.map((it, i) => <React.Fragment key={i}><Box flex={`0 1 ${screenshotWidth + 1}rem`}><ScreenShot
+            fileName={it.screenshot} width={screenshotWidth}/></Box></React.Fragment>)}
         </FullWidthWrappingFlexBox>
       }
       {!step.children && testStep(step)}
