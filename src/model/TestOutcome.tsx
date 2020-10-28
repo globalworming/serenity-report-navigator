@@ -1,7 +1,6 @@
 import UserStory from "./UserStory";
 import Tag from "./Tag";
 import TestStep from "./TestStep";
-import TestFailureCause from "./TestFailureCause";
 import Result from "./Result";
 import DataTable from "./DataTable";
 
@@ -21,7 +20,6 @@ interface TestOutcome {
   startTime: string | number
   scenarioOutline: string
   tags: Array<Tag>
-  testFailureCause: TestFailureCause
   testSource: string
   testSteps: Array<TestStep>
   title: string

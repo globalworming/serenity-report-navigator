@@ -4,7 +4,6 @@ import TestOutcome from "../../../model/TestOutcome";
 import Expandable from "../../organisms/Expandable";
 import TestStepsRecursive from "./TestStepsRecursive";
 import OutcomeHeading from "./OutcomeHeading"
-import DisplayTestFailureCause from "./DisplayTestFailureCause"
 import OutcomeDescription from "./OutcomeDescription"
 import {Box} from "@material-ui/core";
 import {colorOf} from "../../../model/Result";
@@ -23,7 +22,6 @@ const Outcome = ({tell}: MyProps) => {
       </>}>
         <OutcomeHeading tell={tell}/>
       </Expandable>
-      <DisplayTestFailureCause tell={tell.testFailureCause}/>
     </Box>
     <hr style={{margin: "0.25rem auto", width: "20%", height: "5px", backgroundColor: "#a2a2a2"}}/>
   </>

@@ -1,4 +1,5 @@
 import RestQuery from "./RestQuery"
+import Exception from "./Exception"
 
 export interface Screenshot {
   screenshot: string
@@ -13,6 +14,7 @@ interface TestStep {
   screenshots: Array<Screenshot>
   children: Array<TestStep>
   restQuery: RestQuery
+  exception: Exception
 }
 
 export default TestStep
