@@ -6,14 +6,14 @@ import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import useGlobalState from '../../../state';
 import StepDurations from "./StepDurations";
 
-const Overview = () => {
+const Stats = () => {
     const [outcomes] = useGlobalState("filteredOutcomes");
     if (outcomes.length === 0) {
       return null
     }
 
     return <>
-      <FullWidthWrappingFlexBox style={{paddingTop: "1rem", background: "black", color: "white"}}>
+      <FullWidthWrappingFlexBox style={{paddingTop: "1rem"}}>
         <ResultPercentage/>
         <DurationsDistribution/>
         <DurationStatistics/>
@@ -25,4 +25,4 @@ const Overview = () => {
 ;
 
 
-export default Overview;
+export default Stats;

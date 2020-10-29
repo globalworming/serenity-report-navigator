@@ -3,9 +3,10 @@ import React, {useEffect, useRef, useState} from "react";
 import Filter from "../../model/Filter";
 import _ from "lodash";
 import ClearButton from "../molecules/ClearButton";
-import {Box} from "@material-ui/core";
+import {Box, useTheme} from "@material-ui/core";
 
 const FilterKeywords = () => {
+  const theme = useTheme();
   const [filter, setFilter] = useGlobalState('filter');
   const [, setDepths] = useGlobalState('expansionDepth');
   const [localValue, setLocalValue] = useState(filter.keyword);
@@ -31,7 +32,7 @@ const FilterKeywords = () => {
 
   return <>
     <Box margin={"0 0.2rem"} flex={"1 1 150px"}>
-    <input style={{height: "2rem", width: "100%", padding: "0.5rem", color: "white", background: "black", borderColor: "white"}}
+    <input style={{height: "2rem", width: "100%", padding: "0.5rem", color: theme.palette.text.primary, background: theme.palette.background.default}}
            type={"text"} placeholder={"search in story, name, ..."} value={localValue}
            onChange={(e) => setLocalValue(e.target.value)}/>
   </Box>

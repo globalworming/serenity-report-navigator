@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Button} from "@material-ui/core";
+import {Button, useTheme} from "@material-ui/core";
 import {FunctionComponent} from "react";
 
 interface MyProps {
@@ -9,14 +9,12 @@ interface MyProps {
 }
 
 const CheckboxButton: FunctionComponent<MyProps> = ({checked, onClick, children, fullWidth}) => {
-  return <Button fullWidth={fullWidth} style={{margin: "0.2rem", background: "none", color: "#FFF"}} variant="outlined" color={"primary"} onClick={() => onClick()}>
+  const theme = useTheme();
+  return <Button fullWidth={fullWidth} style={{wordBreak: "break-word", margin: "0.2rem", color: theme.palette.text.primary, background: checked ? theme.palette.background.paper : theme.palette.background.default}} variant="outlined"
+                 color={"primary"} onClick={() => onClick()}>
     {
-      checked ?
-        <span role="img" aria-label="checked">☑️</span>
-        : <span role="img" aria-label="unchecked">🚫</span>
-    }&nbsp;{
-    children
-  }
+      children
+    }
   </Button>
 };
 

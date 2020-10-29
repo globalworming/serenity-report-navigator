@@ -2,7 +2,7 @@ import React from 'react';
 import useGlobalState from '../../state';
 import ByStory from "./ByStory";
 import ByScreenshots from "./ByScreenshots";
-import Overview from "./stats/Overview";
+import Stats from "./stats/Stats";
 import ClearButton from "../molecules/ClearButton";
 import Filter from "../../model/Filter";
 
@@ -19,9 +19,9 @@ const ExploreData = () => {
       case "screenshots":
         return <ByScreenshots/>;
       case "stats":
-        return <Overview/>
+        return <Stats/>
     }
-    return <Overview/>
+    return <Stats/>
   };
 
   function clear() {

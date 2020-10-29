@@ -5,10 +5,22 @@ import ResultImage from "./atoms/ResultImage";
 import Result from "../model/Result";
 import EnableTracking from "./EnableTracking";
 import React, {useState} from "react";
+import useGlobalState from "../state";
+import Themes from "../themes";
 
 const Header = () => {
-  const spanStyle = {padding: "0.2rem"};
+  const [theme, setTheme] = useGlobalState("theme");
+  const isDark = theme === Themes.dark;
   const [info, setInfo] = useState(false);
+
+  const spanStyle = {padding: "0.2rem"};
+  const ToggleTheme = <>
+    <Button variant={"contained"} type="button" color={"secondary"}
+            style={{borderRadius: "100%", minWidth: "0"}}
+            onClick={() => isDark ? setTheme(Themes.light) : setTheme(Themes.dark)}>
+      {isDark ? <Emoji label={"night"}/> : <Emoji label={"day"}/>}
+    </Button>
+  </>
   const Info = <ClickAwayListener onClickAway={() => setInfo(false)}>
     <div>
       {info || <Button variant={"contained"} type="button" color={"secondary"}
@@ -39,7 +51,7 @@ const Header = () => {
   </ClickAwayListener>;
 
   return <>
-    <Box style={{position: "absolute", right: "0.75rem", top: "0.75rem", textAlign: "right"}}>
+    <Box style={{position: "absolute", right: "0.75rem", top: "0.15rem", textAlign: "right"}}>
       <a href="https://github.com/globalworming/serenity-report-navigator">
         <img
           style={{height: "1.5rem"}}
@@ -48,13 +60,14 @@ const Header = () => {
 
 
     </Box>
-    <Box style={{position: "absolute", right: "8rem", top: "0.5rem", textAlign: "right"}}>
+    <Box style={{position: "absolute", right: "8rem", top: "0.2rem", textAlign: "right"}}>
       <iframe src="https://github.com/sponsors/globalworming/button" title="Sponsor globalworming" height="35" width="116" style={{border: 0}}/>
     </Box>
 
     <FullWidthWrappingFlexBox style={{background: "#3f51b5", color: "white"}}>
       <FullWidthWrappingFlexBox>
         <strong style={{padding: "0.5rem", display: "inline"}}>Serenity Report Navigator</strong>
+        {ToggleTheme}
         {info && <Button variant={"contained"} type="button" color={"secondary"}
                          style={{borderRadius: "100%", minWidth: "0"}}
                          disabled={true}>

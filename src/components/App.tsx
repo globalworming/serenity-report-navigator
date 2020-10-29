@@ -9,10 +9,9 @@ import SideMenu from "./controls/SideMenu"
 import SwitchViewMode from "./testResults/SwitchViewMode"
 import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
 import Header from "./Header";
-import {Box} from "@material-ui/core";
+import {Box, Theme, useTheme} from "@material-ui/core";
 import ExpandCollapseAll from "./testResults/ExpandCollapseAll";
-import {colorOf} from "../model/Result";
-import * as _ from "lodash";
+import HorizontalResultPercentageLine from "./atoms/HorizontalResultPercentageLine"
 
 
 declare global {
@@ -21,17 +20,16 @@ declare global {
     outcomes: Array<TestOutcome>;
   }
 }
-const style = {
-  background: "#111",
-  padding: "0.2rem",
-  borderTop: "0.2rem solid #DDDDDD",
-  color: "white"
-};
+const appStyle = (theme: Theme) => ({
+  background: theme.palette.background.default,
+  borderTop: `0.2rem solid ${theme.palette.grey}`,
+  color: theme.palette.text.primary
+});
+
 const App = () => {
+    const theme = useTheme();
     const [parsedQuery] = useGlobalState("hasParsedQuery");
     const [appliedFilter] = useGlobalState("hasAppliedFilter");
-    const [outcomes] = useGlobalState("filteredOutcomes");
-    const counts = appliedFilter ? _.toPairs(_.countBy(outcomes, it => it.result)) : [];
 
     const InitWithQueryParameters = () => <Router>
       <Route path="*">
@@ -39,20 +37,12 @@ const App = () => {
       </Route>
     </Router>;
 
-    return <FullWidthWrappingFlexBox style={style}>
+    return <FullWidthWrappingFlexBox className={"app"} style={appStyle(theme)}>
       {!parsedQuery && <InitWithQueryParameters/>}
       {parsedQuery && !appliedFilter && <ApplyFilter/>}
 
       <Header/>
-
-      <Box height={"0.5rem"} display={"flex"} overflow={"hidden"} width={"100%"}>
-        {
-          counts.map(([result, count]) => <React.Fragment key={result}>
-              <Box style={{boxShadow: "inset black 0px 0px 3px 1px"}} height={"1rem"} width={count * 100 / outcomes.length + "%"} bgcolor={colorOf(result)}/>
-            </React.Fragment>
-          )
-        }
-      </Box>
+      <HorizontalResultPercentageLine />
 
       <FullWidthWrappingFlexBox>
         <Box flex={"0 0 15rem"} padding={"1rem 0.2rem"}>

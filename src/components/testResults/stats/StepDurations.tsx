@@ -2,12 +2,13 @@ import React from "react";
 import useGlobalState from "../../../state";
 import prettyMilliseconds from "pretty-ms";
 import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
-import {Box} from "@material-ui/core";
+import {Box, useTheme} from "@material-ui/core";
 import _ from "lodash";
 import {flatSteps} from "../../../model/TestStep";
 import Pre from "../../atoms/Pre";
 
 const StepDurations = () => {
+  const theme = useTheme();
   const [outcomes] = useGlobalState("filteredOutcomes");
 
   const longestRunningSteps = _.sortBy(flatSteps(outcomes.map(it => it.testSteps).flat()).filter(it => !it.children), it => it.duration).reverse();
@@ -33,9 +34,9 @@ const StepDurations = () => {
 
                 <Box
                   style={{
-                    width: `${Math.max(1, max / allMax * 100)}%`,
-                    background: `linear-gradient(90deg, #33333360 ${min / max * 100}%, #3F51B5 ${ min / max * 100}%, #33333360 ${Math.min(100, (min / max * 100) +30)}%)`,
-                    borderRight: "1px solid white",
+                    width: `${max / allMax * 100}%`,
+                    background: `linear-gradient(90deg, ${theme.palette.background.paper} ${min / max * 100}%, ${theme.palette.secondary.main} ${ min / max * 100}%, ${theme.palette.background.paper} ${Math.min(100, (min / max * 100) +30)}%)`,
+                    borderRight: "1px solid " + theme.palette.text.primary,
                     borderBottom: "1px solid #A0A0A0",
                     overflow: "visible",
                     minHeight: "1.5rem",
@@ -46,6 +47,7 @@ const StepDurations = () => {
                     top: "0.2rem",
                     left: "0.2rem",
                     maxWidth: "28rem",
+                    maxHeight: "2rem",
                     overflow: "hidden"
                   }}><span style={{backgroundColor: `#f50057${Math.min(0xFF, steps.length * 5).toString(16)}`}}>{steps.length}x</span> {formatted} {steps[0].description}</Pre>
                 </Box>

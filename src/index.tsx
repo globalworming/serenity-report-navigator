@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import {ThemeProvider} from "@material-ui/core";
+import useGlobalState from "./state";
 //import {Profiler, ProfilerOnRenderCallback} from 'react';
 
 /*
@@ -12,10 +14,21 @@ const onRender: ProfilerOnRenderCallback = (id, phase, actualDuration, baseDurat
 };
 */
 
+const MyThemeProvider: FunctionComponent = ({children}) => {
+  const [theme] = useGlobalState("theme");
+  return <ThemeProvider theme={theme}>
+    {children}
+  </ThemeProvider>
+
+}
+
+
 ReactDOM.render(
   <React.StrictMode>
     {/*<Profiler id="Navigation" onRender={onRender}>*/}
-    <App/>
+    <MyThemeProvider>
+      <App/>
+    </MyThemeProvider>
     {/*</Profiler>*/}
   </React.StrictMode>,
   document.getElementById('root')

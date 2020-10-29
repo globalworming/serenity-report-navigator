@@ -5,6 +5,7 @@ import React from "react";
 import CheckboxButton from "../atoms/CheckboxButton";
 import ClearButton from "../molecules/ClearButton";
 import ResultImage from "../atoms/ResultImage";
+import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 
 
 const FilterResult = () => {
@@ -41,6 +42,7 @@ const FilterResult = () => {
   };
 
   return <>
+    <span style={{textTransform: "capitalize"}}>filter</span>
     <ClearButton disabled={!canBeCleared} onClick={clear}/>
     {results.map(it => {
       return <React.Fragment key={it}>

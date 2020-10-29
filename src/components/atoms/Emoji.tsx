@@ -29,6 +29,10 @@ const emoji = (label: string) => {
       return "📊";
     case "outcome":
       return "📑";
+    case "night":
+      return "🌙";
+    case "day":
+      return "☀️";
 
   }
   return "📚";

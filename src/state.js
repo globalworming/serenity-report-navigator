@@ -3,6 +3,7 @@ import Filter from "./model/Filter";
 import View from "./model/View";
 import _ from "lodash";
 import {joined} from "./model/Tag";
+import Themes from "./themes";
 
 const initialState = {
   filter: new Filter(),
@@ -11,7 +12,8 @@ const initialState = {
   hasParsedQuery: false,
   hasAppliedFilter: false,
   view: View.STORY,
-  expansionDepth: 0
+  expansionDepth: 0,
+  theme: Themes.dark
 };
 const {useGlobalState} = createGlobalState(initialState);
 

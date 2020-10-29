@@ -28,10 +28,10 @@ const DurationStatistics = () => {
         <ul>
           <li>min {prettyMilliseconds(sortedDurations[0])}</li>
           <li>
-            max {prettyMilliseconds(sortedDurations[sortedDurations.length - 1])}
+            avg {prettyMilliseconds(_.mean(sortedDurations))}
           </li>
           <li>
-            avg {prettyMilliseconds(_.mean(sortedDurations))}
+            max {prettyMilliseconds(sortedDurations[sortedDurations.length - 1])}
           </li>
         </ul>
       </Box>
