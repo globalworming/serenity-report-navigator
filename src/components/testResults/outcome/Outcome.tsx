@@ -5,7 +5,7 @@ import Expandable from "../../organisms/Expandable";
 import TestStepsRecursive from "./TestStepsRecursive";
 import OutcomeHeading from "./OutcomeHeading"
 import OutcomeDescription from "./OutcomeDescription"
-import {Box} from "@material-ui/core";
+import {Box, useTheme} from "@material-ui/core";
 import {colorOf} from "../../../model/Result";
 
 type MyProps = {
@@ -14,8 +14,9 @@ type MyProps = {
 
 
 const Outcome = ({tell}: MyProps) => {
+  const theme = useTheme();
   return <>
-    <Box className={"outcome"} style={{width: "100%", borderTopLeftRadius: "10px", borderBottomLeftRadius: "10px", margin: "0.2rem", borderLeft: `0.2rem solid ${colorOf(tell.result)}`, background: "black"}}>
+    <Box className={"outcome"} style={{width: "100%", borderTopLeftRadius: "10px", borderBottomLeftRadius: "10px", margin: "0.2rem", borderLeft: `0.2rem solid ${colorOf(tell.result)}`, backgroundColor: theme.palette.background.default, paddingLeft: "0.5rem"}}>
       <Expandable depths={2} whatsHidden={<>
         <OutcomeDescription tell={tell} />
         <TestStepsRecursive depth={0} tellAll={tell.testSteps}/>
@@ -23,7 +24,6 @@ const Outcome = ({tell}: MyProps) => {
         <OutcomeHeading tell={tell}/>
       </Expandable>
     </Box>
-    <hr style={{margin: "0.25rem auto", width: "20%", height: "5px", backgroundColor: "#a2a2a2"}}/>
   </>
 };
 

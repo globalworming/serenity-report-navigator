@@ -25,7 +25,7 @@ const ByScreenshots = () => {
     <FullWidthWrappingFlexBox style={{paddingTop: "1rem"}}>
       {_.keys(outcomesByStoryId).map((storyId) => {
         return <React.Fragment key={storyId}>
-          <FullWidthWrappingFlexBox style={{color: "#DBA", paddingTop: "1rem"}}>
+          <FullWidthWrappingFlexBox style={{paddingTop: "1rem"}}>
             <FullWidthWrappingFlexBox style={{justifyContent: "center", fontSize: "2rem"}}><Emoji label={"story"}/>&nbsp;{outcomesByStoryId[storyId][0].userStory.storyName}</FullWidthWrappingFlexBox>
             {
               outcomesByStoryId[storyId].map((outcome, i) =>

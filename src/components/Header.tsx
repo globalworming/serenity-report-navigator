@@ -20,7 +20,7 @@ const Header = () => {
             onClick={() => isDark ? setTheme(Themes.light) : setTheme(Themes.dark)}>
       {isDark ? <Emoji label={"night"}/> : <Emoji label={"day"}/>}
     </Button>
-  </>
+  </>;
   const Info = <ClickAwayListener onClickAway={() => setInfo(false)}>
     <div>
       {info || <Button variant={"contained"} type="button" color={"secondary"}
@@ -37,7 +37,7 @@ const Header = () => {
         <ResultImage result={Result.Failure}/> in-depth steps and traces
       </span>
           <span style={spanStyle}>
-        <Emoji label={"bigscreen"}/> wallboard mode
+        <Emoji label={"big screen"}/> wallboard mode
       </span>
           <span style={spanStyle}>
         <Emoji label={"mobile"}/> mobile friendly

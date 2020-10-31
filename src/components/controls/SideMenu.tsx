@@ -6,8 +6,6 @@ import useGlobalState from "../../state";
 import FilterTestOutcome from "./FilterTestOutcome";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import QuickLinks from "./QuickLinks";
-import Result from "../../model/Result";
-import Filter from "../../model/Filter";
 import FilterTags from "./FilterTags";
 
 const SideMenu = () => {

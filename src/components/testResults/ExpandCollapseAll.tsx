@@ -14,9 +14,9 @@ const ExpandCollapseAll = () => {
     setDepths(depths - 1)
   }
   return <>
-    <Box className={"expandCollapseAll"} style={{textAlign: "right"}}>
-      <ExpandCollapse isExpanded={false} onClick={expandAll}/>
+    <Box className={"expandCollapseAll"} style={{textAlign: "right", paddingRight: "0.2rem"}}>
       <ExpandCollapse isExpanded={true} onClick={collapseAll}/>
+      <ExpandCollapse isExpanded={false} onClick={expandAll}/>
     </Box>
   </>
 };

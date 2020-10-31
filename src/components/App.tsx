@@ -10,7 +10,6 @@ import SwitchViewMode from "./testResults/SwitchViewMode"
 import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
 import Header from "./Header";
 import {Box, Theme, useTheme} from "@material-ui/core";
-import ExpandCollapseAll from "./testResults/ExpandCollapseAll";
 import HorizontalResultPercentageLine from "./atoms/HorizontalResultPercentageLine"
 
 
@@ -51,12 +50,7 @@ const App = () => {
         <Box flex={"1 0 40%"}>
           <Box>
             <FullWidthWrappingFlexBox>
-              <Box flex={"1 0 70%"}>
                 <SwitchViewMode/>
-              </Box>
-              <Box flex={"0 0 6rem"}>
-                <ExpandCollapseAll/>
-              </Box>
             </FullWidthWrappingFlexBox>
             {parsedQuery && appliedFilter && <>
               <ApplyFilter/>

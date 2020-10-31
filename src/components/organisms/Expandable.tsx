@@ -5,12 +5,12 @@ import ExpandCollapse from "../atoms/ExpandCollapse"
 import HighlightOnHover from "./HighlightOnHover";
 
 
-interface ExpandabledProps {
+interface ExpandableProps {
   depths: number,
   whatsHidden?: any;
 }
 
-const Expandable: FunctionComponent<ExpandabledProps> = ({depths, children, whatsHidden}) => {
+const Expandable: FunctionComponent<ExpandableProps> = ({depths, children, whatsHidden}) => {
   const [expandLayers] = useGlobalState('expansionDepth');
   const [expanded, setExpanded] = useState(expandLayers >= depths);
 
@@ -30,7 +30,7 @@ const Expandable: FunctionComponent<ExpandabledProps> = ({depths, children, what
   }
 
   return <>
-    <Box style={{cursor: "pointer"}} display="flex" flex={"0 0 100%"} flexWrap={"wrap"} justifyContent="space-between" maxWidth={"100%"} onClick={myToggle}>
+    <Box style={{cursor: "pointer"}} display="flex" flex={"0 0 100%"} flexWrap={"wrap"} justifyContent="space-between" maxWidth={"100%"} onClick={myToggle} lineHeight={2}>
       <HighlightOnHover>
         <Box display="flex" flex={"1 0 80%"}>
           {children}

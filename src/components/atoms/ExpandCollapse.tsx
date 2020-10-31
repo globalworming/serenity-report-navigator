@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import {Button} from "@material-ui/core"
+import {Button, useTheme} from "@material-ui/core"
 import React from "react";
-import ExpandIcon from "./noun_Split Vertical_2439343.svg"
-import CollapseIcon from "./noun_collapse vertical_2439339.svg"
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import ExpandLess from "@material-ui/icons/ExpandLess";
 
 
 interface MyProps {
@@ -11,22 +11,34 @@ interface MyProps {
 }
 
 const ExpandCollapse = ({isExpanded, onClick}: MyProps) => {
-  const style = {width: "1.5rem", height: "1.5rem"};
-  const buttonStyle = {background: "black", margin: "0.25em", minWidth: 0, padding: 0, paddingTop: "0.2rem", borderRadius: "100%"};
+  const theme = useTheme();
+  const buttonStyle = {
+    margin: "0.25em",
+    minWidth: 0,
+    padding: 0, height: "1.5rem", lineHeight: 1, paddingLeft: "0.7rem"
+  };
 
 
-  return <Button variant={"outlined"} style={buttonStyle} color={"secondary"} onClick={(() => onClick !== undefined && onClick())}>
+  return <>
     {!isExpanded &&
-    <img
-        style={style}
-        alt={"expand-all"} aria-label={"expand-all"} src={ExpandIcon}/>
+    <Button
+        style={buttonStyle}
+        onClick={(() => onClick !== undefined && onClick())}
+        variant="contained"
+        color="secondary"
+        startIcon={<ExpandMore style={{color: theme.palette.background.paper}}/>}
+    />
     }
     {isExpanded &&
-    <img
-        style={style}
-        alt={"collapse-all"} aria-label={"collapse-all"} src={CollapseIcon}/>
+    <Button
+        style={buttonStyle}
+        onClick={(() => onClick !== undefined && onClick())}
+        variant="contained"
+        color="secondary"
+        startIcon={<ExpandLess style={{color: theme.palette.background.paper}}/>}
+    />
     }
-  </Button>
+  </>
 };
 
 export default ExpandCollapse

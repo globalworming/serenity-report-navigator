@@ -1,7 +1,7 @@
 import React from "react";
 import _ from "lodash";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
-import {Box, Button} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 import Tag from "../../model/Tag";
 import ClearButton from "../molecules/ClearButton";
 import useGlobalState from "../../state";
@@ -47,7 +47,7 @@ const FilterTags = () => {
   return <>
     <ClearButton disabled={!canBeCleared} onClick={clear}/>
     <FullWidthWrappingFlexBox>
-      {types.filter(it => it !== "feature").map(type => <React.Fragment key={type}>
+      {types.map(type => <React.Fragment key={type}>
         <CheckboxButton fullWidth checked={filter.focusType === type} onClick={() => focusType(type)}>
           <Emoji label={type}/>&nbsp;{type}
         </CheckboxButton>

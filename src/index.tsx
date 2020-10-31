@@ -20,7 +20,7 @@ const MyThemeProvider: FunctionComponent = ({children}) => {
     {children}
   </ThemeProvider>
 
-}
+};
 
 
 ReactDOM.render(

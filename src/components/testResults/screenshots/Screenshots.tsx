@@ -36,7 +36,7 @@ const Screenshots = ({tell, width}: MyProps) => {
     </Box>
 
     <Box flex={`1 1 ${width}rem`} maxWidth={"none"} padding={"0.5rem"}>
-      <Box style={{padding: "0.2rem", background: "#FFFFFFDD", color: "black", margin: "0.5rem"}}>
+      <Box style={{padding: "0.2rem", margin: "0.5rem"}}>
         <ResultImage result={tell.result}/> {tell.title}
       </Box>
       <TestStepDescriptions depth={0} tellAll={tell.testSteps} highlight={step.number}/>

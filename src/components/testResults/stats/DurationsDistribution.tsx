@@ -4,7 +4,6 @@ import prettyMilliseconds from "pretty-ms";
 import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import Result, {colorOf} from "../../../model/Result";
 import {Box, useTheme} from "@material-ui/core";
-import CheckboxButton from "../../atoms/CheckboxButton";
 
 const DurationsDistribution = () => {
   const theme = useTheme();

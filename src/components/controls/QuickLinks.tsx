@@ -1,7 +1,6 @@
 import {Button} from "@material-ui/core";
 import LinkTo from "../testResults/outcome/LinkTo";
 import Result from "../../model/Result";
-import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import * as React from "react";
 import Filter from "../../model/Filter";
 import useGlobalState from "../../state";
@@ -40,6 +39,6 @@ const QuickLinks = () => {
     <Button fullWidth={true} color={"secondary"} variant={"outlined"} onClick={showPendingStories}>
       pending stories <LinkTo depth={1} results={[Result.Pending]}/>
     </Button></>;
-}
+};
 
 export default QuickLinks

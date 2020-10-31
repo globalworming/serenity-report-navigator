@@ -21,7 +21,7 @@ const DurationStatistics = () => {
   return <>
     <FullWidthWrappingFlexBox style={{flex: "0 0 450px", lineHeight: 2, padding: "0.5rem", justifyContent: "space-around"}}>
       <FullWidthWrappingFlexBox>
-        <strong>duration per testoutcome</strong>
+        <strong>duration per test outcome</strong>
       </FullWidthWrappingFlexBox>
 
       <Box>

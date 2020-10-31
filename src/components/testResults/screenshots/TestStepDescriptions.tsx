@@ -14,8 +14,8 @@ type MyProps = {
 const TestStepDescriptions = ({tellAll, depth, highlight}: MyProps) => {
   if (!tellAll || tellAll.length === 0) return null;
 
-  const testStep = (step: TestStep) => <FullWidthWrappingFlexBox style={{paddingTop: "0.2rem", color: "white"}}>
-    <Box style={{paddingLeft: `${0.1 + depth * 2}rem`, background: step.number === highlight ? "#404040" : "none"}}>
+  const testStep = (step: TestStep) => <FullWidthWrappingFlexBox style={{paddingTop: "0.2rem"}}>
+    <Box style={{paddingLeft: `${0.1 + depth * 2}rem`, background: step.number === highlight ? "#88888830" : "none"}}>
       <ResultImage result={step.result}/> {step.description} {step.screenshots && step.screenshots.map((it, i) => <Emoji label={"screenshots"} key={i}/>)}
     </Box>
   </FullWidthWrappingFlexBox>;

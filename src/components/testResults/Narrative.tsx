@@ -57,7 +57,7 @@ const Narrative = ({tell}: MyProps) => {
 // see serenity-core/serenity-model/src/main/java/net/thucydides/core/requirements/model/cucumber/DescriptionWithScenarioReferences.java
   const lines: Array<any> = tell.split("\n").filter(it => it !== "").map((it, i) => it.includes("{Example") ? <React.Fragment key={i}>{renderExample(it)}</React.Fragment> : it);
 
-  return <>{lines.map((it, i) => <FullWidthWrappingFlexBox style={{padding: "0.5rem", background: "black", color: "white", fontFamily: "serif"}} key={i}>{it}</FullWidthWrappingFlexBox>)}</>
+  return <>{lines.map((it, i) => <FullWidthWrappingFlexBox style={{padding: "0.5rem", fontFamily: "serif"}} key={i}>{it}</FullWidthWrappingFlexBox>)}</>
 };
 
 export default Narrative

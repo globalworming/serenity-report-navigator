@@ -1,12 +1,11 @@
 import React from "react";
-import {Box, Button, useTheme} from "@material-ui/core";
+import {Box, Button} from "@material-ui/core";
 import LinkTo from "./outcome/LinkTo";
 import useGlobalState from "../../state";
 import Emoji from "../atoms/Emoji";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 
 const SwitchViewMode = () => {
-  const theme = useTheme();
   const [view, setView] = useGlobalState("view");
   const [, setDepth] = useGlobalState('expansionDepth');
   const [filter] = useGlobalState("filter");

@@ -8,7 +8,7 @@ interface MyProps {
 }
 
 const ClearButton: FunctionComponent<MyProps> = ({disabled, onClick}) => {
-  const theme = useTheme()
+  const theme = useTheme();
   const style = {
     margin: "0.2rem",
     marginLeft: "auto",
