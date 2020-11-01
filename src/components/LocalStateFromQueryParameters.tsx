@@ -6,6 +6,7 @@ import * as _ from "lodash";
 import {ArrayParam, decodeQueryParams, encodeQueryParams, NumberParam, StringParam} from 'serialize-query-params';
 import Filter from "../model/Filter";
 import Themes from "../themes";
+import {createMuiTheme} from "@material-ui/core";
 
 
 export interface MyQuery {
@@ -80,7 +81,28 @@ const LocalStateFromQueryParameters = () => {
     if (theme) {
       if (_.keys(Themes).includes(theme)) {
         setTheme(theme)
+      } else if (theme.includes("_")) {
+        const split = theme.split("_");
+        Themes.custom = createMuiTheme({
+          palette: {
+            primary: {
+              main: split[0],
+            },
+            secondary: {
+              main: split[1],
+            },
+            text: {
+              primary: split[2],
+            },
+            background: {
+              default: split[3],
+              paper: split[4]
+            }
+          },
+        });
+        setTheme("custom")
       }
+
     }
 
     setInit(true)

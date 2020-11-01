@@ -34,7 +34,8 @@ const Themes = {
         paper: "#FFF"
       }
     },
-  })
+  }),
+  custom: {}
 };
 
 export default Themes

@@ -65,7 +65,7 @@ const Header = () => {
       <iframe src="https://github.com/sponsors/globalworming/button" title="Sponsor globalworming" height="35" width="116" style={{border: 0}}/>
     </Box>
 
-    <FullWidthWrappingFlexBox style={{background: _.get(Themes, theme).palette.secondary.main, color: "white"}}>
+    <FullWidthWrappingFlexBox style={{background: _.get(Themes, theme).palette.secondary.main, color: _.get(Themes, theme).palette.text.main}}>
       <FullWidthWrappingFlexBox>
         <strong style={{padding: "0.5rem", display: "inline"}}>Serenity Report Navigator</strong>
         {ToggleTheme}
