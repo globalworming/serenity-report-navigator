@@ -5,6 +5,8 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import {ThemeProvider} from "@material-ui/core";
 import useGlobalState from "./state";
+import Themes from "./themes";
+import * as _ from "lodash";
 //import {Profiler, ProfilerOnRenderCallback} from 'react';
 
 /*
@@ -16,7 +18,7 @@ const onRender: ProfilerOnRenderCallback = (id, phase, actualDuration, baseDurat
 
 const MyThemeProvider: FunctionComponent = ({children}) => {
   const [theme] = useGlobalState("theme");
-  return <ThemeProvider theme={theme}>
+  return <ThemeProvider theme={_.get(Themes, theme)}>
     {children}
   </ThemeProvider>
 

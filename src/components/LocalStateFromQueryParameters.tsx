@@ -5,6 +5,7 @@ import {useEffect} from "react";
 import * as _ from "lodash";
 import {ArrayParam, decodeQueryParams, encodeQueryParams, NumberParam, StringParam} from 'serialize-query-params';
 import Filter from "../model/Filter";
+import Themes from "../themes";
 
 
 export interface MyQuery {
@@ -15,6 +16,7 @@ export interface MyQuery {
   text?: string
   type?: string
   tag?: string
+  theme?: string
 }
 
 const paramConfigMap = {
@@ -24,7 +26,8 @@ const paramConfigMap = {
   results: ArrayParam,
   text: StringParam,
   type: StringParam,
-  tag: StringParam
+  tag: StringParam,
+  theme: StringParam
 };
 
 // encode each parameter according to the configuration
@@ -43,6 +46,7 @@ const LocalStateFromQueryParameters = () => {
   const [, setFilter] = useGlobalState('filter');
   const [, setDepth] = useGlobalState('expansionDepth');
   const [, setView] = useGlobalState('view');
+  const [, setTheme] = useGlobalState('theme');
 
   const location = useLocation();
   const query = decodedQuery(qs.parse(location.search, {parseNumbers: true}));
@@ -55,7 +59,7 @@ const LocalStateFromQueryParameters = () => {
       return;
     }
 
-    const {outcomeId, depth, view, results, text, tag, type} = query;
+    const {outcomeId, depth, view, results, text, tag, type, theme} = query;
 
     function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
       return value !== null && value !== undefined;
@@ -70,13 +74,19 @@ const LocalStateFromQueryParameters = () => {
     setFilter(filter);
 
     if (depth) setDepth(depth);
+
     if (view) setView(view);
 
+    if (theme) {
+      if (_.keys(Themes).includes(theme)) {
+        setTheme(theme)
+      }
+    }
 
     setInit(true)
 
 
-  }, [init, query, setDepth, setFilter, setInit, setView]);
+  }, [init, query, setDepth, setFilter, setInit, setTheme, setView]);
 
   return null;
 };

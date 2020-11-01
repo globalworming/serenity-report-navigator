@@ -7,17 +7,18 @@ import EnableTracking from "./EnableTracking";
 import React, {useState} from "react";
 import useGlobalState from "../state";
 import Themes from "../themes";
+import _ from "lodash";
 
 const Header = () => {
   const [theme, setTheme] = useGlobalState("theme");
-  const isDark = theme === Themes.dark;
+  const isDark = theme === "dark";
   const [info, setInfo] = useState(false);
 
   const spanStyle = {padding: "0.2rem"};
   const ToggleTheme = <>
     <Button variant={"contained"} type="button" color={"secondary"}
             style={{borderRadius: "100%", minWidth: "0"}}
-            onClick={() => isDark ? setTheme(Themes.light) : setTheme(Themes.dark)}>
+            onClick={() => isDark ? setTheme("light") : setTheme("dark")}>
       {isDark ? <Emoji label={"night"}/> : <Emoji label={"day"}/>}
     </Button>
   </>;
@@ -64,7 +65,7 @@ const Header = () => {
       <iframe src="https://github.com/sponsors/globalworming/button" title="Sponsor globalworming" height="35" width="116" style={{border: 0}}/>
     </Box>
 
-    <FullWidthWrappingFlexBox style={{background: "#3f51b5", color: "white"}}>
+    <FullWidthWrappingFlexBox style={{background: _.get(Themes, theme).palette.secondary.main, color: "white"}}>
       <FullWidthWrappingFlexBox>
         <strong style={{padding: "0.5rem", display: "inline"}}>Serenity Report Navigator</strong>
         {ToggleTheme}
