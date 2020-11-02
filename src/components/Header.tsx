@@ -35,7 +35,7 @@ const Header = () => {
           <span style={spanStyle}>
         <Emoji label={"stories"}/> concise reporting of features</span>
           <span style={spanStyle}>
-        <ResultImage result={Result.Failure}/> in-depth steps and traces
+        <ResultImage result={Result.FAILURE}/> in-depth steps and traces
       </span>
           <span style={spanStyle}>
         <Emoji label={"big screen"}/> wallboard mode

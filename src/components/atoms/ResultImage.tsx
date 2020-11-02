@@ -11,13 +11,13 @@ interface ResultImageProps {
 const ResultImage = ({result}: ResultImageProps) =>  {
 
   switch (result) {
-    case Result.Pending: return <Emoji label={Result.Pending}>➖</Emoji>;
-    case Result.Success: return <Emoji label={Result.Success}>✔️</Emoji>;
-    case Result.Failure: return <Emoji label={Result.Failure}>⚠️</Emoji>;
-    case Result.Ignored: return <Emoji label={Result.Ignored}>💤</Emoji>;
-    case Result.Error: return <Emoji label={Result.Error}>❌</Emoji>;
-    case Result.Skipped: return <Emoji label={Result.Skipped}>⏭️</Emoji>;
-    case Result.Compromised: return <Emoji label={Result.Compromised}>⁉️️</Emoji>
+    case Result.PENDING: return <Emoji label={Result.PENDING}>➖</Emoji>;
+    case Result.SUCCESS: return <Emoji label={Result.SUCCESS}>✔️</Emoji>;
+    case Result.FAILURE: return <Emoji label={Result.FAILURE}>⚠️</Emoji>;
+    case Result.IGNORED: return <Emoji label={Result.IGNORED}>💤</Emoji>;
+    case Result.ERROR: return <Emoji label={Result.ERROR}>❌</Emoji>;
+    case Result.SKIPPED: return <Emoji label={Result.SKIPPED}>⏭️</Emoji>;
+    case Result.COMPROMISED: return <Emoji label={Result.COMPROMISED}>⁉️️</Emoji>
   }
   return <span>{result}</span>;
 };

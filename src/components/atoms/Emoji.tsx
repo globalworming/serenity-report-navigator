@@ -1,12 +1,11 @@
-import {FunctionComponent} from "react";
-import React from "react";
+import React, {FunctionComponent} from "react";
 
 interface MyProps {
   label: string
 }
 
 const emoji = (label: string) => {
-  switch (label) {
+  switch (label.toLowerCase()) {
     case "feature":
       return "📘";
     case "tag":

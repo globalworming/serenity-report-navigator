@@ -14,7 +14,7 @@ const QuickLinks = () => {
 
   const showPendingStories = () => {
     const newFilter = new Filter();
-    newFilter.results = [Result.Pending];
+    newFilter.results = [Result.PENDING];
     setFilter(newFilter);
     setDepths(1);
     setView("story")
@@ -23,7 +23,7 @@ const QuickLinks = () => {
 
   const showViewOutcomeErrors = () => {
     const newFilter = new Filter();
-    newFilter.results = [Result.Failure, Result.Error, Result.Compromised];
+    newFilter.results = [Result.FAILURE, Result.ERROR, Result.COMPROMISED];
     setFilter(newFilter);
     setDepths(4);
     setView("story")
@@ -33,11 +33,11 @@ const QuickLinks = () => {
   return <><span style={{textTransform: "capitalize"}}>quick access</span>
     <Button style={{marginBottom: "0.5rem"}} fullWidth={true} color={"secondary"} variant={"outlined"}
             onClick={showViewOutcomeErrors}>
-      trace errors <LinkTo depth={4} results={[Result.Failure, Result.Error, Result.Compromised]}/>
+      trace errors <LinkTo depth={4} results={[Result.FAILURE, Result.ERROR, Result.COMPROMISED]}/>
     </Button>
 
     <Button fullWidth={true} color={"secondary"} variant={"outlined"} onClick={showPendingStories}>
-      pending stories <LinkTo depth={1} results={[Result.Pending]}/>
+      pending stories <LinkTo depth={1} results={[Result.PENDING]}/>
     </Button></>;
 };
 

@@ -14,7 +14,6 @@ interface TestOutcome {
   name: string
   pending: string
   result: Result
-  steps: string
   successful: string
   skipped: string
   startTime: string | number
