@@ -1,8 +1,7 @@
 import {Button} from "@material-ui/core";
 import CopyToClipboard from "react-copy-to-clipboard";
 import * as React from "react";
-import {useState} from "react";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 
 interface MyProps {
@@ -22,7 +21,7 @@ const OneClickCopy = ({text}: MyProps) => {
   }, [copied, setCopied]);
 
   return <CopyToClipboard text={text} onCopy={() => setCopied(true)}>
-    <Button size={"small"} style={{margin: "0 0 0 auto", color: "white", borderColor: "#DBA"}} variant={"outlined"}>{copied ? "copied" : "copy"}</Button>
+    <Button size={"small"} color={"secondary"} style={{margin: "0 0 0 auto"}} variant={"outlined"}>{copied ? "copied" : "copy"}</Button>
   </CopyToClipboard>
 };
 
