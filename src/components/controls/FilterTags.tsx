@@ -15,9 +15,12 @@ const FilterTags = () => {
   const [filter, setFilter] = useGlobalState("filter");
   const [, setDepths] = useGlobalState("expansionDepth");
   const [tagsByType] = useGlobalState("tagsByType");
+  const outcomes = window.outcomes;
 
   const types = filter.focusType.length > 0 ? [filter.focusType] : _.keys(tagsByType);
   const canBeCleared = filter.focusType !== "" || filter.focusTag !== "";
+  const typeCounts = _.countBy(outcomes.map(it => it.tags).flat(), it => it.type);
+  const tagCounts = _.countBy(outcomes.map(it => it.tags).flat(), it => it.type + it.name);
 
   const clear = () => {
     setDepths(0);
@@ -47,18 +50,20 @@ const FilterTags = () => {
   return <>
     <ClearButton disabled={!canBeCleared} onClick={clear}/>
     <FullWidthWrappingFlexBox>
-      {types.map(type => <React.Fragment key={type}>
+      {_.sortBy(types, it => typeCounts[it] || 0).reverse().map(type => <React.Fragment key={type}>
         <CheckboxButton fullWidth checked={filter.focusType === type} onClick={() => focusType(type)}>
-          <Emoji label={type}/>&nbsp;{type}
+          <span><Emoji label={type}/>&nbsp;{type}{typeCounts[type] > 0 && <span style={{fontSize: "0.8rem"}}> ({typeCounts[type]})</span>}</span>
         </CheckboxButton>
 
         <FullWidthWrappingFlexBox
           style={{overflowY: "auto", maxHeight: filter.focusType === type ? "none" : "7rem", marginBottom: "1rem"}}>
-          {tagsByType[type].map(it => <Box width={"100%"} marginLeft={"1rem"} marginRight={"1rem"} key={it.name}>
-              <CheckboxButton fullWidth checked={filter.focusTag === it.name} onClick={() => focusTag(it)}>
-                {it.displayName ? it.displayName : it.name}
-              </CheckboxButton>
-            </Box>
+          {_.sortBy(tagsByType[type], it => tagCounts[type + it.name] || 0).reverse().map(it => <React.Fragment key={it.name}>
+              <Box flex={"1 1 90%"} marginLeft={"1rem"} marginRight={"1rem"}>
+                <CheckboxButton fullWidth checked={filter.focusTag === it.name} onClick={() => focusTag(it)}>
+                  <span>{it.displayName ? it.displayName : it.name}{tagCounts[type + it.name] > 0 && <span style={{fontSize: "0.8rem"}}> ({tagCounts[type + it.name]})</span>}</span>
+                </CheckboxButton>
+              </Box>
+            </React.Fragment>
           )}
         </FullWidthWrappingFlexBox>
       </React.Fragment>)}

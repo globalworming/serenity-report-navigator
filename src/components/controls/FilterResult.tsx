@@ -13,6 +13,7 @@ const FilterResult = () => {
 
   const outcomes = window.outcomes;
   let results: Array<string> = _.uniq(outcomes.map((it) => it.result));
+  let resultCounts = _.countBy(outcomes,(it) => it.result);
 
   function toggle(result: string) {
     const newFilter = Object.assign(new Filter(), filter);
@@ -46,7 +47,7 @@ const FilterResult = () => {
     {results.map(it => {
       return <React.Fragment key={it}>
         <CheckboxButton fullWidth={true} checked={filter.results.length === 0 || filter.results.includes(it)} onClick={() => toggle(it)}>
-        {it}&nbsp;<ResultImage result={it}/>
+        <span>{it}&nbsp;<ResultImage result={it}/>{resultCounts[it] > 0 && <span style={{fontSize: "0.8rem"}}> ({resultCounts[it]})</span>}</span>
       </CheckboxButton></React.Fragment>
 
     })}
