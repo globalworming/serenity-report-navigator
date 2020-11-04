@@ -4,6 +4,7 @@ import LinkTo from "./outcome/LinkTo";
 import useGlobalState from "../../state";
 import Emoji from "../atoms/Emoji";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import View from "../../model/View";
 
 const SwitchViewMode = () => {
   const [view, setView] = useGlobalState("view");
@@ -35,7 +36,7 @@ const SwitchViewMode = () => {
   return <>
       <FullWidthWrappingFlexBox className={"switchWrapper"} style={{justifyContent: "space-between", padding: "0.25rem", paddingBottom: 0}}>
         {
-          ["story", "stats", "screenshots"].map(it => <React.Fragment key={it}>
+          [View.STATS, View.STORY, View.SCREENSHOTS].map(it => <React.Fragment key={it}>
             {switchToViewButton(it)}
           </React.Fragment>)
         }

@@ -5,6 +5,7 @@ import ByScreenshots from "./ByScreenshots";
 import Stats from "./stats/Stats";
 import ClearButton from "../molecules/ClearButton";
 import Filter from "../../model/Filter";
+import View from "../../model/View";
 
 const ExploreData = () => {
   const [view] = useGlobalState("view");
@@ -14,11 +15,11 @@ const ExploreData = () => {
 
   const displayView = (view: string) => {
     switch (view) {
-      case "story":
+      case View.STORY:
         return <ByStory/>;
-      case "screenshots":
+      case View.SCREENSHOTS:
         return <ByScreenshots/>;
-      case "stats":
+      case View.STATS:
         return <Stats/>
     }
     return <Stats/>

@@ -4,6 +4,7 @@ import Result from "../../model/Result";
 import * as React from "react";
 import Filter from "../../model/Filter";
 import useGlobalState from "../../state";
+import View from "../../model/View";
 
 const QuickLinks = () => {
 
@@ -17,8 +18,7 @@ const QuickLinks = () => {
     newFilter.results = [Result.PENDING];
     setFilter(newFilter);
     setDepths(1);
-    setView("story")
-
+    setView(View.STORY)
   };
 
   const showViewOutcomeErrors = () => {
@@ -26,7 +26,7 @@ const QuickLinks = () => {
     newFilter.results = [Result.FAILURE, Result.ERROR, Result.COMPROMISED];
     setFilter(newFilter);
     setDepths(4);
-    setView("story")
+    setView(View.STORY);
   };
 
 

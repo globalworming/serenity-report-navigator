@@ -10,7 +10,7 @@ const initialState = {
   tagsByType: _.groupBy(_.uniqBy(window.outcomes.map(it => it.tags).flat(), (it) => joined(it)), it => it.type),
   hasParsedQuery: false,
   hasAppliedFilter: false,
-  view: View.STORY,
+  view: View.STATS,
   expansionDepth: 0,
   theme: "dark"
 };

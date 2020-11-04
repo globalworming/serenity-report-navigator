@@ -1,5 +1,7 @@
 const View = {
-  STORY: "story"
+  STORY: "story",
+  STATS: "stats",
+  SCREENSHOTS: "screenshots"
 };
 
 export default View
