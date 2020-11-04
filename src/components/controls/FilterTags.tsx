@@ -57,14 +57,14 @@ const FilterTags = () => {
   return <>
     <ClearButton disabled={!canBeCleared} onClick={clear}/>
     <FullWidthWrappingFlexBox>
-      {_.sortBy(types, it => typeCounts[it] || 0).reverse().map(type => <React.Fragment key={type}>
+      {_.sortBy(types, it => filteredTypeCounts[it] || 0).reverse().map(type => <React.Fragment key={type}>
         <CheckboxButton fullWidth checked={filter.focusType === type} onClick={() => focusType(type)}>
           <span><Emoji label={type}/>&nbsp;{type}{typeCounts[type] > 0 && <span style={{fontSize: "0.8rem"}}> {filteredTypeCounts[type] || "-"}/{typeCounts[type]}</span>}</span>
         </CheckboxButton>
 
         <FullWidthWrappingFlexBox
           style={{overflowY: "auto", maxHeight: filter.focusType === type ? "none" : "7rem", marginBottom: "1rem"}}>
-          {_.sortBy(tagsByType[type], it => tagCounts[type + it.name] || 0).reverse().map(it => <React.Fragment key={it.name}>
+          {_.sortBy(tagsByType[type], it => filteredTagCounts[type + it.name] || 0).reverse().map(it => <React.Fragment key={it.name}>
               <Box flex={"1 1 90%"} marginLeft={"1rem"} marginRight={"1rem"}>
                 <CheckboxButton fullWidth checked={filter.focusTag === it.name} onClick={() => focusTag(it)}>
                   <span>{it.displayName ? it.displayName : it.name}{tagCounts[type + it.name] > 0 && <span style={{fontSize: "0.8rem"}}> {filteredTagCounts[type + it.name] || "-"}/{tagCounts[type + it.name]}</span>}</span>
