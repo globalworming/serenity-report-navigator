@@ -12,8 +12,11 @@ const FilterResult = () => {
   const [, setDepths] = useGlobalState('expansionDepth');
 
   const outcomes = window.outcomes;
+  const [filtered] = useGlobalState("filteredOutcomes");
+
   let results: Array<string> = _.uniq(outcomes.map((it) => it.result));
   let resultCounts = _.countBy(outcomes,(it) => it.result);
+  let filteredResultCounts = _.countBy(filtered,(it) => it.result);
 
   function toggle(result: string) {
     const newFilter = Object.assign(new Filter(), filter);
@@ -47,7 +50,7 @@ const FilterResult = () => {
     {results.map(it => {
       return <React.Fragment key={it}>
         <CheckboxButton fullWidth={true} checked={filter.results.length === 0 || filter.results.includes(it)} onClick={() => toggle(it)}>
-        <span>{it}&nbsp;<ResultImage result={it}/>{resultCounts[it] > 0 && <span style={{fontSize: "0.8rem"}}> ({resultCounts[it]})</span>}</span>
+        <span>{it}&nbsp;<ResultImage result={it}/>{resultCounts[it] > 0 && <span style={{fontSize: "0.8rem"}}> {filteredResultCounts[it] || "-"}/{resultCounts[it]}</span>}</span>
       </CheckboxButton></React.Fragment>
 
     })}
