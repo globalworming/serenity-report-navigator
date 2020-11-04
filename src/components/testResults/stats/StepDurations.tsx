@@ -30,7 +30,7 @@ const StepDurations = () => {
               const max = Math.max(...steps.map(it => it.duration));
               const formatted = prettyMilliseconds(max) === prettyMilliseconds(min) ? prettyMilliseconds(min) : prettyMilliseconds(min) + " - " + prettyMilliseconds(max);
 
-              return <FullWidthWrappingFlexBox key={it}>
+              return <FullWidthWrappingFlexBox key={it + steps.length} style={{position: "relative"}}>
 
                 <Box
                   style={{
@@ -42,15 +42,15 @@ const StepDurations = () => {
                     minHeight: "1.5rem",
                     position: "relative"
                   }}>
-                  <Pre style={{
-                    position: "absolute",
-                    top: "0.2rem",
-                    left: "0.2rem",
-                    maxWidth: "28rem",
-                    maxHeight: "2rem",
-                    overflow: "hidden"
-                  }}><span style={{backgroundColor: `#f50057${Math.min(0xFF, steps.length * 5).toString(16)}`}}>{steps.length}x</span> {formatted} {steps[0].description}</Pre>
                 </Box>
+                <Pre style={{
+                  position: "absolute",
+                  top: "0",
+                  left: "0.5rem",
+                  maxWidth: "90%",
+                  maxHeight: "2rem",
+                  overflow: "hidden"
+                }}><span style={{backgroundColor: `#f50057${Math.min(0xFF, steps.length * 5).toString(16)}`}}>{steps.length}x</span> {formatted} {steps[0].description}</Pre>
               </FullWidthWrappingFlexBox>;
             }
           )
