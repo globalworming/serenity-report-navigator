@@ -6,6 +6,7 @@ import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import useGlobalState from '../../../state';
 import StepDurations from "./StepDurations";
 import UnsuccessfulOutcomes from "./UnsuccessfulOutcomes";
+import UnsuccessfulTags from './UnsuccessfulTags';
 
 const Stats = () => {
     const [outcomes] = useGlobalState("filteredOutcomes");
@@ -16,6 +17,7 @@ const Stats = () => {
     return <>
       <FullWidthWrappingFlexBox style={{paddingTop: "1rem"}}>
         <UnsuccessfulOutcomes/>
+        <UnsuccessfulTags/>
       </FullWidthWrappingFlexBox>
       <FullWidthWrappingFlexBox style={{paddingTop: "1rem"}}>
         <ResultPercentage/>
