@@ -8,14 +8,13 @@ import {colorOf} from "../../../model/Result";
 
 const UnsuccessfulOutcomes = () => {
   const [outcomes] = useGlobalState("filteredOutcomes");
+  const [filter] = useGlobalState("filter");
   const exceptionSteps = outcomes.map(it => flatSteps(it.testSteps)).flat()
     .filter(it => !!it.exception)
     .filter(it => !it.children)
-    .map(it => ({
-      type: it.exception.errorType,
-      result: it.result
-    }));
-  const exceptionCount = _.countBy(exceptionSteps, it => it.type + "/"+ it.result);
+    .filter(it => filter.results.length === 0 || filter.results.includes(it.result))
+    .map(it => `${it.exception.errorType}/${it.result}`);
+  const exceptionCount = _.countBy(exceptionSteps);
 
   return <>
     <FullWidthWrappingFlexBox
