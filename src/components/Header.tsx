@@ -62,7 +62,7 @@ const Header = () => {
 
     </Box>
     <Box style={{position: "absolute", right: "8rem", top: "0.2rem", textAlign: "right"}}>
-      <iframe src="https://github.com/sponsors/globalworming/button" title="Sponsor globalworming" height="35" width="116" style={{border: 0}}/>
+      <Button size={"small"} variant={"contained"} color={"secondary"} href={"https://github.com/sponsors/globalworming"} target={"_blank"} rel={"noopener noreferrer"} ><Emoji label={"heart"}/> Sponsor</Button>
     </Box>
 
     <FullWidthWrappingFlexBox style={{background: _.get(Themes, theme).palette.secondary.main, color: _.get(Themes, theme).palette.text.main}}>
