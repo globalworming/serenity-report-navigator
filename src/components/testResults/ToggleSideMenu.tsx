@@ -18,7 +18,7 @@ export const ToggleSideMenu = () => {
     <Button
       style={buttonStyle}
       onClick={() => setShowSideMenu(!showSideMenu)}
-      variant={showSideMenu ? "contained" : "outlined"}
+      variant={!showSideMenu ? "contained" : "outlined"}
       color="secondary"
       startIcon={<FilterListIcon />}
     />
