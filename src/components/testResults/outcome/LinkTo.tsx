@@ -9,7 +9,7 @@ const LinkTo = (props: MyQuery) => {
 
   const encodedTheme = themeKey !== "custom" ? themeKey :
     [theme.palette.primary.main, theme.palette.secondary.main, theme.palette.text.primary, theme.palette.background.default, theme.palette.background.paper].join("_");
-  return <Button  variant={"text"} onClick={e => e.stopPropagation()} target={"_blank"} href={queryString(Object.assign({theme: encodedTheme}, props))}>
+  return <Button variant={"text"} onClick={e => e.stopPropagation()} target={"_blank"} href={queryString(Object.assign({theme: encodedTheme}, props))}>
     <span role="img" aria-label={"link"}>🔗</span></Button>
 };
 
