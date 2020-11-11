@@ -1,11 +1,11 @@
 import React from "react";
-import Expandable from "../organisms/Expandable";
-import UserStory from "../../model/UserStory";
-import TestOutcome from "../../model/TestOutcome";
-import Outcome from "./outcome/Outcome";
+import Expandable from "../../organisms/Expandable";
+import UserStory from "../../../model/UserStory";
+import TestOutcome from "../../../model/TestOutcome";
+import Outcome from "../story/Outcome";
 import Narrative from "./Narrative";
 import StoryHeading from "./StoryHeading";
-import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import {useTheme} from "@material-ui/core";
 
 interface StoryProps {

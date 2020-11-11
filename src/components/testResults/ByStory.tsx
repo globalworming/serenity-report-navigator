@@ -1,7 +1,7 @@
 import React from "react";
 import _ from 'lodash';
 import useGlobalState from '../../state';
-import Story from "./Story";
+import Story from "./story/Story";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import ExpandCollapseAll from "./ExpandCollapseAll";
 

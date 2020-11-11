@@ -1,9 +1,9 @@
-import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
-import RowWithResultAggregate from "../molecules/RowWithResultAggregate";
+import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
+import RowWithResultAggregate from "../../molecules/RowWithResultAggregate";
 import React from "react";
-import TestOutcome from "../../model/TestOutcome";
-import UserStory from "../../model/UserStory";
-import Emoji from "../atoms/Emoji";
+import TestOutcome from "../../../model/TestOutcome";
+import UserStory from "../../../model/UserStory";
+import Emoji from "../../atoms/Emoji";
 
 interface MyProps {
   outcomes: Array<TestOutcome>,

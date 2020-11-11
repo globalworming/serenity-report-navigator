@@ -1,7 +1,7 @@
 import React from "react";
-import useGlobalState from "../../state";
-import ResultImage from "../atoms/ResultImage";
-import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import useGlobalState from "../../../state";
+import ResultImage from "../../atoms/ResultImage";
+import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import {Box} from "@material-ui/core";
 
 

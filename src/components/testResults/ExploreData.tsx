@@ -6,6 +6,7 @@ import Stats from "./stats/Stats";
 import ClearButton from "../molecules/ClearButton";
 import Filter from "../../model/Filter";
 import View from "../../model/View";
+import ByOutcome from "./ByOutcome";
 
 const ExploreData = () => {
   const [view] = useGlobalState("view");
@@ -20,7 +21,9 @@ const ExploreData = () => {
       case View.SCREENSHOTS:
         return <ByScreenshots/>;
       case View.STATS:
-        return <Stats/>
+        return <Stats/>;
+      case View.OUTCOMES:
+        return <ByOutcome/>
     }
     return <Stats/>
   };
