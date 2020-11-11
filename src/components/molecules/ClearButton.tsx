@@ -1,6 +1,6 @@
 import * as React from "react";
-import {Button, useTheme} from "@material-ui/core";
 import {FunctionComponent} from "react";
+import {Button, useTheme} from "@material-ui/core";
 
 interface MyProps {
   disabled: boolean,
@@ -17,7 +17,7 @@ const ClearButton: FunctionComponent<MyProps> = ({disabled, onClick}) => {
     color: disabled ? theme.palette.text.primary : theme.palette.background.default,
     border: "2px solid #A0A0A060"
   };
-    return <Button disabled={disabled} variant={"contained"} color={"secondary"} style={style} onClick={() => onClick()}>X</Button>
+    return <Button size={"small"} disabled={disabled} variant={"contained"} color={"secondary"} style={style} onClick={() => onClick()}>X</Button>
 };
 
 export default ClearButton

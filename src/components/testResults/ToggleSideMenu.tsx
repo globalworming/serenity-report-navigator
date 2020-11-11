@@ -2,15 +2,24 @@ import React from "react";
 import {Button} from "@material-ui/core";
 import FilterListIcon from '@material-ui/icons/FilterList';
 import useGlobalState from "../../state";
+import ClearButton from "../molecules/ClearButton";
+import Filter from "../../model/Filter";
+import * as _ from "lodash";
 
 export const ToggleSideMenu = () => {
 
   const [showSideMenu, setShowSideMenu] = useGlobalState("showSideMenu");
+  const [filter, setFilter] = useGlobalState("filter");
+  const activeFilters = _.keys(filter).filter(it => {
+    return !_.isEqual(_.get(new Filter(), it), _.get(filter, it));
+  });
+  const [, setDepths] = useGlobalState("expansionDepth");
+
 
   const buttonStyle = {
     margin: "0.25em",
     minWidth: 0,
-    padding: 0, height: "1.5rem", lineHeight: 1, paddingLeft: "0.7rem"
+    padding: "0 0.2rem 0 0.7rem" , height: "1.5rem", lineHeight: 1
   };
 
 
@@ -20,7 +29,10 @@ export const ToggleSideMenu = () => {
       onClick={() => setShowSideMenu(!showSideMenu)}
       variant={!showSideMenu ? "contained" : "outlined"}
       color="secondary"
-      startIcon={<FilterListIcon />}
-    />
+      startIcon={<FilterListIcon />}>{activeFilters.length >= 1 && activeFilters.length }</Button>
+    <ClearButton disabled={activeFilters.length === 0} onClick={() => {
+      setDepths(0);
+    return setFilter(new Filter());
+  }}/>
   </>
 };

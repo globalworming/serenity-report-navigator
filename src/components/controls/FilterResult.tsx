@@ -18,7 +18,7 @@ const FilterResult = () => {
   let resultCounts = _.countBy(outcomes,(it) => it.result);
   let filteredResultCounts = _.countBy(filtered,(it) => it.result);
 
-  function toggle(result: string) {
+  function toggle(result: string, resultsLenght: number) {
     const newFilter = Object.assign(new Filter(), filter);
 
     if (newFilter.results.length === 0) {
@@ -30,6 +30,9 @@ const FilterResult = () => {
       newFilter.results.push(result)
     } else {
       newFilter.results.splice(index, 1)
+    }
+    if (resultsLenght === newFilter.results.length) {
+      newFilter.results = new Filter().results
     }
     setDepths(0);
     setFilter(newFilter)
@@ -49,7 +52,7 @@ const FilterResult = () => {
     <ClearButton disabled={!canBeCleared} onClick={clear}/>
     {results.map(it => {
       return <React.Fragment key={it}>
-        <CheckboxButton fullWidth={true} checked={filter.results.length === 0 || filter.results.includes(it)} onClick={() => toggle(it)}>
+        <CheckboxButton fullWidth={true} checked={filter.results.length === 0 || filter.results.includes(it)} onClick={() => toggle(it, results.length)}>
         <span>{it}&nbsp;<ResultImage result={it}/>{resultCounts[it] > 0 && <span style={{fontSize: "0.8rem"}}> {filteredResultCounts[it] || "-"}/{resultCounts[it]}</span>}</span>
       </CheckboxButton></React.Fragment>
 
