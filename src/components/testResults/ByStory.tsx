@@ -3,7 +3,6 @@ import _ from 'lodash';
 import useGlobalState from '../../state';
 import Story from "./story/Story";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
-import ExpandCollapseAll from "./ExpandCollapseAll";
 
 
 const ByStory = () => {
@@ -11,7 +10,6 @@ const ByStory = () => {
   const outcomesByStoryId = _.groupBy(outcomes, o => o.userStory.id);
   const storyName = (it: string) => outcomesByStoryId[it][0].userStory.storyName.toLowerCase();
   return <>
-    <ExpandCollapseAll/>
     <FullWidthWrappingFlexBox className={"stories"} style={{padding: "0.25rem"}}>
     {_.sortBy(_.keys(outcomesByStoryId), storyName).map((storyId) => {
       return <React.Fragment key={storyId}>

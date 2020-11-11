@@ -29,15 +29,17 @@ const App = () => {
     const theme = useTheme();
     const [parsedQuery] = useGlobalState("hasParsedQuery");
     const [appliedFilter] = useGlobalState("hasAppliedFilter");
+    const [showSideMenu] = useGlobalState("showSideMenu");
 
-  const fixEmptyIds = () => {
-    window.outcomes.forEach(it => {
-      if (!it.id || it.id.length === 0) {
-        it.id = it.userStory.id + ": " + it.name
-      }
-    })
-  };
-  useEffect(fixEmptyIds);
+
+    const fixEmptyIds = () => {
+      window.outcomes.forEach(it => {
+        if (!it.id || it.id.length === 0) {
+          it.id = it.userStory.id + ": " + it.name
+        }
+      })
+    };
+    useEffect(fixEmptyIds);
 
     const InitWithQueryParameters = () => <Router>
       <Route path="*">
@@ -53,9 +55,9 @@ const App = () => {
       <HorizontalGlobalResultPercentageLine/>
 
       <FullWidthWrappingFlexBox>
-        <Box flex={"0 0 15rem"} padding={"1rem 0.2rem"}>
+        {showSideMenu && <Box flex={"0 0 15rem"} padding={"1rem 0.2rem"}>
           <SideMenu/>
-        </Box>
+        </Box>}
         <Box flex={"1 0 40%"}>
           <Box>
             <FullWidthWrappingFlexBox>

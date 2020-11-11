@@ -7,6 +7,10 @@ import ClearButton from "../molecules/ClearButton";
 import Filter from "../../model/Filter";
 import View from "../../model/View";
 import ByOutcome from "./ByOutcome";
+import ExpandCollapseAll from "./ExpandCollapseAll";
+import {ToggleSideMenu} from "./ToggleSideMenu";
+import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
+import {Box} from "@material-ui/core";
 
 const ExploreData = () => {
   const [view] = useGlobalState("view");
@@ -15,15 +19,36 @@ const ExploreData = () => {
   const [, setDepths] = useGlobalState("expansionDepth");
 
   const displayView = (view: string) => {
+    const filterAndExpand = <FullWidthWrappingFlexBox style={{justifyContent: "space-between"}}>
+      <Box>
+        <ToggleSideMenu/>
+      </Box>
+      <Box>
+        <ExpandCollapseAll/>
+      </Box>
+    </FullWidthWrappingFlexBox>;
+
     switch (view) {
       case View.STORY:
-        return <ByStory/>;
+        return <>
+          {filterAndExpand}
+          <ByStory/>
+        </>;
       case View.SCREENSHOTS:
-        return <ByScreenshots/>;
+        return <>
+          <ToggleSideMenu/>
+          <ByScreenshots/>
+        </>;
       case View.STATS:
-        return <Stats/>;
+        return <>
+          <ToggleSideMenu/>
+          <Stats/>
+        </>;
       case View.OUTCOMES:
-        return <ByOutcome/>
+        return <>
+          {filterAndExpand}
+          <ByOutcome/>
+        </>
     }
     return <Stats/>
   };

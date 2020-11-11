@@ -12,7 +12,8 @@ const initialState = {
   hasAppliedFilter: false,
   view: View.STATS,
   expansionDepth: 0,
-  theme: "dark"
+  theme: "dark",
+  showSideMenu: false
 };
 const {useGlobalState} = createGlobalState(initialState);
 
