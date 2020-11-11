@@ -9,13 +9,13 @@ import ExpandCollapseAll from "./ExpandCollapseAll";
 const ByStory = () => {
   let [outcomes] = useGlobalState('filteredOutcomes');
   const outcomesByStoryId = _.groupBy(outcomes, o => o.userStory.id);
+  const storyName = (it: string) => outcomesByStoryId[it][0].userStory.storyName.toLowerCase();
   return <>
     <ExpandCollapseAll/>
     <FullWidthWrappingFlexBox className={"stories"} style={{padding: "0.25rem"}}>
-    {_.keys(outcomesByStoryId).map((storyName) => {
-      return <React.Fragment key={storyName}>
-          {/* TODO? always tells the first outcomes story, maybe missing other outcome.userStory.path values*/}
-          <Story tell={outcomesByStoryId[storyName][0].userStory} outcomes={outcomesByStoryId[storyName]}/>
+    {_.sortBy(_.keys(outcomesByStoryId), storyName).map((storyId) => {
+      return <React.Fragment key={storyId}>
+          <Story tell={outcomesByStoryId[storyId][0].userStory} outcomes={outcomesByStoryId[storyId]}/>
       </React.Fragment>;
     })}
     </FullWidthWrappingFlexBox>

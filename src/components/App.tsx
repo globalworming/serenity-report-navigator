@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ExploreData from "./testResults/ExploreData";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import useGlobalState from "../state"
@@ -10,7 +10,7 @@ import SwitchViewMode from "./testResults/SwitchViewMode"
 import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
 import Header from "./Header";
 import {Box, Theme, useTheme} from "@material-ui/core";
-import HorizontalResultPercentageLine from "./atoms/HorizontalResultPercentageLine"
+import HorizontalGlobalResultPercentageLine from "./atoms/HorizontalGlobalResultPercentageLine"
 
 
 declare global {
@@ -30,6 +30,15 @@ const App = () => {
     const [parsedQuery] = useGlobalState("hasParsedQuery");
     const [appliedFilter] = useGlobalState("hasAppliedFilter");
 
+  const fixEmptyIds = () => {
+    window.outcomes.forEach(it => {
+      if (!it.id || it.id.length === 0) {
+        it.id = it.userStory.id + ": " + it.name
+      }
+    })
+  };
+  useEffect(fixEmptyIds);
+
     const InitWithQueryParameters = () => <Router>
       <Route path="*">
         <LocalStateFromQueryParameters/>
@@ -41,7 +50,7 @@ const App = () => {
       {parsedQuery && !appliedFilter && <ApplyFilter/>}
 
       <Header/>
-      <HorizontalResultPercentageLine />
+      <HorizontalGlobalResultPercentageLine/>
 
       <FullWidthWrappingFlexBox>
         <Box flex={"0 0 15rem"} padding={"1rem 0.2rem"}>
@@ -50,7 +59,7 @@ const App = () => {
         <Box flex={"1 0 40%"}>
           <Box>
             <FullWidthWrappingFlexBox>
-                <SwitchViewMode/>
+              <SwitchViewMode/>
             </FullWidthWrappingFlexBox>
             {parsedQuery && appliedFilter && <>
               <ApplyFilter/>

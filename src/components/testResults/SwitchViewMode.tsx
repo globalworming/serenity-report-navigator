@@ -1,6 +1,6 @@
 import React from "react";
 import {Box, Button} from "@material-ui/core";
-import LinkTo from "./outcome/LinkTo";
+import LinkTo from "../atoms/LinkTo";
 import useGlobalState from "../../state";
 import Emoji from "../atoms/Emoji";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";

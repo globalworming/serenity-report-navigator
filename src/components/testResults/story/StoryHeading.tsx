@@ -13,7 +13,7 @@ interface MyProps {
 const StoryHeading = ({tell, outcomes}: MyProps) => {
   return <FullWidthWrappingFlexBox className={"storyHeading"}>
     <RowWithResultAggregate tellAll={outcomes.map(it => it.result)}>
-      <Emoji label={"story"}/>&nbsp;{tell.storyName}
+      <strong><Emoji label={"story"}/>&nbsp;{tell.storyName} ({outcomes.length})</strong>
     </RowWithResultAggregate>
   </FullWidthWrappingFlexBox>;
 };

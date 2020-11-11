@@ -34,6 +34,8 @@ const emoji = (label: string) => {
       return "🌙";
     case "day":
       return "☀️";
+    case "http":
+      return "📡↔️🛰️️";
 
   }
   return "📚";

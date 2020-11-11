@@ -1,7 +1,7 @@
 import * as React from "react";
 import FilterResult from "./FilterResult";
 import FilterKeywords from "./FilterKeywords";
-import LinkTo from "../testResults/outcome/LinkTo";
+import LinkTo from "../atoms/LinkTo";
 import useGlobalState from "../../state";
 import FilterTestOutcome from "./FilterTestOutcome";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";

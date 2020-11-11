@@ -1,20 +1,20 @@
 import React from "react";
-import {Box, useTheme} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 import {colorOf} from "../../model/Result";
 import * as _ from "lodash";
-import useGlobalState from "../../state";
 
-const HorizontalResultPercentageLine = () => {
-  const theme = useTheme();
-  const [appliedFilter] = useGlobalState("hasAppliedFilter");
-  const [outcomes] = useGlobalState("filteredOutcomes");
-  const counts = appliedFilter ? _.toPairs(_.countBy(outcomes, it => it.result)) : [];
+interface MyProps {
+  tellAll: Array<string>
+}
 
 
-  return <Box height={"0.5rem"} display={"flex"} overflow={"hidden"} width={"100%"}>
+const HorizontalResultPercentageLine = ({tellAll}: MyProps) => {
+  const counts = _.toPairs(_.countBy(tellAll));
+
+  return <Box height={"0.2rem"} display={"flex"} overflow={"hidden"} width={"95%"} margin={"0 auto"}>
     {
       counts.map(([result, count]) => <React.Fragment key={result}>
-          <Box style={{boxShadow: "inset " + theme.palette.background.default + " 0px -2px 2px 1px"}} height={"100%"} width={count * 100 / outcomes.length + "%"} bgcolor={colorOf(result)}/>
+          <Box style={{borderRadius: "10px"}} height={"100%"} width={count * 100 / tellAll.length + "%"} bgcolor={colorOf(result)}/>
         </React.Fragment>
       )
     }

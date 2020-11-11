@@ -1,7 +1,7 @@
-import {MyQuery, queryString} from "../../LocalStateFromQueryParameters";
+import {MyQuery, queryString} from "../LocalStateFromQueryParameters";
 import {Button, useTheme} from "@material-ui/core";
 import React from "react";
-import useGlobalState from "../../../state";
+import useGlobalState from "../../state";
 
 const LinkTo = (props: MyQuery) => {
   const [themeKey] = useGlobalState("theme");

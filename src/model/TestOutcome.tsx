@@ -3,9 +3,12 @@ import Tag from "./Tag";
 import TestStep from "./TestStep";
 import Result from "./Result";
 import DataTable from "./DataTable";
+import Actor from "./Actor";
 
 interface TestOutcome {
+  actors: Array<Actor>
   dataTable: DataTable
+  description: string
   duration: number
   failures: string
   id: string

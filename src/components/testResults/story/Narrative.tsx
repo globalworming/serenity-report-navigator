@@ -2,7 +2,7 @@ import React from "react";
 import useGlobalState from "../../../state";
 import ResultImage from "../../atoms/ResultImage";
 import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
-import {Box} from "@material-ui/core";
+import {Box, useTheme} from "@material-ui/core";
 
 
 interface MyProps {
@@ -12,13 +12,14 @@ interface MyProps {
 const Narrative = ({tell}: MyProps) => {
 
   const [outcomes] = useGlobalState("filteredOutcomes");
+  const theme = useTheme();
 
   if (!tell) return null;
 
   function renderExample(exampleLine: string) {
     const outcomeTitle = exampleLine.split("} ")[1];
     return <>
-      <Box style={{background: "black"}}>
+      <Box style={{background: theme.palette.background.default}}>
         <strong>{outcomeTitle}</strong>
         {
           outcomes

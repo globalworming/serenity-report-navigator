@@ -13,8 +13,8 @@ const Themes = {
         primary: "#DDD",
       },
       background: {
-        default: "#000",
-        paper: "#222"
+        default: "#000000",
+        paper: "#222222"
       }
     },
   }),
@@ -30,8 +30,8 @@ const Themes = {
         primary: "#303030"
       },
       background: {
-        default: "#EEE",
-        paper: "#FFF"
+        default: "#EEEEEE",
+        paper: "#FFFFFF"
       }
     },
   }),

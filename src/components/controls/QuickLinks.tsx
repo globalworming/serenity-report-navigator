@@ -1,5 +1,5 @@
 import {Button} from "@material-ui/core";
-import LinkTo from "../testResults/outcome/LinkTo";
+import LinkTo from "../atoms/LinkTo";
 import Result from "../../model/Result";
 import * as React from "react";
 import Filter from "../../model/Filter";
@@ -18,7 +18,7 @@ const QuickLinks = () => {
     newFilter.results = [Result.PENDING];
     setFilter(newFilter);
     setDepths(1);
-    setView(View.STORY)
+    setView(View.OUTCOMES)
   };
 
   const showViewOutcomeErrors = () => {
@@ -26,7 +26,7 @@ const QuickLinks = () => {
     newFilter.results = [Result.FAILURE, Result.ERROR, Result.COMPROMISED];
     setFilter(newFilter);
     setDepths(4);
-    setView(View.STORY);
+    setView(View.OUTCOMES);
   };
 
 
