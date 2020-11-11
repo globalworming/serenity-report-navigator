@@ -14,7 +14,7 @@ const DisplayRestQuery = ({tell}: MyProps) => {
   return <Expandable depths={4} whatsHidden={<>
     <OneClickCopy text={JSON.stringify(tell, undefined, 2)}/>
     <Pre>{JSON.stringify(tell, undefined, 2)}</Pre>
-  </>}><Button variant={"contained"} color={"secondary"}>show query</Button>
+  </>}><Button variant={"contained"} color={"secondary"}>query</Button>
   </Expandable>
 };
 
