@@ -19,7 +19,7 @@ const TestStepRow = ({tell, depth, expandOnDepths}: TestStepProps) => {
     {!tell.children && testStepDetails}
     {tell.children &&
     <ExpandableTestStep tellAll={tell.children} depth={depth} expandOnDepths={expandOnDepths}>
-      testStepDetails
+      {testStepDetails}
     </ExpandableTestStep>
     }
   </>
