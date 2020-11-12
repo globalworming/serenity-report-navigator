@@ -10,6 +10,7 @@ import {useTheme} from "@material-ui/core";
 import HorizontalResultPercentageLine from "../../atoms/HorizontalResultPercentageLine";
 import {colorFor} from "../../App";
 import * as _ from "lodash";
+import Actors from "../../molecules/Actors";
 
 interface StoryProps {
   tell: UserStory,
@@ -19,11 +20,10 @@ interface StoryProps {
 
 const Story = ({tell, outcomes}: StoryProps) => {
   const theme = useTheme();
-
   const storyHeading = <StoryHeading tell={tell} outcomes={outcomes}/>;
-
   const storyOutComes = outcomes.map((it) => <Outcome key={it.name + it.startTime} tell={it}/>);
   const tags = _.uniqBy(outcomes.map(it => it.tags).flat(), (it => it.type + it.name));
+  const actors = _.uniqBy(outcomes.filter(it => it.actors).map(it => it.actors).flat(), (it => it.name));
 
   return <>
     <HorizontalResultPercentageLine tellAll={outcomes.map(it => it.result)}/>
@@ -42,6 +42,11 @@ const Story = ({tell, outcomes}: StoryProps) => {
         </span>))}
         </FullWidthWrappingFlexBox>
         <Narrative tell={tell.narrative}/>
+        {
+          actors && actors.length > 0 && <>
+            <Actors tellAll={actors} />
+          </>
+        }
         {storyOutComes}
       </>}>
         {storyHeading}

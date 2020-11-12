@@ -13,7 +13,8 @@ const initialState = {
   view: View.STATS,
   expansionDepth: 0,
   theme: "dark",
-  showSideMenu: false
+  showSideMenu: false,
+  selectedOutcome: ""
 };
 const {useGlobalState} = createGlobalState(initialState);
 

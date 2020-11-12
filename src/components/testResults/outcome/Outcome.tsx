@@ -1,12 +1,21 @@
 import React from 'react';
 
 import TestOutcome from "../../../model/TestOutcome";
-import Expandable from "../../organisms/Expandable";
 import TestStepsRecursive from "./TestStepsRecursive";
 import {Box, useTheme} from "@material-ui/core";
-import {colorOf} from "../../../model/Result";
-import OutcomeDescription from "./OutcomeDescription";
-import Actors from "./Actors";
+import Actors from "../../molecules/Actors";
+import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
+import {colorFor} from "../../App";
+import ResultImage from "../../atoms/ResultImage";
+import Emoji from "../../atoms/Emoji";
+import * as _ from "lodash";
+import {flatSteps} from "../../../model/TestStep";
+import moment from "moment"
+import prettyMilliseconds from "pretty-ms"
+import LinkTo from "../../atoms/LinkTo";
+import useGlobalState from '../../../state';
+import RowWithResultAggregate from "../../molecules/RowWithResultAggregate";
+import Divider from "../../atoms/Devider";
 
 type MyProps = {
   tell: TestOutcome
@@ -14,28 +23,72 @@ type MyProps = {
 
 const Outcome = ({tell}: MyProps) => {
   const theme = useTheme();
+  const [view] = useGlobalState("view");
+  const startTime = typeof tell.startTime === "string" && tell.startTime.toString().includes("[") ? tell.startTime.split("[")[0] : tell.startTime;
+  const steps = flatSteps(tell.testSteps);
+  const screenshotCount = _.sum(steps.filter(it => it.screenshots).map(it => it.screenshots.length));
+  const queryCount = steps.filter(it => it.restQuery).length;
+
+
   return <>
-    <Box className={"outcome"} style={{
-      width: "100%",
-      border: `0.2rem solid ${colorOf(tell.result)}`,
-      borderRadius: "5px",
+    <FullWidthWrappingFlexBox className={"outcome"} style={{
       padding: "0.5rem",
-      backgroundColor: theme.palette.background.default
+      backgroundColor: theme.palette.background.paper,
+      wordBreak: "break-word"
     }}>
-      <Expandable depths={2} whatsHidden={<>
+      <FullWidthWrappingFlexBox>
+        <span><ResultImage result={tell.result}/> {tell.title}</span><LinkTo view={view} outcomeId={tell.id} depth={4}/>
+      </FullWidthWrappingFlexBox>
+      <FullWidthWrappingFlexBox>
+        {tell.userStory.storyName}
+      </FullWidthWrappingFlexBox>
+      <FullWidthWrappingFlexBox>
+        {tell.userStory.path}
+      </FullWidthWrappingFlexBox>
+      <FullWidthWrappingFlexBox>
+        {tell.testSource}
+      </FullWidthWrappingFlexBox>
+      <FullWidthWrappingFlexBox>
+        {tell.tags.map(({type, displayName, name}) => (
+          <span style={{
+            color: theme.palette.text.primary,
+            background: colorFor(type, "1F"),
+            border: `1px solid ${colorFor(type)}`,
+            borderRadius: "5px",
+            marginRight: "0.2rem",
+            padding: "0.1rem"
+          }} key={`${type}${displayName}`}>{type}:{displayName ? displayName : name}
+        </span>))}
+      </FullWidthWrappingFlexBox>
+      <FullWidthWrappingFlexBox>
         {
           tell.actors && tell.actors.length > 0 && <>
-          <hr />
-          <Actors tellAll={tell.actors} />
+            <Actors tellAll={tell.actors}/>
           </>
         }
+      </FullWidthWrappingFlexBox>
+      <Divider/>
+      <FullWidthWrappingFlexBox>
+        <Box>started {moment(startTime).fromNow()}: {moment(startTime).toISOString()}</Box>
+        <Box style={{marginLeft: "0.5rem"}}>
+          took: {prettyMilliseconds(tell.duration)}
+        </Box>
+        {screenshotCount > 0 && <Box style={{marginLeft: "0.5rem"}}>
+        <Emoji label={"screenshots"}/> {screenshotCount}
+        </Box>
+        }
+        {queryCount > 0 && <Box style={{marginLeft: "0.5rem"}}>
+          <Emoji label={"http"}/> {queryCount}
+        </Box>
+        }
 
-        <hr/>
-        <TestStepsRecursive depth={0} tellAll={tell.testSteps}/>
-      </>}>
-        <OutcomeDescription tell={tell}/>
-      </Expandable>
-    </Box>
+      </FullWidthWrappingFlexBox>
+      <Divider/>
+      <RowWithResultAggregate tellAll={flatSteps(tell.testSteps).map(it => it.result)}>
+        <strong>steps</strong>
+      </RowWithResultAggregate>
+      <TestStepsRecursive expandOnDepths={1} depth={0} tellAll={tell.testSteps}/>
+    </FullWidthWrappingFlexBox>
   </>
 };
 

@@ -11,6 +11,10 @@ interface TestOutcome {
   description: string
   duration: number
   failures: string
+  featureTag: {
+    name: string
+    displayName: string
+  }
   id: string
   issues: Array<string>
   ignored: string

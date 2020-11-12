@@ -6,12 +6,13 @@ import {Button} from "@material-ui/core";
 import Pre from "../../atoms/Pre";
 
 interface MyProps {
-  tell: RestQuery
+  tell: RestQuery,
+  expandOnDepths: number
 }
 
-const DisplayRestQuery = ({tell}: MyProps) => {
+const DisplayRestQuery = ({tell, expandOnDepths}: MyProps) => {
 
-  return <Expandable depths={4} whatsHidden={<>
+  return <Expandable depths={expandOnDepths} whatsHidden={<>
     <OneClickCopy text={JSON.stringify(tell, undefined, 2)}/>
     <Pre>{JSON.stringify(tell, undefined, 2)}</Pre>
   </>}><Button variant={"contained"} color={"secondary"}>query</Button>

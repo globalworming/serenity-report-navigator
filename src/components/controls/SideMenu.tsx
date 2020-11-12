@@ -7,32 +7,29 @@ import FilterTestOutcome from "./FilterTestOutcome";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 import QuickLinks from "./QuickLinks";
 import FilterTags from "./FilterTags";
+import Divider from "../atoms/Devider";
 
 const SideMenu = () => {
   const [view] = useGlobalState("view");
   const [filter] = useGlobalState("filter");
   const [depth] = useGlobalState("expansionDepth");
 
-
-  const divider = <FullWidthWrappingFlexBox>
-    <hr style={{width: "20%"}}/>
-  </FullWidthWrappingFlexBox>;
   return <FullWidthWrappingFlexBox>
 
     <QuickLinks />
-    {divider}
+    <Divider/>
 
 
     <FilterKeywords/>
-    {divider}
+    <Divider/>
 
     <FilterResult/>
-    {divider}
+    <Divider/>
 
     {filter.focusOutcome.length > 0 && <>
       <span style={{textTransform: "capitalize"}}>outcome</span>
       <FilterTestOutcome/>
-      {divider}
+      <Divider/>
     </>
     }
 

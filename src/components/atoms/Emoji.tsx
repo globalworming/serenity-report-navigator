@@ -38,6 +38,8 @@ const emoji = (label: string) => {
       return "📡↔️🛰️️";
     case "heart":
       return "❤️";
+    case "person":
+      return "🧑";
 
   }
   return "📚";

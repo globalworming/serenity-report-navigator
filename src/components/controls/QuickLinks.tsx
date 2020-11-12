@@ -25,7 +25,7 @@ const QuickLinks = () => {
     const newFilter = new Filter();
     newFilter.results = [Result.FAILURE, Result.ERROR, Result.COMPROMISED];
     setFilter(newFilter);
-    setDepths(4);
+    setDepths(10);
     setView(View.OUTCOMES);
   };
 
@@ -33,7 +33,7 @@ const QuickLinks = () => {
   return <><span style={{textTransform: "capitalize"}}>quick access</span>
     <Button style={{marginBottom: "0.5rem"}} fullWidth={true} color={"secondary"} variant={"outlined"}
             onClick={showViewOutcomeErrors}>
-      trace errors <LinkTo depth={4} results={[Result.FAILURE, Result.ERROR, Result.COMPROMISED]} view={View.OUTCOMES}/>
+      trace errors <LinkTo depth={10} results={[Result.FAILURE, Result.ERROR, Result.COMPROMISED]} view={View.OUTCOMES}/>
     </Button>
 
     <Button fullWidth={true} color={"secondary"} variant={"outlined"} onClick={showPendingStories}>

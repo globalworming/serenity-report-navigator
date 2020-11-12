@@ -11,7 +11,7 @@ const stage = process.env.REACT_APP_STAGE;
 const screenshotDir = stage === "template" ? "../" : "./screenshots/";
 const ScreenShot = ({fileName, width}: MyProps1) => {
   const theme = useTheme();
-  return <a href={screenshotDir + fileName} rel={"noopener noreferrer"} target={"_blank"}><FullWidthWrappingFlexBox
+  return <a style={{width: "100%"}} href={screenshotDir + fileName} rel={"noopener noreferrer"} target={"_blank"}><FullWidthWrappingFlexBox
     style={{
       backgroundColor: theme.palette.background.paper,
       backgroundImage: "url('" + screenshotDir + fileName + "')",
