@@ -24,7 +24,9 @@ const SelectOutcome = () => {
   };
   return <>
 
-    {isSelected && <>
+    {
+      // TODO create "back to list" button instead of "clear"
+      isSelected && outcomes.length > 1 && <>
       <FormControl size={"small"} color={"secondary"} variant={"outlined"}>
         <Box display={"flex"} width={"100%"}>
           <Box>
