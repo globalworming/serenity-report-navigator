@@ -45,7 +45,7 @@ const SelectOutcome = () => {
                 onClick={() => setSelected("")}
                 variant={"contained"}
                 color="secondary"
-                startIcon={<ViewListIcon />}/>
+                startIcon={<ViewListIcon />}>{outcomes.length}</Button>
           </Box>
           <Box flex={"1 0 90%"}>
             <Select
