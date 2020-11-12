@@ -1,9 +1,9 @@
 import {Box, Button, FormControl, Select, useTheme} from "@material-ui/core";
 import useGlobalState from "../../../state";
 import React, {useEffect} from "react";
-import ClearButton from "../../molecules/ClearButton";
 import FullWidthWrappingFlexBox from "../../molecules/FullWidthWrappingFlexBox";
 import ResultImage from "../../atoms/ResultImage";
+import ViewListIcon from '@material-ui/icons/ViewList';
 
 const SelectOutcome = () => {
   const theme = useTheme();
@@ -28,6 +28,7 @@ const SelectOutcome = () => {
       setSelected(e.target.value)
     }
   };
+
   return <>
 
     {
@@ -36,8 +37,19 @@ const SelectOutcome = () => {
       <FormControl size={"small"} color={"secondary"} variant={"outlined"}>
         <Box display={"flex"} width={"100%"}>
           <Box>
+            <Button
+                style={{
+                  minWidth: 0,
+                  padding: "0 0.2rem 0 0.7rem", height: "2.5rem"
+                }}
+                onClick={() => setSelected("")}
+                variant={"contained"}
+                color="secondary"
+                startIcon={<ViewListIcon />}/>
+          </Box>
+          <Box flex={"1 0 90%"}>
             <Select
-                style={{margin: "0.2rem"}}
+                style={{marginLeft: "0.2rem", background: theme.palette.secondary.main}}
                 native
                 value={selected}
                 onChange={handleChange}>
@@ -47,9 +59,6 @@ const SelectOutcome = () => {
                 </option>)
               }
             </Select>
-          </Box>
-          <Box>
-            <ClearButton disabled={outcomes.length === 1} onClick={() => setSelected("")}/>
           </Box>
         </Box>
       </FormControl>

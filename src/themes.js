@@ -7,7 +7,7 @@ const Themes = {
         main: "#00a34e",
       },
       secondary: {
-        main: "#4b5de5",
+        main: "#3f51c2",
       },
       text: {
         primary: "#DDD",
@@ -24,7 +24,7 @@ const Themes = {
         main: "#8ca500",
       },
       secondary: {
-        main: "#3f51b5",
+        main: "#465ccf",
       },
       text: {
         primary: "#303030"
