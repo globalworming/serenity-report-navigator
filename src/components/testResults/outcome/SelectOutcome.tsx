@@ -17,6 +17,12 @@ const SelectOutcome = () => {
     }
   });
 
+  useEffect(() => {
+    if (!outcomes.find(it => it.id === selected) && outcomes.length > 1) {
+      setSelected("")
+    }
+  }, [outcomes, setSelected, selected]);
+
   const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
     if (typeof e.target.value === "string") {
       setSelected(e.target.value)
