@@ -14,17 +14,17 @@ const StepDurations = () => {
   const longestRunningSteps = _.sortBy(flatSteps(outcomes.map(it => it.testSteps).flat()).filter(it => !it.children), it => it.duration).reverse();
   const grouped = _.groupBy(longestRunningSteps, it => it.description);
   const allMax = longestRunningSteps[0].duration;
-
+  const results = 50;
 
   return <>
     <FullWidthWrappingFlexBox
       style={{flex: "0 0 30rem", lineHeight: 2, padding: "0.5rem", justifyContent: "space-around"}}>
       <FullWidthWrappingFlexBox>
-        <strong>top 50 longest running steps, max {prettyMilliseconds(allMax)}</strong>
+        <strong>top {results} longest running steps, max {prettyMilliseconds(allMax)}</strong>
       </FullWidthWrappingFlexBox>
       <FullWidthWrappingFlexBox style={{maxHeight: "15rem", overflow: "auto"}}>
         {
-          _.keys(grouped).slice(0, 50).map(it => {
+          _.keys(grouped).slice(0, results).map(it => {
               const steps = grouped[it];
               const min = Math.min(...steps.map(it => it.duration));
               const max = Math.max(...steps.map(it => it.duration));
