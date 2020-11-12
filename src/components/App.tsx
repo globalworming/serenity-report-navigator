@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
-import ExploreData from "./testResults/ExploreData";
+import ExploreData from "./explore/ExploreData";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import useGlobalState from "../state"
 import ApplyFilter from "./ApplyFilter";
 import LocalStateFromQueryParameters from "./LocalStateFromQueryParameters";
 import TestOutcome from "../model/TestOutcome";
 import SideMenu from "./controls/SideMenu"
-import SwitchViewMode from "./testResults/SwitchViewMode"
+import SwitchViewMode from "./explore/SwitchViewMode"
 import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
 import Header from "./Header";
 import {Box, Theme, useTheme} from "@material-ui/core";

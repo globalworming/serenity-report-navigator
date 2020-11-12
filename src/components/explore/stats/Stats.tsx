@@ -7,6 +7,7 @@ import useGlobalState from '../../../state';
 import StepDurations from "./StepDurations";
 import UnsuccessfulOutcomes from "./UnsuccessfulOutcomes";
 import UnsuccessfulTags from './UnsuccessfulTags';
+import StepDurationsDistribution from "./StepDurationsDistribution";
 
 const Stats = () => {
     const [outcomes] = useGlobalState("filteredOutcomes");
@@ -24,6 +25,7 @@ const Stats = () => {
         <DurationsDistribution/>
         <DurationStatistics/>
         <StepDurations/>
+        <StepDurationsDistribution/>
       </FullWidthWrappingFlexBox>
     </>;
 
