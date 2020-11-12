@@ -10,16 +10,15 @@ const DurationsDistribution = () => {
   const [outcomes] = useGlobalState("filteredOutcomes");
   const [divisions] = useState(30);
 
-
-  const maximumDuration = Math.max(...outcomes.map(it => it.duration)) + 1;
+  const maximumDuration = Math.max(...outcomes.map(it => it.duration));
   let bars: Array<Array<Result>> = [];
 
   for (let i = 0; i < divisions; i++) {
     bars.push(
       outcomes
         .filter(it => {
-            return (it.duration < (maximumDuration / divisions * i) + ((maximumDuration) / divisions))
-              && (it.duration >= (maximumDuration / divisions * (i - 1)) + ((maximumDuration) / divisions));
+          return (it.duration < Math.round(maximumDuration / divisions * i + maximumDuration / divisions))
+              && (it.duration >= Math.round(maximumDuration / divisions * (i - 1) + maximumDuration / divisions));
           }
         )
         .map(it => it.result)
@@ -55,6 +54,9 @@ const DurationsDistribution = () => {
               </Box>;
             }
           )}
+        </FullWidthWrappingFlexBox>
+        <FullWidthWrappingFlexBox style={{justifyContent: "space-between"}}>
+          <span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
         </FullWidthWrappingFlexBox>
         <FullWidthWrappingFlexBox style={{justifyContent: "space-between"}}>
           <span>0</span><span>{prettyMilliseconds(maximumDuration * 0.25)}</span><span>{prettyMilliseconds(maximumDuration * 0.5)}</span><span>{prettyMilliseconds(maximumDuration * 0.75)}</span><span>{prettyMilliseconds(maximumDuration)}</span>

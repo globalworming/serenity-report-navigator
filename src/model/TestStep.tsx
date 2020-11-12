@@ -1,5 +1,6 @@
 import RestQuery from "./RestQuery"
 import Exception from "./Exception"
+import Result from "./Result";
 
 export interface Screenshot {
   screenshot: string
@@ -7,7 +8,7 @@ export interface Screenshot {
 
 interface TestStep {
   number: number
-  result: string
+  result: Result
   description: string
   duration: number
   startTime: Date

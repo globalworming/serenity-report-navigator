@@ -9,19 +9,22 @@ import {flatSteps} from "../../../model/TestStep";
 const StepDurationsDistribution = () => {
   const theme = useTheme();
   const [outcomes] = useGlobalState("filteredOutcomes");
+  const [selected] = useGlobalState("selectedStep");
   const [divisions] = useState(30);
+  if (selected === "") return null;
 
-  const steps = flatSteps(outcomes.map(it => it.testSteps).flat());
+  const steps = outcomes.map(it => flatSteps(it.testSteps)).flat().filter(it => it.description === selected);
+  if (steps.length === 0) return null;
 
   const maximumDuration = Math.max(...steps.map(it => it.duration));
   let bars: Array<Array<Result>> = [];
 
   for (let i = 0; i < divisions; i++) {
     bars.push(
-      outcomes
+      steps
         .filter(it => {
-            return (it.duration < (maximumDuration / divisions * i) + ((maximumDuration) / divisions))
-              && (it.duration >= (maximumDuration / divisions * (i - 1)) + ((maximumDuration) / divisions));
+          return (it.duration <= Math.round(maximumDuration / divisions * i + maximumDuration / divisions))
+              && (it.duration > Math.round(maximumDuration / divisions * (i - 1) + maximumDuration / divisions));
           }
         )
         .map(it => it.result)
@@ -37,7 +40,7 @@ const StepDurationsDistribution = () => {
 
       <strong>step duration distribution </strong>
        <Box>
-         {"jill opens homepage"}
+         {steps[0].description}
        </Box>
       {/*<TextField label="divisions" variant="outlined" value={divisions}
                  onChange={(e) => setDivisions(parseInt(e.target.value))}/>*/}
@@ -45,7 +48,7 @@ const StepDurationsDistribution = () => {
         <FullWidthWrappingFlexBox style={{minHeight: `${height}rem`, background: theme.palette.background.paper}}>
           {bars.map(
             (bar, i) => {
-              return <Box key={i} display={"flex"} flexDirection={"column"} flex={`0 0 ${(100 / divisions)}%`}
+              return <Box key={steps[0].description + i} display={"flex"} flexDirection={"column"} flex={`0 0 ${(100 / (divisions))}%`}
                           justifyContent="flex-end">
                 {bar.map((result, j) =>
                   <Box key={`${i}_${j}`} style={{
@@ -60,6 +63,9 @@ const StepDurationsDistribution = () => {
               </Box>;
             }
           )}
+        </FullWidthWrappingFlexBox>
+        <FullWidthWrappingFlexBox style={{justifyContent: "space-between"}}>
+          <span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
         </FullWidthWrappingFlexBox>
         <FullWidthWrappingFlexBox style={{justifyContent: "space-between"}}>
           <span>0</span><span>{prettyMilliseconds(maximumDuration * 0.25)}</span><span>{prettyMilliseconds(maximumDuration * 0.5)}</span><span>{prettyMilliseconds(maximumDuration * 0.75)}</span><span>{prettyMilliseconds(maximumDuration)}</span>

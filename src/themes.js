@@ -24,7 +24,7 @@ const Themes = {
         main: "#8ca500",
       },
       secondary: {
-        main: "#465ccf",
+        main: "#4d65e5",
       },
       text: {
         primary: "#303030"
