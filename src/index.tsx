@@ -7,6 +7,7 @@ import {ThemeProvider} from "@material-ui/core";
 import useGlobalState from "./state";
 import Themes from "./themes";
 import * as _ from "lodash";
+
 //import {Profiler, ProfilerOnRenderCallback} from 'react';
 
 /*
@@ -23,7 +24,6 @@ const MyThemeProvider: FunctionComponent = ({children}) => {
   </ThemeProvider>
 
 };
-
 
 ReactDOM.render(
   <React.StrictMode>

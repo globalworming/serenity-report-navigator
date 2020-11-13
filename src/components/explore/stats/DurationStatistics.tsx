@@ -44,7 +44,6 @@ const DurationStatistics = () => {
       </Box>
       <Box>
         <Slider
-          style={{width: "100%"}}
           defaultValue={[20, 80, 95]}
           aria-labelledby="discrete-slider-small-steps"
           step={1}
