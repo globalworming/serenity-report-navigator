@@ -7,7 +7,7 @@ import EnableTracking from "./EnableTracking";
 import React, {useState} from "react";
 import useGlobalState from "../state";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {smallerThan} from "../MediaQuery";
+import MediaQuery from "../MediaQuery";
 
 
 const Title = () => {
@@ -85,8 +85,8 @@ const Stars = () =>
   </a>;
 
 const Header = () => {
-  const headerBreak1 = 650;
-  const minimal = useMediaQuery(smallerThan(headerBreak1));
+  const breakpoint = 650;
+  const minimal = useMediaQuery(MediaQuery.smallerThan(breakpoint));
 
   return <>
     {minimal && <>

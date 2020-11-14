@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
-import ExploreData from "./explore/ExploreData";
+import ExploreData from "./ExploreData";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import useGlobalState from "../state"
 import ApplyFilter from "./ApplyFilter";
 import LocalStateFromQueryParameters from "./LocalStateFromQueryParameters";
 import TestOutcome from "../model/TestOutcome";
 import SideMenu from "./controls/SideMenu"
-import SwitchViewMode from "./explore/SwitchViewMode"
 import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
 import Header from "./Header";
 import {Box, Theme, useTheme} from "@material-ui/core";
@@ -31,8 +30,7 @@ const App = () => {
     const [appliedFilter] = useGlobalState("hasAppliedFilter");
     const [showSideMenu] = useGlobalState("showSideMenu");
 
-
-    const fixEmptyIds = () => {
+  const fixEmptyIds = () => {
       window.outcomes.forEach(it => {
         if (!it.id || it.id.length === 0) {
           it.id = it.userStory.id + ": " + it.name
@@ -60,9 +58,6 @@ const App = () => {
         </Box>}
         <Box flex={"1 0 40%"}>
           <Box>
-            <FullWidthWrappingFlexBox>
-              <SwitchViewMode/>
-            </FullWidthWrappingFlexBox>
             {parsedQuery && appliedFilter && <>
               <ApplyFilter/>
               <ExploreData/>

@@ -1,4 +1,4 @@
-export const smallerThan = (headerBreak1: number) => `(max-width:${headerBreak1}px)`;
+const smallerThan = (headerBreak1: number) => `(max-width:${headerBreak1}px)`;
 
 const MediaQuery = {
   smallerThan

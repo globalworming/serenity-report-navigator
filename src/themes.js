@@ -2,7 +2,7 @@ import {createMuiTheme} from "@material-ui/core";
 
 const Themes = {
   dark: createMuiTheme({
-    palette: {
+   palette: {
       primary: {
         main: "#8d86a3",
       },
@@ -37,5 +37,9 @@ const Themes = {
   }),
   custom: {}
 };
+
+export const BreakPoints = {
+  breakVievMode: 750
+}
 
 export default Themes
