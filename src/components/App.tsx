@@ -5,15 +5,10 @@ import useGlobalState from "../state"
 import ApplyFilter from "./ApplyFilter";
 import LocalStateFromQueryParameters from "./LocalStateFromQueryParameters";
 import TestOutcome from "../model/TestOutcome";
-import SideMenu from "./controls/SideMenu"
 import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
 import Header from "./Header";
-import {Box, Theme, useTheme} from "@material-ui/core";
+import {Theme, useTheme} from "@material-ui/core";
 import HorizontalGlobalResultPercentageLine from "./atoms/HorizontalGlobalResultPercentageLine"
-import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
-import MediaQuery from "../MediaQuery";
-import {BreakPoints} from '../themes';
-import {ToggleSideMenu} from "./controls/ToggleSideMenu";
 
 
 declare global {
@@ -32,8 +27,6 @@ const App = () => {
     const theme = useTheme();
     const [parsedQuery] = useGlobalState("hasParsedQuery");
     const [appliedFilter] = useGlobalState("hasAppliedFilter");
-    const [showSideMenu] = useGlobalState("showSideMenu");
-    const minimal = useMediaQuery(MediaQuery.smallerThan(BreakPoints.breakSideMenue));
 
     const fixEmptyIds = () => {
       window.outcomes.forEach(it => {
@@ -58,27 +51,10 @@ const App = () => {
       <HorizontalGlobalResultPercentageLine/>
 
       <FullWidthWrappingFlexBox>
-        {showSideMenu && <Box style={{
-          flex: minimal ? "0 0 100%" : "0 0 20rem",
-          maxWidth: minimal ? "unset" : "20rem",
-          position: minimal ? "relative" : "absolute",
-          zIndex: minimal ? "inherit" : 999,
-          background: minimal ? "none" : theme.palette.background.default + "EE"
-
-        }}>
-          <ToggleSideMenu/>
-          <SideMenu/>
-        </Box>}
-
-        <Box flex={"1 0 40%"}>
-          <Box>
-            {parsedQuery && appliedFilter && <>
+         {parsedQuery && appliedFilter && <>
               <ApplyFilter/>
               <ExploreData/>
             </>}
-          </Box>
-        </Box>
-
       </FullWidthWrappingFlexBox>
     </FullWidthWrappingFlexBox>
   }
