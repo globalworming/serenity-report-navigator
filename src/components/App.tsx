@@ -58,8 +58,15 @@ const App = () => {
       <HorizontalGlobalResultPercentageLine/>
 
       <FullWidthWrappingFlexBox>
-        {showSideMenu && <Box flex={minimal ? "0 0 100%" : "0 0 300px"}>
-          {minimal && <ToggleSideMenu/>}
+        {showSideMenu && <Box style={{
+          flex: minimal ? "0 0 100%" : "0 0 20rem",
+          maxWidth: minimal ? "unset" : "20rem",
+          position: minimal ? "relative" : "absolute",
+          zIndex: minimal ? "inherit" : 999,
+          background: minimal ? "none" : theme.palette.background.default + "EE"
+
+        }}>
+          <ToggleSideMenu/>
           <SideMenu/>
         </Box>}
 

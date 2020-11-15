@@ -36,9 +36,9 @@ const StepDurationsDistribution = () => {
   const height = 12;
 
   return <>
-    <Box flex={"0 0 15rem"} lineHeight={2} padding={"0.5rem"}>
 
       <strong>step duration distribution </strong>
+      <FullWidthWrappingFlexBox>
        <Box>
          {steps[0].description}
        </Box>
@@ -71,7 +71,7 @@ const StepDurationsDistribution = () => {
           <span>0</span><span>{prettyMilliseconds(maximumDuration * 0.25)}</span><span>{prettyMilliseconds(maximumDuration * 0.5)}</span><span>{prettyMilliseconds(maximumDuration * 0.75)}</span><span>{prettyMilliseconds(maximumDuration)}</span>
         </FullWidthWrappingFlexBox>
       </FullWidthWrappingFlexBox>
-    </Box>
+      </FullWidthWrappingFlexBox>
   </>
 
 

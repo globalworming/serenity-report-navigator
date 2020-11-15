@@ -15,8 +15,6 @@ const UnsuccessfulTags = () => {
   const uniqTags = _.uniqBy(tags, it => joined(it));
 
   return <>
-    <FullWidthWrappingFlexBox
-      style={{flex: "0 0 450px", lineHeight: 2, padding: "0.5rem", justifyContent: "space-around"}}>
       <FullWidthWrappingFlexBox>
         <strong>tags unsuccessful</strong>
       </FullWidthWrappingFlexBox>
@@ -28,9 +26,7 @@ const UnsuccessfulTags = () => {
           </Box>
         </React.Fragment>)}
       </Box>
-
-    </FullWidthWrappingFlexBox>
-  </>
+ </>
 
 
 };

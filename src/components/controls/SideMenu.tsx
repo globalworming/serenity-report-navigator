@@ -45,7 +45,6 @@ const SideMenu = () => {
     }
 
 
-
     {minimal && <>
       <Expandable depths={0} whatsHidden={<QuickLinks/>}>
         <span style={{textTransform: "capitalize"}}>bookmarks</span>
@@ -53,7 +52,7 @@ const SideMenu = () => {
     </>}
     {!minimal && <>
       <span style={{textTransform: "capitalize"}}>bookmarks</span>
-      <QuickLinks />
+      <QuickLinks/>
     </>}
     <Divider/>
 

@@ -19,44 +19,41 @@ const DurationStatistics = () => {
   }
 
   return <>
-    <FullWidthWrappingFlexBox style={{flex: "0 0 450px", lineHeight: 2, padding: "0.5rem", justifyContent: "space-around"}}>
-      <FullWidthWrappingFlexBox>
         <strong>duration per test outcome</strong>
-      </FullWidthWrappingFlexBox>
-
+    <FullWidthWrappingFlexBox style={{justifyContent: "space-between", lineHeight: 3}}>
       <Box>
-        <ul>
-          <li>min {prettyMilliseconds(sortedDurations[0])}</li>
-          <li>
-            avg {prettyMilliseconds(_.mean(sortedDurations))}
-          </li>
-          <li>
+        <FullWidthWrappingFlexBox>
+          <Box>
+              {
+                percentiles.sort().reverse().map((it, i) => <Box key={i + "_" + it}>{it}th percentile: {"<="}{prettyMilliseconds(percentile(it))}</Box>)
+              }
+          </Box>
+          <Box>
+            <Slider
+              defaultValue={[20, 80, 95]}
+              aria-labelledby="discrete-slider-small-steps"
+              step={1}
+              marks
+              min={0}
+              max={99.9}
+              valueLabelDisplay="auto"
+              onChange={(e, v) => (v instanceof Array) ? setPercentiles(v) : setPercentiles([v])}
+              orientation={"vertical"}
+            />
+          </Box>
+        </FullWidthWrappingFlexBox>
+      </Box>
+      <Box>
+          <Box>
             max {prettyMilliseconds(sortedDurations[sortedDurations.length - 1])}
-          </li>
-        </ul>
+          </Box>
+          <Box>
+            avg {prettyMilliseconds(_.mean(sortedDurations))}
+          </Box>
+          <Box>min {prettyMilliseconds(sortedDurations[0])}</Box>
       </Box>
-      <Box>
-      <ul>
-          {
-            percentiles.map((it, i) => <li key={i}>{it}th percentile: {"<="}{prettyMilliseconds(percentile(it))}</li>)
-          }
-        </ul>
-      </Box>
-      <Box>
-        <Slider
-          defaultValue={[20, 80, 95]}
-          aria-labelledby="discrete-slider-small-steps"
-          step={1}
-          marks
-          min={0}
-          max={100}
-          valueLabelDisplay="auto"
-          onChange={(e, v) => (v instanceof Array) ? setPercentiles(v) : setPercentiles([v])}
-          orientation={"vertical"}
-        />
-      </Box>
-
     </FullWidthWrappingFlexBox>
+
   </>
 
 

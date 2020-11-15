@@ -69,7 +69,7 @@ const ExploreData = () => {
   };
 
   return <>
-    {outcomes.length === 0 && <>No Results, clear all filters?</>}
+    {outcomes.length === 0 && <p>No Results, clear all filters?</p>}
     {displayView(view)}
   </>
 };

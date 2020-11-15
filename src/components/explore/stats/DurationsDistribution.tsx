@@ -17,6 +17,7 @@ const DurationsDistribution = () => {
     bars.push(
       outcomes
         .filter(it => {
+          // FIXME fencepost problems, pick a different algorithm!
           return (it.duration < Math.round(maximumDuration / divisions * i + maximumDuration / divisions))
               && (it.duration >= Math.round(maximumDuration / divisions * (i - 1) + maximumDuration / divisions));
           }
@@ -30,8 +31,6 @@ const DurationsDistribution = () => {
   const heightPixel = 150;
 
   return <>
-    <Box flex={"0 0 300px"} lineHeight={2} padding={"0.5rem"}>
-
       <strong>duration distribution </strong>
       {/*<TextField label="divisions" variant="outlined" value={divisions}
                  onChange={(e) => setDivisions(parseInt(e.target.value))}/>*/}
@@ -62,7 +61,6 @@ const DurationsDistribution = () => {
           <span>0</span><span>{prettyMilliseconds(maximumDuration * 0.25)}</span><span>{prettyMilliseconds(maximumDuration * 0.5)}</span><span>{prettyMilliseconds(maximumDuration * 0.75)}</span><span>{prettyMilliseconds(maximumDuration)}</span>
         </FullWidthWrappingFlexBox>
       </FullWidthWrappingFlexBox>
-    </Box>
   </>
 
 

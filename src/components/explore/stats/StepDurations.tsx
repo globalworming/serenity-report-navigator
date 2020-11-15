@@ -25,11 +25,7 @@ const StepDurations = () => {
   }, [selected, setSelected, longestRunningSteps]);
 
   return <>
-    <FullWidthWrappingFlexBox
-      style={{flex: "0 0 30rem", lineHeight: 2, padding: "0.5rem", justifyContent: "space-around"}}>
-      <FullWidthWrappingFlexBox>
         <strong>top {results} longest running steps, max {prettyMilliseconds(allMax)}</strong>
-      </FullWidthWrappingFlexBox>
       <FullWidthWrappingFlexBox style={{maxHeight: "15rem", overflow: "auto"}}>
         {
           _.keys(grouped).slice(0, results).map(it => {
@@ -64,6 +60,7 @@ const StepDurations = () => {
                       top: "0",
                       left: "0.5rem",
                       maxWidth: "90%",
+                      color: theme.palette.text.primary,
                       maxHeight: "2rem",
                       overflow: "hidden"
                     }}><span
@@ -76,7 +73,6 @@ const StepDurations = () => {
           )
         }
       </FullWidthWrappingFlexBox>
-    </FullWidthWrappingFlexBox>
   </>
 
 
