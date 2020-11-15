@@ -10,10 +10,14 @@ import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
 import Header from "./Header";
 import {Box, Theme, useTheme} from "@material-ui/core";
 import HorizontalGlobalResultPercentageLine from "./atoms/HorizontalGlobalResultPercentageLine"
+import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
+import MediaQuery from "../MediaQuery";
+import {BreakPoints} from '../themes';
+import {ToggleSideMenu} from "./controls/ToggleSideMenu";
 
 
 declare global {
-  // noinspection JSUnusedGlobalSymbols
+// noinspection JSUnusedGlobalSymbols
   interface Window {
     outcomes: Array<TestOutcome>;
   }
@@ -29,8 +33,9 @@ const App = () => {
     const [parsedQuery] = useGlobalState("hasParsedQuery");
     const [appliedFilter] = useGlobalState("hasAppliedFilter");
     const [showSideMenu] = useGlobalState("showSideMenu");
+    const minimal = useMediaQuery(MediaQuery.smallerThan(BreakPoints.breakSideMenue));
 
-  const fixEmptyIds = () => {
+    const fixEmptyIds = () => {
       window.outcomes.forEach(it => {
         if (!it.id || it.id.length === 0) {
           it.id = it.userStory.id + ": " + it.name
@@ -53,9 +58,11 @@ const App = () => {
       <HorizontalGlobalResultPercentageLine/>
 
       <FullWidthWrappingFlexBox>
-        {showSideMenu && <Box flex={"0 0 15rem"} padding={"1rem 0.2rem"}>
+        {showSideMenu && <Box flex={minimal ? "0 0 100%" : "0 0 300px"}>
+          {minimal && <ToggleSideMenu/>}
           <SideMenu/>
         </Box>}
+
         <Box flex={"1 0 40%"}>
           <Box>
             {parsedQuery && appliedFilter && <>

@@ -4,6 +4,7 @@ import Filter from "../../model/Filter";
 import _ from "lodash";
 import ClearButton from "../molecules/ClearButton";
 import {Box, useTheme} from "@material-ui/core";
+import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
 
 const FilterKeywords = () => {
   const theme = useTheme();
@@ -31,15 +32,24 @@ const FilterKeywords = () => {
   }, [debouncedSync, filter, localValue]);
 
   return <>
-    <Box margin={"0 0.2rem"} flex={"1 1 150px"}>
-    <input style={{height: "2rem", width: "100%", padding: "0.5rem", color: theme.palette.text.primary, background: theme.palette.background.default}}
-           type={"text"} placeholder={"search in story, name, ..."} value={localValue}
-           onChange={(e) => setLocalValue(e.target.value)}/>
-  </Box>
-    <Box>
-      <ClearButton disabled={localValue === ""} onClick={() => setLocalValue("")}/>
-    </Box>
-    </>
+    <FullWidthWrappingFlexBox>
+      <Box margin={"0 0.2rem"} flex={"1 1 150px"}>
+        <input style={{
+          height: "2rem",
+          width: "100%",
+          padding: "0.5rem",
+          color: theme.palette.text.primary,
+          background: theme.palette.background.default
+        }}
+               // TODO tag, outline, narrative
+               type={"text"} placeholder={"name, story name, title..."} value={localValue}
+               onChange={(e) => setLocalValue(e.target.value)}/>
+      </Box>
+      <Box>
+        <ClearButton disabled={localValue === ""} onClick={() => setLocalValue("")}/>
+      </Box>
+    </FullWidthWrappingFlexBox>
+  </>
 };
 
 export default FilterKeywords

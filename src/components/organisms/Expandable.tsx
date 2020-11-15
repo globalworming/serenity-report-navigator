@@ -6,16 +6,19 @@ import HighlightOnHover from "./HighlightOnHover";
 
 
 interface ExpandableProps {
-  depths: number,
+  // auto expand when <= global depths
+  depths?: number,
+  isExpanded?: boolean,
   whatsHidden?: any;
 }
 
-const Expandable: FunctionComponent<ExpandableProps> = ({depths, children, whatsHidden}) => {
+const Expandable: FunctionComponent<ExpandableProps> = ({depths, children, whatsHidden, isExpanded}) => {
   const [expandLayers] = useGlobalState('expansionDepth');
-  const [expanded, setExpanded] = useState(expandLayers >= depths);
+  const [expanded, setExpanded] = useState(depths ? expandLayers >= depths : isExpanded !== undefined && isExpanded);
 
   useEffect(() => {
-      setExpanded(expandLayers >= depths)
+    if (!depths) return;
+    setExpanded(expandLayers >= depths)
   }, [depths, expandLayers]);
 
   const myToggle = (e: React.MouseEvent<HTMLElement>) => {
@@ -30,7 +33,8 @@ const Expandable: FunctionComponent<ExpandableProps> = ({depths, children, whats
   }
 
   return <>
-    <Box style={{cursor: "pointer"}} display="flex" flex={"0 0 100%"} flexWrap={"wrap"} justifyContent="space-between" maxWidth={"100%"} onClick={myToggle} lineHeight={2}>
+    <Box style={{cursor: "pointer"}} display="flex" flex={"0 0 100%"} flexWrap={"wrap"} justifyContent="space-between"
+         maxWidth={"100%"} onClick={myToggle} lineHeight={2}>
       <HighlightOnHover>
         <Box display="flex" flex={"1 0 80%"}>
           {children}

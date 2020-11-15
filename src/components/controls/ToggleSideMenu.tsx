@@ -17,9 +17,7 @@ export const ToggleSideMenu = () => {
 
 
   const buttonStyle = {
-    margin: "0.25em",
     minWidth: 0,
-    padding: "0 0.2rem 0 0.7rem" , height: "1.5rem", lineHeight: 1
   };
 
 
