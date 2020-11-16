@@ -15,6 +15,8 @@ const ByOutcome = () => {
   const selectedOutcome = outcomes.find(it => it.id === selected);
   const minimal = useMediaQuery(MediaQuery.smallerThan(BreakPoints.breakOutcomes));
 
+  if (outcomes.length === 0) return null;
+
   return <>
     <FullWidthWrappingFlexBox className={"outcomes"}>
       {minimal && <>
