@@ -40,7 +40,8 @@ const Themes = {
 
 export const BreakPoints = {
   breakVievMode: 750,
-  breakSideMenue: 570
+  breakSideMenue: 570,
+  breakOutcomes: 850
 }
 
 export default Themes
