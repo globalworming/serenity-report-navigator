@@ -28,7 +28,17 @@ const App = () => {
     const [parsedQuery] = useGlobalState("hasParsedQuery");
     const [appliedFilter] = useGlobalState("hasAppliedFilter");
 
-    const fixEmptyIds = () => {
+
+  const updateBackground = (color: string) => {
+    document.body.style.setProperty("background-color", color);
+  };
+
+  useEffect(() => {
+    return updateBackground(theme.palette.background.default);
+  }, [theme.palette.background.default]);
+
+
+  const fixEmptyIds = () => {
       window.outcomes.forEach(it => {
         if (!it.id || it.id.length === 0) {
           it.id = it.userStory.id + ": " + it.name
