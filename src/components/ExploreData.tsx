@@ -8,17 +8,20 @@ import ByOutcome from "./explore/ByOutcome";
 import ExpandCollapseAll from "./explore/ExpandCollapseAll";
 import {ToggleSideMenu} from "./controls/ToggleSideMenu";
 import FullWidthWrappingFlexBox from "./molecules/FullWidthWrappingFlexBox";
-import {Box, useTheme} from "@material-ui/core";
+import {Box, Fab, useTheme} from "@material-ui/core";
 import SwitchViewMode from "./controls/SwitchViewMode";
 import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
 import MediaQuery from "../MediaQuery";
 import {BreakPoints} from '../themes';
 import SideMenu from "./controls/SideMenu";
+import ShareIcon from '@material-ui/icons/Share';
+import {queryString} from "./LocalStateFromQueryParameters";
 
 const WithSideMenu: FunctionComponent = ({children}) => {
   const [showSideMenu] = useGlobalState("showSideMenu");
   const minimalMenu = useMediaQuery(MediaQuery.smallerThan(BreakPoints.breakSideMenue));
   const theme = useTheme();
+
 
   return <>
     {showSideMenu && <Box style={{
@@ -37,6 +40,10 @@ const WithSideMenu: FunctionComponent = ({children}) => {
 const ExploreData = () => {
   const [view] = useGlobalState("view");
   const [outcomes] = useGlobalState("filteredOutcomes");
+  const [filter] = useGlobalState("filter");
+  const [depth] = useGlobalState("expansionDepth");
+  const [themeKey] = useGlobalState("theme");
+  const theme = useTheme();
 
   const minimalSwitchView = useMediaQuery(MediaQuery.smallerThan(BreakPoints.breakVievMode));
 
@@ -47,7 +54,7 @@ const ExploreData = () => {
       <Box>
         <ToggleSideMenu/>
       </Box>
-      <Box flex={minimalSwitchView ? "none" : "1 0 40rem"}>
+      <Box flex={minimalSwitchView ? "none" : "1 0 20rem"}>
         <SwitchViewMode/>
       </Box>
       <Box>
@@ -60,7 +67,7 @@ const ExploreData = () => {
       <Box>
         <ToggleSideMenu/>
       </Box>
-      <Box flex={minimalSwitchView ? "none" : "1 0 40rem"}>
+      <Box flex={minimalSwitchView ? "none" : "1 0 20rem"}>
         <SwitchViewMode/>
       </Box>
     </FullWidthWrappingFlexBox>;
@@ -101,9 +108,33 @@ const ExploreData = () => {
     return <Stats/>
   };
 
+  const encodedTheme = themeKey !== "custom" ? themeKey :
+    [theme.palette.primary.main, theme.palette.secondary.main, theme.palette.text.primary, theme.palette.background.default, theme.palette.background.paper].join("_");
+
   return <>
     {outcomes.length === 0 && <p>No Results, clear all filters?</p>}
     {displayView(view)}
+    <FullWidthWrappingFlexBox style={{height: "4rem"}}>
+      <Fab variant="extended" href={queryString({
+        theme: encodedTheme,
+        view,
+        results: filter.results,
+        text: filter.keyword,
+        outcomeId: filter.focusOutcome,
+        type: filter.focusType,
+        tag: filter.focusTag,
+        depth
+      })}
+      style={{
+       position: "fixed",
+       bottom: "0.5rem",
+       right: "0.5rem"
+      }}
+      >
+        Link to current view
+        <ShareIcon/>
+      </Fab>
+    </FullWidthWrappingFlexBox>
   </>
 };
 

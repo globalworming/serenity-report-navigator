@@ -1,5 +1,4 @@
 import {Button} from "@material-ui/core";
-import LinkTo from "../atoms/LinkTo";
 import Result from "../../model/Result";
 import * as React from "react";
 import Filter from "../../model/Filter";
@@ -33,11 +32,11 @@ const QuickLinks = () => {
   return <>
     <Button style={{marginBottom: "0.5rem"}} fullWidth={true} color={"secondary"} variant={"outlined"}
             onClick={showViewOutcomeErrors}>
-      trace errors <LinkTo depth={10} results={[Result.FAILURE, Result.ERROR, Result.COMPROMISED]} view={View.OUTCOMES}/>
+      trace errors
     </Button>
 
     <Button fullWidth={true} color={"secondary"} variant={"outlined"} onClick={showPendingStories}>
-      pending stories <LinkTo depth={1} results={[Result.PENDING]} view={View.STORY}/>
+      pending stories
     </Button></>;
 };
 

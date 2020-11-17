@@ -1,6 +1,5 @@
 import React from "react";
 import {Box, Button, FormControl, Select, useTheme} from "@material-ui/core";
-import LinkTo from "../atoms/LinkTo";
 import useGlobalState from "../../state";
 import Emoji from "../atoms/Emoji";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
@@ -13,22 +12,6 @@ interface TabNavProps {
   switchTo: Function
 }
 
-interface LinkToViewProps {
-  view: string
-}
-
-const LinkToViewResettingDepthKeepingFilters = ({view}: LinkToViewProps) => {
-  const [filter] = useGlobalState("filter");
-
-  return <LinkTo view={view} depth={0}
-                 results={filter.results}
-                 text={filter.keyword}
-                 outcomeId={filter.focusOutcome}
-                 type={filter.focusType}
-                 tag={filter.focusTag}
-  />;
-};
-
 interface SwitchViewButtonProps {
   view: string
   switchTo: Function
@@ -40,17 +23,15 @@ const SwitchToViewButton = ({view, switchTo}: SwitchViewButtonProps) => {
   return <>
     <Box onClick={() => switchTo(view)}>
       <Button disableElevation variant={selectedView === view ? "contained" : "outlined"} color={"secondary"}
-              style={{borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}>
+              style={{borderBottomLeftRadius: 0, borderBottomRightRadius: 0, margin: "0 0.2rem"}}>
         {view}&nbsp;<Emoji label={view}/>
       </Button>
-      <LinkToViewResettingDepthKeepingFilters view={view}/>
     </Box>
   </>;
 };
 
 const TabularNavigation = ({switchTo}: TabNavProps) => {
-  return <FullWidthWrappingFlexBox className={"switchWrapper"}
-                                   style={{justifyContent: "space-around", padding: "0.2rem", paddingBottom: 0}}>
+  return <FullWidthWrappingFlexBox>
     {
       [View.STATS, View.STORY, View.OUTCOMES, View.SCREENSHOTS].map(it =>
         <React.Fragment key={it}>
@@ -58,7 +39,7 @@ const TabularNavigation = ({switchTo}: TabNavProps) => {
         </React.Fragment>
       )
     }
-  </FullWidthWrappingFlexBox>;
+    </FullWidthWrappingFlexBox>
 };
 
 const SelectNavigation = ({switchTo}: TabNavProps) => {
@@ -81,7 +62,6 @@ const SelectNavigation = ({switchTo}: TabNavProps) => {
         }
       </Select>
     </FormControl>
-    <LinkToViewResettingDepthKeepingFilters view={view}/>
   </>;
 };
 

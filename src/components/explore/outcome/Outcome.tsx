@@ -12,8 +12,6 @@ import * as _ from "lodash";
 import {flatSteps} from "../../../model/TestStep";
 import moment from "moment"
 import prettyMilliseconds from "pretty-ms"
-import LinkTo from "../../atoms/LinkTo";
-import useGlobalState from '../../../state';
 import RowWithResultAggregate from "../../molecules/RowWithResultAggregate";
 import Divider from "../../atoms/Devider";
 
@@ -23,7 +21,6 @@ type MyProps = {
 
 const Outcome = ({tell}: MyProps) => {
   const theme = useTheme();
-  const [view] = useGlobalState("view");
   const startTime = typeof tell.startTime === "string" && tell.startTime.toString().includes("[") ? tell.startTime.split("[")[0] : tell.startTime;
   const steps = flatSteps(tell.testSteps);
   const screenshotCount = _.sum(steps.filter(it => it.screenshots).map(it => it.screenshots.length));
@@ -39,7 +36,7 @@ const Outcome = ({tell}: MyProps) => {
       wordBreak: "break-word"
     }}>
       <FullWidthWrappingFlexBox>
-        <span><ResultImage result={tell.result}/> {tell.title}</span><LinkTo view={view} outcomeId={tell.id} depth={4}/>
+        <span><ResultImage result={tell.result}/> {tell.title}</span>
       </FullWidthWrappingFlexBox>
       <FullWidthWrappingFlexBox>
         {tell.userStory.storyName}

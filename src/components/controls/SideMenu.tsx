@@ -1,7 +1,6 @@
 import * as React from "react";
 import FilterResult from "./FilterResult";
 import FilterKeywords from "./FilterKeywords";
-import LinkTo from "../atoms/LinkTo";
 import useGlobalState from "../../state";
 import FilterTestOutcome from "./FilterTestOutcome";
 import FullWidthWrappingFlexBox from "../molecules/FullWidthWrappingFlexBox";
@@ -14,9 +13,7 @@ import {BreakPoints} from "../../themes";
 import Expandable from "../organisms/Expandable";
 
 const SideMenu = () => {
-  const [view] = useGlobalState("view");
   const [filter] = useGlobalState("filter");
-  const [depth] = useGlobalState("expansionDepth");
 
   const minimal = useMediaQuery(MediaQuery.smallerThan(BreakPoints.breakSideMenue));
 
@@ -66,13 +63,6 @@ const SideMenu = () => {
       <FilterTags/>
     </>}
     <Divider/>
-
-    <span style={{textTransform: "capitalize"}}>share filter: <LinkTo view={view} results={filter.results}
-                                                                      text={filter.keyword}
-                                                                      outcomeId={filter.focusOutcome}
-                                                                      type={filter.focusType}
-                                                                      tag={filter.focusTag}
-                                                                      depth={depth}/></span>
 
   </FullWidthWrappingFlexBox>
 };
