@@ -19,14 +19,15 @@ const Stats = () => {
   const defaultPadding = "0.5rem";
   return <>
       <FullWidthWrappingFlexBox>
+        <Box padding={defaultPadding} flex={"1 1 18rem"}>
+          <ResultPercentage/>
+        </Box>
+
         <Box padding={defaultPadding} flex={"1 1 20rem"}>
           <UnsuccessfulOutcomes/>
         </Box>
         <Box padding={defaultPadding} flex={"1 1 25rem"}>
           <UnsuccessfulTags/>
-        </Box>
-        <Box padding={defaultPadding} flex={"1 1 18rem"}>
-          <ResultPercentage/>
         </Box>
 
         <Box padding={defaultPadding} flex={"1 1 18rem"}>
