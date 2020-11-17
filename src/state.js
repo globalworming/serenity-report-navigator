@@ -15,7 +15,8 @@ const initialState = {
   theme: "dark",
   showSideMenu: false,
   selectedOutcome: "",
-  selectedStep: ""
+  selectedStep: "",
+  showReadme: false
 };
 const {useGlobalState} = createGlobalState(initialState);
 
