@@ -64,7 +64,7 @@ const StepDurations = () => {
                       maxHeight: "2rem",
                       overflow: "hidden"
                     }}><span
-                      style={{backgroundColor: `#f50057${Math.min(0xFF, steps.length * 5).toString(16)}`}}>{steps.length}x</span> {formatted} {steps[0].description}
+                      style={{backgroundColor: `#f50057${Math.min(0xFF, steps.length * 5).toString(16)}`}}>{steps.length}x</span> {formatted} {it.replace(/\n/g, " ")}
                     </Pre>
                   </FullWidthWrappingFlexBox>
                 </Button>
