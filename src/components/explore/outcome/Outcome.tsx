@@ -33,6 +33,8 @@ const Outcome = ({tell}: MyProps) => {
   return <>
     <FullWidthWrappingFlexBox className={"outcome"} style={{
       padding: "0.5rem",
+      margin: "0.2rem",
+      borderRadius: "5px",
       backgroundColor: theme.palette.background.paper,
       wordBreak: "break-word"
     }}>
