@@ -83,7 +83,6 @@ const Header = () => {
       <span style={spanStyle}>
       <Emoji label={"one hundred"}/> customizable theme and view options
     </span>
-
     </FullWidthWrappingFlexBox>
   </>;
   return <>
@@ -93,13 +92,17 @@ const Header = () => {
         <ToggleTheme/>
       </FullWidthWrappingFlexBox>
 
-      <Box display={"flex"} flexWrap={"wrap"} marginLeft={"auto"} flex={"0 0 20rem"} style={{justifyContent: "space-between"}}
+      <Box display={"flex"} flexWrap={"wrap"} marginLeft={"auto"} flex={"0 0 20rem"}
+           style={{justifyContent: "space-between"}}
            flexDirection="row-reverse"
       >
         <Sponsor/>
         <Stars/>
         <Info/>
       </Box>
+      {info &&
+      Readme
+      }
     </>}
 
     {!minimal && <>

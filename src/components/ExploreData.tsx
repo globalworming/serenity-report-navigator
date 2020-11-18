@@ -111,6 +111,7 @@ const ExploreData = () => {
   const encodedTheme = themeKey !== "custom" ? themeKey :
     [theme.palette.primary.main, theme.palette.secondary.main, theme.palette.text.primary, theme.palette.background.default, theme.palette.background.paper].join("_");
 
+  // FIXME current view should contain selected outcome in outcome view
   return <>
     {outcomes.length === 0 && <p>No Results, clear all filters?</p>}
     {displayView(view)}
