@@ -30,7 +30,7 @@ const QuickLinks = () => {
 
 
   return <>
-    <Button style={{marginBottom: "0.5rem"}} fullWidth={true} color={"secondary"} variant={"outlined"}
+    <Button className={"traceErrors"} style={{marginBottom: "0.5rem"}} fullWidth={true} color={"secondary"} variant={"outlined"}
             onClick={showViewOutcomeErrors}>
       trace errors
     </Button>
