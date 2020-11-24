@@ -77,7 +77,7 @@ const SelectOutcome = () => {
           (it => it.userStory.path)
         ).map(it => <React.Fragment key={it.id}>
           <FullWidthWrappingFlexBox>
-            <Button fullWidth variant={"outlined"} color={it.id === selected ? "primary" : "secondary"}
+            <Button className={"selectOutcome"} fullWidth variant={"outlined"} color={it.id === selected ? "primary" : "secondary"}
                     style={{
                       textTransform: "none",
                       justifyContent: "start",
