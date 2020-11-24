@@ -22,7 +22,7 @@ export const ToggleSideMenu = () => {
 
 
   return <>
-    <Button
+    <Button className={"ToggleSideMenu"}
       style={buttonStyle}
       onClick={() => setShowSideMenu(!showSideMenu)}
       variant={!showSideMenu ? "contained" : "outlined"}
